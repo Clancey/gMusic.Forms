@@ -10,6 +10,7 @@ namespace gMusic.Views
         {
             Content = new StackLayout
             {
+                BackgroundColor = Color.Blue,
                 Children = {
                     new Label { Text = "Hello ContentPage" }
                 }

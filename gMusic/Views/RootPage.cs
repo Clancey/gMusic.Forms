@@ -30,12 +30,12 @@ namespace gMusic
 		{
             return SlideUpPanel = new SlideUpPanel
             {
-                Master = new NowPlayingPage { Title = "gMusic", BackgroundColor = Color.Blue },
+                Master = new NowPlayingPage { Title = "gMusic"},
                 Detail = (MasterDetail = new MasterDetailPage
                 {
                     Title = "gMusic",
 					Master = new SideNavigationPage { BindingContext = this },
-					Detail = new SongsPage { BackgroundColor = Color.Teal },
+					Detail = new SongsPage(),
 				}),
 			};
 		}
@@ -46,8 +46,8 @@ namespace gMusic
 				Master = new SideNavigationPage { BindingContext = this },
 				Detail = (SlideUpPanel = new SlideUpPanel
 				{
-					Master = new NowPlayingPage { Title = "gMusic", Content = new ListView { BackgroundColor = Color.Blue } },
-					Detail = new SongsPage   { BackgroundColor = Color.Teal },
+					Master = new NowPlayingPage { Title = "gMusic" },
+					Detail = new SongsPage (),
 				}),
 			};
 		}

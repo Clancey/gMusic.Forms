@@ -219,9 +219,7 @@ namespace gMusic.Forms.Droid
 
         protected virtual void OnElementChanged(VisualElement oldElement, VisualElement newElement)
         {
-            EventHandler<VisualElementChangedEventArgs> changed = ElementChanged;
-            if (changed != null)
-                changed(this, new VisualElementChangedEventArgs(oldElement, newElement));
+            ElementChanged?.Invoke(this, new VisualElementChangedEventArgs(oldElement, newElement));
         }
 
         protected override void OnLayout(bool changed, int l, int t, int r, int b)
@@ -305,10 +303,6 @@ namespace gMusic.Forms.Droid
             //SetDrawerLockMode(_page.IsGestureEnabled ? LockModeUnlocked : LockModeLockedClosed);
         }
 
-        //void IVisualElementRenderer.SetLabelFor(int? id)
-        //{
-        //}
-
         void SetLockMode(int lockMode)
         {
             if (_currentLockMode != lockMode)
@@ -380,6 +374,7 @@ namespace gMusic.Forms.Droid
         const int DefaultMasterSize = 320;
         const int DefaultSmallMasterSize = 240;
         readonly bool _isMaster;
+        private readonly Context context;
         readonly MasterDetailPage _parent;
         VisualElement _childView;
 
@@ -387,6 +382,7 @@ namespace gMusic.Forms.Droid
         {
             _parent = parent;
             _isMaster = isMaster;
+            this.context = context;
         }
 
         public MasterDetailContainer(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer) { }
@@ -418,14 +414,14 @@ namespace gMusic.Forms.Droid
         {
             IVisualElementRenderer renderer = Platform.GetRenderer(childView);
             if (renderer == null)
-                Platform.SetRenderer(childView, renderer = Platform.CreateRenderer(childView));
+                Platform.SetRenderer(childView, renderer = Platform.CreateRendererWithContext(childView, context));
 
-            if (renderer.ViewGroup.Parent != this)
+            if (renderer.View.Parent != this)
             {
-                if (renderer.ViewGroup.Parent != null)
-                    renderer.ViewGroup.RemoveFromParent();
+                if (renderer.View.Parent != null)
+                    renderer.View.RemoveFromParent();
                 SetDefaultBackgroundColor(renderer);
-                AddView(renderer.ViewGroup);
+                AddView(renderer.View);
                 renderer.UpdateLayout();
             }
         }
@@ -497,7 +493,7 @@ namespace gMusic.Forms.Droid
             if (ChildView.BackgroundColor == Color.Default)
             {
                 TypedArray colors = Context.Theme.ObtainStyledAttributes(new[] { global::Android.Resource.Attribute.ColorBackground });
-                renderer.ViewGroup.SetBackgroundColor(new global::Android.Graphics.Color(colors.GetColor(0, 0)));
+                renderer.View.SetBackgroundColor(new global::Android.Graphics.Color(colors.GetColor(0, 0)));
             }
         }
     }
