@@ -14,11 +14,11 @@ using gMusic.ViewModels;
 namespace gMusic.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemsPage : ContentPage
+    public partial class SongsPage : ContentPage
     {
         ItemsViewModel viewModel;
 
-        public ItemsPage()
+        public SongsPage()
         {
             InitializeComponent();
 
@@ -31,7 +31,6 @@ namespace gMusic.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;

@@ -22,6 +22,8 @@ namespace gMusic.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            Images.AlbumArtScreenSize = (int)NMath.Max(UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height);
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
