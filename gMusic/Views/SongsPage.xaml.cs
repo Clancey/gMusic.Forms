@@ -16,7 +16,8 @@ namespace gMusic.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SongsPage : ContentPage
     {
-        SongsViewModel viewModel;
+        //TODO:FixMe
+        public SongsViewModel viewModel;
 
         public SongsPage()
         {

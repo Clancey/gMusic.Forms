@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.ArtistsPage">
     <ContentPage.Content>
-        <ListView x:Name="ItemsListView" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Display}" GroupShortNameBinding="{Binding Display}"  ItemsSource="{Binding ViewModel, Mode=TwoWay}" VerticalOptions="FillAndExpand" HasUnevenRows="True" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement">
+        <ListView x:Name="ItemsListView" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Display}" GroupShortNameBinding="{Binding Display}"  ItemsSource="{Binding ViewModel, Mode=TwoWay}" VerticalOptions="FillAndExpand" HasUnevenRows="True" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="Handle_ItemSelected" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
