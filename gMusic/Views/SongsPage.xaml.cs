@@ -16,13 +16,13 @@ namespace gMusic.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SongsPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        SongsViewModel viewModel;
 
         public SongsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new SongsViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

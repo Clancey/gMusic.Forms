@@ -15,14 +15,14 @@ using gMusic.Api.GoogleMusic;
 
 namespace gMusic.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class SongsViewModel : BaseViewModel
     {
         public SimpleDatabaseSource<Song> Items { get; } = new SimpleDatabaseSource<Song>(Database.Main);
         public Command LoadItemsCommand { get; set; }
 
         GoogleMusicProvider googleMusicProvider = new GoogleMusicProvider(new GoogleMusicApi("1"));
 
-        public ItemsViewModel()
+        public SongsViewModel()
         {
             Title = "Browse";
            
