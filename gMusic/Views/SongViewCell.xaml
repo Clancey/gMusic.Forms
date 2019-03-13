@@ -5,7 +5,7 @@
         </ffimageloading:CachedImage>
         <StackLayout Padding="10">
             <Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-            <Label Text="{Binding ArtistName}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+            <Label Text="{Binding DetailText}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
         </StackLayout>
     </StackLayout>
 </ViewCell>

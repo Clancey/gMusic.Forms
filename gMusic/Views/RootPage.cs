@@ -14,7 +14,7 @@ namespace gMusic
     {
         public List<NavigationItem> Items { get; set; } = new List<NavigationItem>
         {
-            new NavigationItem{Title = Strings.Search},
+            new NavigationItem{Title = Strings.Search, Image = Images.Menu.SearchIcon},
             new NavigationItem{Title = Strings.MusicLibraryHeading},
             new NavigationItem{Title = Strings.Songs, Page = new NavigationPage(new SongsPage()) },
             new NavigationItem{Title = Strings.Artists, Page = new NavigationPage(new ArtistsPage()) },
