@@ -12,6 +12,7 @@ using SimpleAuth;
 using System.Linq;
 using gMusic.Data;
 using gMusic.Api.GoogleMusic;
+using Localizations;
 
 namespace gMusic.ViewModels
 {
@@ -24,7 +25,7 @@ namespace gMusic.ViewModels
 
         public SongsViewModel()
         {
-            Title = "Browse";
+            Title = Strings.Songs;
            
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             

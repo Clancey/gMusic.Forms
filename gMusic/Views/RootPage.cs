@@ -14,8 +14,8 @@ namespace gMusic
     {
         public List<NavigationItem> Items { get; set; } = new List<NavigationItem>
         {
-            new NavigationItem{Title = "Search"},
-            new NavigationItem{Title = "my music"},
+            new NavigationItem{Title = Strings.Search},
+            new NavigationItem{Title = Strings.MusicLibraryHeading},
             new NavigationItem{Title = Strings.Songs, Page = new NavigationPage(new SongsPage()) },
             new NavigationItem{Title = Strings.Artists, Page = new NavigationPage(new ArtistsPage()) },
 			//new MenuItem(Strings.Search,"SVG/search.svg",20,new SearchPage()){SaveIndex = false},
@@ -57,7 +57,7 @@ namespace gMusic
             };
         }
 
-        Page GetInitialPage() => Items[Settings.CurrentMenuIndex].Page ?? Items.Select(x=> x.Page).FirstOrDefault(x=> x != null);
+        Page GetInitialPage() => Items[Settings.CurrentMenuIndex].Page ?? Items.Select(x => x.Page).FirstOrDefault(x => x != null);
 
         public static implicit operator Page(RootPage r)
         {

@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using gMusic.ViewModels;
 using gMusic.Models;
 using gMusic.Data;
+using Localizations;
 
 namespace gMusic.Views
 {
@@ -15,6 +16,7 @@ namespace gMusic.Views
         {
             InitializeComponent();
             ItemsListView.BindingContext = this;
+            this.Title = Strings.Artists;
         }
     }
 }
