@@ -17,10 +17,13 @@
     <PackageReference Include="Punchclock" Version="3.0.17" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.4.859" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.4.859" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.4.859" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Apis\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Svg\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ApiConstants.cs" />
@@ -28,6 +31,104 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Localizations\Localizations.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Svg\airplay.svg" />
+    <None Remove="Resources\Svg\album.svg" />
+    <None Remove="Resources\Svg\amazon.svg" />
+    <None Remove="Resources\Svg\artist.svg" />
+    <None Remove="Resources\Svg\close.svg" />
+    <None Remove="Resources\Svg\copy.svg" />
+    <None Remove="Resources\Svg\dice.svg" />
+    <None Remove="Resources\Svg\dropbox-outline.svg" />
+    <None Remove="Resources\Svg\edit.svg" />
+    <None Remove="Resources\Svg\equalizer.svg" />
+    <None Remove="Resources\Svg\genres.svg" />
+    <None Remove="Resources\Svg\google-drive.svg" />
+    <None Remove="Resources\Svg\googleMusic.svg" />
+    <None Remove="Resources\Svg\icon.svg" />
+    <None Remove="Resources\Svg\isOffline.svg" />
+    <None Remove="Resources\Svg\menu.svg" />
+    <None Remove="Resources\Svg\more.svg" />
+    <None Remove="Resources\Svg\moreTall.svg" />
+    <None Remove="Resources\Svg\musicalNotes.svg" />
+    <None Remove="Resources\Svg\next.svg" />
+    <None Remove="Resources\Svg\offline.svg" />
+    <None Remove="Resources\Svg\onedrive.svg" />
+    <None Remove="Resources\Svg\pauseButton.svg" />
+    <None Remove="Resources\Svg\pauseButtonBordered.svg" />
+    <None Remove="Resources\Svg\playbackSliderThumb.svg" />
+    <None Remove="Resources\Svg\playButton.svg" />
+    <None Remove="Resources\Svg\playButtonBordered.svg" />
+    <None Remove="Resources\Svg\playlists.svg" />
+    <None Remove="Resources\Svg\previous.svg" />
+    <None Remove="Resources\Svg\radio.svg" />
+    <None Remove="Resources\Svg\repeat.svg" />
+    <None Remove="Resources\Svg\repeatOne.svg" />
+    <None Remove="Resources\Svg\search.svg" />
+    <None Remove="Resources\Svg\settings.svg" />
+    <None Remove="Resources\Svg\share.svg" />
+    <None Remove="Resources\Svg\shuffle.svg" />
+    <None Remove="Resources\Svg\sliderTrack.svg" />
+    <None Remove="Resources\Svg\songs.svg" />
+    <None Remove="Resources\Svg\songsDefault.svg" />
+    <None Remove="Resources\Svg\soundCloudColor.svg" />
+    <None Remove="Resources\Svg\thumbsDown.svg" />
+    <None Remove="Resources\Svg\thumbsUp.svg" />
+    <None Remove="Resources\Svg\trash.svg" />
+    <None Remove="Resources\Svg\trending.svg" />
+    <None Remove="Resources\Svg\undo.svg" />
+    <None Remove="Resources\Svg\videoIcon.svg" />
+    <None Remove="Resources\Svg\youtubeLogo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\airplay.svg" />
+    <EmbeddedResource Include="Resources\Svg\album.svg" />
+    <EmbeddedResource Include="Resources\Svg\amazon.svg" />
+    <EmbeddedResource Include="Resources\Svg\artist.svg" />
+    <EmbeddedResource Include="Resources\Svg\close.svg" />
+    <EmbeddedResource Include="Resources\Svg\copy.svg" />
+    <EmbeddedResource Include="Resources\Svg\dice.svg" />
+    <EmbeddedResource Include="Resources\Svg\dropbox-outline.svg" />
+    <EmbeddedResource Include="Resources\Svg\edit.svg" />
+    <EmbeddedResource Include="Resources\Svg\equalizer.svg" />
+    <EmbeddedResource Include="Resources\Svg\genres.svg" />
+    <EmbeddedResource Include="Resources\Svg\google-drive.svg" />
+    <EmbeddedResource Include="Resources\Svg\googleMusic.svg" />
+    <EmbeddedResource Include="Resources\Svg\icon.svg" />
+    <EmbeddedResource Include="Resources\Svg\isOffline.svg" />
+    <EmbeddedResource Include="Resources\Svg\menu.svg" />
+    <EmbeddedResource Include="Resources\Svg\more.svg" />
+    <EmbeddedResource Include="Resources\Svg\moreTall.svg" />
+    <EmbeddedResource Include="Resources\Svg\musicalNotes.svg" />
+    <EmbeddedResource Include="Resources\Svg\next.svg" />
+    <EmbeddedResource Include="Resources\Svg\offline.svg" />
+    <EmbeddedResource Include="Resources\Svg\onedrive.svg" />
+    <EmbeddedResource Include="Resources\Svg\pauseButton.svg" />
+    <EmbeddedResource Include="Resources\Svg\pauseButtonBordered.svg" />
+    <EmbeddedResource Include="Resources\Svg\playbackSliderThumb.svg" />
+    <EmbeddedResource Include="Resources\Svg\playButton.svg" />
+    <EmbeddedResource Include="Resources\Svg\playButtonBordered.svg" />
+    <EmbeddedResource Include="Resources\Svg\playlists.svg" />
+    <EmbeddedResource Include="Resources\Svg\previous.svg" />
+    <EmbeddedResource Include="Resources\Svg\radio.svg" />
+    <EmbeddedResource Include="Resources\Svg\repeat.svg" />
+    <EmbeddedResource Include="Resources\Svg\repeatOne.svg" />
+    <EmbeddedResource Include="Resources\Svg\search.svg" />
+    <EmbeddedResource Include="Resources\Svg\settings.svg" />
+    <EmbeddedResource Include="Resources\Svg\share.svg" />
+    <EmbeddedResource Include="Resources\Svg\shuffle.svg" />
+    <EmbeddedResource Include="Resources\Svg\sliderTrack.svg" />
+    <EmbeddedResource Include="Resources\Svg\songs.svg" />
+    <EmbeddedResource Include="Resources\Svg\songsDefault.svg" />
+    <EmbeddedResource Include="Resources\Svg\soundCloudColor.svg" />
+    <EmbeddedResource Include="Resources\Svg\thumbsDown.svg" />
+    <EmbeddedResource Include="Resources\Svg\thumbsUp.svg" />
+    <EmbeddedResource Include="Resources\Svg\trash.svg" />
+    <EmbeddedResource Include="Resources\Svg\trending.svg" />
+    <EmbeddedResource Include="Resources\Svg\undo.svg" />
+    <EmbeddedResource Include="Resources\Svg\videoIcon.svg" />
+    <EmbeddedResource Include="Resources\Svg\youtubeLogo.svg" />
   </ItemGroup>
   <Import Project="..\ApiConstants.targets" />
 </Project>

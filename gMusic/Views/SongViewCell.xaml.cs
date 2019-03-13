@@ -10,6 +10,7 @@ namespace gMusic.Views
         public SongViewCell()
         {
             InitializeComponent();
+            Image.LoadingPlaceholder = Image.ErrorPlaceholder = Images.DefaultAlbumArt;
         }
         protected override void OnBindingContextChanged()
         {
@@ -21,7 +22,10 @@ namespace gMusic.Views
         {
             if (item == null)
                 return;
-            var url = await item.GetArtworkUrl();
+            var urlTask = item.GetArtworkUrl();
+            if (!urlTask.IsCompleted)
+                Image.Source = Images.DefaultAlbumArt;
+            var url = await urlTask;
             if (item != BindingContext)
                 return;
             Image.Source = new UriImageSource { Uri = new Uri(url) };
