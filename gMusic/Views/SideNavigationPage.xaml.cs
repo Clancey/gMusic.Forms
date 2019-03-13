@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using gMusic.ViewModels;
+using gMusic.Data;
 
 namespace gMusic.Views
 {
@@ -19,7 +20,11 @@ namespace gMusic.Views
             var item = e.SelectedItem as NavigationItem;
             if (item == null)
                 return;
-            (BindingContext as RootPage).Navigate(item);
+            if (item.Page != null)
+            {
+                Settings.CurrentMenuIndex = e.SelectedItemIndex;
+                (BindingContext as RootPage).Navigate(item);
+            }
             (sender as ListView).SelectedItem = null;
         }
     }
