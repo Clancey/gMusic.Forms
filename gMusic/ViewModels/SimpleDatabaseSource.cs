@@ -142,7 +142,7 @@ namespace gMusic.ViewModels
 
 		public void Clear () => throw new NotImplementedException ();
 
-		public int IndexOf (object value) => throw new NotImplementedException ();
+        public int IndexOf(object value) => -1;
 
 		public void Insert (int index, object value) => throw new NotImplementedException ();
 
