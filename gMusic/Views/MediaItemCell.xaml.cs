@@ -5,9 +5,9 @@ using gMusic.Models;
 
 namespace gMusic.Views
 {
-    public partial class SongViewCell : ViewCell
+    public partial class MediaItemCell : ViewCell
     {
-        public SongViewCell()
+        public MediaItemCell()
         {
             InitializeComponent();
             Image.LoadingPlaceholder = Image.ErrorPlaceholder = Images.DefaultAlbumArt;
@@ -28,6 +28,8 @@ namespace gMusic.Views
             var url = await urlTask;
             if (item != BindingContext)
                 return;
+			if (string.IsNullOrWhiteSpace (url))
+				return;
             Image.Source = new UriImageSource { Uri = new Uri(url) };
         }
     }

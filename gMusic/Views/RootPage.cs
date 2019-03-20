@@ -16,8 +16,11 @@ namespace gMusic
         {
             new NavigationItem{Title = Strings.Search, Image = Images.Menu.SearchIcon},
             new NavigationItem{Title = Strings.MusicLibraryHeading},
-            new NavigationItem{Title = Strings.Songs, Page = new NavigationPage(new SongsPage()) },
-            new NavigationItem{Title = Strings.Artists, Page = new NavigationPage(new ArtistsPage()) },
+			new NavigationItem{Title = Strings.Artists, Page = new NavigationPage(new ArtistsPage()) },
+			new NavigationItem{Title = Strings.Album, Page = new NavigationPage(new AlbumsPage()) },
+			new NavigationItem{Title = Strings.Genres, Page = new NavigationPage(new GenresPage())},
+			new NavigationItem{Title = Strings.Songs, Page = new NavigationPage(new SongsPage()) },
+			new NavigationItem{Title = Strings.Playlists, Page = new NavigationPage(new PlaylistsPage())},
 			//new MenuItem(Strings.Search,"SVG/search.svg",20,new SearchPage()){SaveIndex = false},
 			////new NavigationHeaderItem("my music"),
 			//new NavigationItem(Strings.Artists, "SVG/artist.svg", new ArtistsPage()),
@@ -28,6 +31,7 @@ namespace gMusic
         {
             Root = Xamarin.Forms.Device.OS == TargetPlatform.Android ? CreateAndroidRoot() : CreateIosRoot();
             //MasterDetail.Master.Icon = new SvgImageSource { SvgName = Images.MenuIconName, MaxSize = 15f };
+			
         }
 
         Page CreateIosRoot()

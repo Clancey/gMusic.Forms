@@ -6,11 +6,16 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 using gMusic.Models;
+using System.Threading.Tasks;
 
 namespace gMusic.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+		public BaseViewModel()
+		{
+			RefreshCommand = new Command (async () => await ExecuteRefresh());
+		}
         bool isBusy = false;
         public bool IsBusy
         {
@@ -24,6 +29,30 @@ namespace gMusic.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+
+
+		public Command RefreshCommand { get; set; }
+
+		public virtual Task ReloadData () => Task.FromResult (true);
+
+		Task refreshTask;
+		public Task ExecuteRefresh()
+		{
+			if(refreshTask?.IsCompleted ?? true) {
+				refreshTask = refresh ();
+			}
+			return refreshTask;
+		}
+
+		async Task refresh()
+		{
+			IsBusy = true;
+			try {
+				await ReloadData ();
+			} finally {
+				IsBusy = false;
+			}
+		}
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",

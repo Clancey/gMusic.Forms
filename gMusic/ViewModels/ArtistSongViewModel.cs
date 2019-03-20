@@ -17,7 +17,7 @@ namespace gMusic.ViewModels
                 group.Params["@ArtistId"] = value.Id;
                 group.From = "Song";
                 Title = value.Name;
-                Items.GroupInfo = group;
+                Source.GroupInfo = group;
                 artist = value;
             }
             get { return artist; }
