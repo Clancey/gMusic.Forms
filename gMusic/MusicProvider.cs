@@ -469,7 +469,7 @@ OfflineCount = (select count(id) from Track where Genre = Genre.Id and ServiceTy
 							}
 				});
 
-				Database.Main.ClearMemoryStore();
+				Database.Main.ClearMemory ();
 				NotificationManager.Shared.ProcSongDatabaseUpdated();
 			});
 		}
