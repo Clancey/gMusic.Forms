@@ -189,8 +189,7 @@ namespace gMusic.Api.GoogleMusic
 					return await nextTask;
 				Api.ExtraData.LastSongSync = LastSongSync;
 
-				//TODO: Bring this back when we get API Manager
-				//ApiManager.Shared.SaveApi(Api);
+				ApiManager.Shared.SaveApi(Api);
 				return true;
 			}
 			catch (Exception ex)
@@ -267,8 +266,8 @@ namespace gMusic.Api.GoogleMusic
 				var finished = (DateTime.Now - start).TotalMilliseconds;
 				Debug.WriteLine($"Batch complete {tracks.Count} in {finished} ms");
 				Api.ExtraData.LastSongSync = LastSongSync;
-				//TODO Bring back when we get the API Manager
-				//ApiManager.Shared.SaveApi(Api);
+
+				ApiManager.Shared.SaveApi(Api);
 				return true;
 			}
 			catch (Exception ex)
@@ -1587,8 +1586,7 @@ namespace gMusic.Api.GoogleMusic
 				if (!success)
 					return false;
 				Api.ExtraData.LastRadioSync = LastRadioStationSync;
-				//TODO: Bring this back when we have an API Manager
-				//ApiManager.Shared.SaveApi(Api);
+				ApiManager.Shared.SaveApi(Api);
 				return true;
 			}
 			catch (Exception ex)
@@ -1664,7 +1662,7 @@ namespace gMusic.Api.GoogleMusic
 			//	{
 			//		if (isFree)
 			//		{
-			//			Gets a random song from your thumbs up, and plays one. If they have less than 10 thumbs up songs, Mix in the most played tracks.
+			//			//Gets a random song from your thumbs up, and plays one. If they have less than 10 thumbs up songs, Mix in the most played tracks.
 			//			var thumbsUpCount = AutoPlaylist.ThumbsUp.SongCount;
 			//			bool shouldUsethumbsUp = thumbsUpCount > 0 && (thumbsUpCount > 10 || Random.Next(0, 2) > 1);
 			//			var plist = shouldUsethumbsUp ? AutoPlaylist.ThumbsUp : AutoPlaylist.MostPlayed;

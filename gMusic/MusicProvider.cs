@@ -393,17 +393,16 @@ OfflineCount = (select count(id) from PlaylistSong where PlaylistId = Playlist.I
 			await FinalizeProcessing(id);
 		}
 
-//		internal static async void RemoveApi(ServiceType serviceType)
-//		{
-//			using (new Spinner("Updating Database")) {
-//				await Database.Main.ExecuteAsync("delete from track where ServiceType = ?",(int)serviceType);
-//				await FinalizeProcessing();
-//			}
-//		}
+		//internal static async void RemoveApi (ServiceType serviceType)
+		//{
+		//	using (new Spinner ("Updating Database")) {
+		//		await Database.Main.ExecuteAsync ("delete from track where ServiceType = ?", (int)serviceType);
+		//		await FinalizeProcessing ();
+		//	}
+		//}
 		internal static async Task RemoveApi(string  id)
 		{
-			//TODO: Add Spinner back
-			//using (new Spinner(Strings.LoggingOut))
+			using (new Spinner(Strings.LoggingOut))
 				await RemoveTracks(id);
 		}
 

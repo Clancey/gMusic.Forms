@@ -9,6 +9,6 @@ namespace gMusic
             this.Title = "gMusic";
 		}
 
-		public float OverHang { get; set; } = 50;
+		public float OverHang { get; set; } = 74;
 	}
 }

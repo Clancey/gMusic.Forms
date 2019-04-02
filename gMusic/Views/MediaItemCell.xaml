@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.MediaItemCell" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+<ViewCell xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.MediaItemCell" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
     <StackLayout Orientation="Horizontal">
-        <ffimageloading:CachedImage x:Name="Image" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" Aspect="AspectFill" HeightRequest="35" WidthRequest="35">
+        <ffimageloading:CachedImage Margin="5" d:ImageSrc="http://lh3.googleusercontent.com/_0mvh5XaOwhfDROmqadX1N7morS0kYH7Za4Ym9C5W8H0vQq9X4OkAJz-NTDgOX_Sq1ZIfQi-Vw" x:Name="Image" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" Aspect="AspectFill" HeightRequest="35" WidthRequest="35">
         </ffimageloading:CachedImage>
-        <StackLayout Padding="10">
-            <Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-            <Label Text="{Binding DetailText}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+        <StackLayout VerticalOptions="Center">
+            <Label Text="{Binding Name}" d:Text="All the Small Things" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+            <Label Text="{Binding DetailText}" d:Text="Blink-182" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
         </StackLayout>
     </StackLayout>
 </ViewCell>

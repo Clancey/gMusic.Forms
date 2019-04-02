@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Blue" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.NowPlayingPage"  xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid BackgroundColor="Fuchsia" AbsoluteLayout.LayoutBounds="0,0,1,54" AbsoluteLayout.LayoutFlags="WidthProportional">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+                 <ffimageloading:CachedImage Margin="5"  x:Name="Image" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" Aspect="AspectFill" HeightRequest="35" WidthRequest="35"/>
+                <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand">
+                    <Label Text="All the Small Things" HorizontalTextAlignment="Center" />
+                    <Label Text="Blink-182" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+                <Button Grid.Column="2" Text="Play" HorizontalOptions="Center"/>
+            </Grid>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

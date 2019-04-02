@@ -2,6 +2,7 @@
 using gMusic.Models;
 using gMusic.ViewModels;
 using Localizations;
+using Xamarin.Forms;
 
 namespace gMusic.Views {
 	public class ArtistsPage : SimpleDatabaseListView {
@@ -11,6 +12,15 @@ namespace gMusic.Views {
 				Title = Strings.Artists
 			};
 			//this.ViewModel = new SimpleDatabaseViewModel
+		}
+		protected override void OnItemSelected (object sender, SelectedItemChangedEventArgs args)
+		{
+			var artist = args.SelectedItem as Artist;
+			this.Navigation.PushAsync (new SongsPage {
+				BindingContext = new ArtistSongsViewModel {
+					Artist = artist,
+				}
+			});
 		}
 	}
 }

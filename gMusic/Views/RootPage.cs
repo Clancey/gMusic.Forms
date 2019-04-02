@@ -7,6 +7,7 @@ using gMusic.Views;
 using gMusic.ViewModels;
 using gMusic.Data;
 using System.Linq;
+using gMusic.Managers;
 
 namespace gMusic
 {
@@ -30,6 +31,10 @@ namespace gMusic
         public RootPage()
         {
             Root = Xamarin.Forms.Device.OS == TargetPlatform.Android ? CreateAndroidRoot() : CreateIosRoot();
+
+			if (ApiManager.Shared.Count > 0)
+				return;
+			Root.Navigation.PushModalAsync (new NavigationPage(new WelcomePage ()));
             //MasterDetail.Master.Icon = new SvgImageSource { SvgName = Images.MenuIconName, MaxSize = 15f };
 			
         }
