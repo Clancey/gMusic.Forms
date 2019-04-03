@@ -1,5 +1,7 @@
 ﻿using System;
 using FFImageLoading.Svg.Forms;
+using Xamarin.Forms;
+
 namespace gMusic
 {
     public static class Images
@@ -12,7 +14,12 @@ namespace gMusic
 
         public static class Menu
         {
-            public static SvgImageSource SearchIcon = SvgImageSource.FromResource("gMusic.Resources.Svg.search.svg",vectorWidth:28, vectorHeight:28);
-        }
+			public static NGraphicsSVGImageSource SearchIcon = new NGraphicsSVGImageSource() { SvgName = "search.svg", MaxSize = 28 , TintColor = Color.White};
+			public static NGraphicsSVGImageSource ArtistIcon = new NGraphicsSVGImageSource () { SvgName = "artist.svg", MaxSize = 28, TintColor = Color.White };
+			public static NGraphicsSVGImageSource AlbumIcon = new NGraphicsSVGImageSource () { SvgName = "album.svg", MaxSize = 28, TintColor = Color.White };
+			public static NGraphicsSVGImageSource GenreIcon = new NGraphicsSVGImageSource () { SvgName = "genres.svg", MaxSize = 28, TintColor = Color.White };
+			public static NGraphicsSVGImageSource SongsIcon = new NGraphicsSVGImageSource () { SvgName = "songs.svg", MaxSize = 28, TintColor = Color.White };
+			public static NGraphicsSVGImageSource PlaylistIcon = new NGraphicsSVGImageSource () { SvgName = "playlists.svg", MaxSize = 28, TintColor = Color.White };
+		}
     }
 }

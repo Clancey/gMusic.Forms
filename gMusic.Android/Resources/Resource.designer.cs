@@ -26,6 +26,7 @@ namespace gMusic.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::NGraphics.Android.Resource.String.library_name = global::gMusic.Droid.Resource.String.library_name;
 			global::SimpleAuth.Resource.Id.loginButton = global::gMusic.Droid.Resource.Id.loginButton;
 			global::SimpleAuth.Resource.Id.password = global::gMusic.Droid.Resource.Id.password;
 			global::SimpleAuth.Resource.Id.username = global::gMusic.Droid.Resource.Id.username;
@@ -7829,6 +7830,9 @@ namespace gMusic.Droid
 			
 			// aapt resource value: 0x7f0b0046
 			public const int hide_bottom_view_on_scroll_behavior = 2131427398;
+			
+			// aapt resource value: 0x7f0b0050
+			public const int library_name = 2131427408;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int mr_button_content_description = 2131427328;
