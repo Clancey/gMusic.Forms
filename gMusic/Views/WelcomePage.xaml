@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.WelcomePage">
+<ContentPage xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" xmlns:gMusic="clr-namespace:gMusic.Views;assembly=gMusic" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.WelcomePage" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core">
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <Label x:Name="Header" FontSize="30" />
-            <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                <Button HorizontalOptions="CenterAndExpand" x:Name="LoginButton" Clicked="LoginButtonClicked" />
-                <Button HorizontalOptions="CenterAndExpand" x:Name="SkipButton" Clicked="SkipButtonClicked" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <gMusic:GradientView d:BackgroundColor="Fuchsia" ios:VisualElement.BlurEffect="Light" Grid.ColumnSpan="3" Grid.RowSpan="4" />
+            <StackLayout Grid.Column="1" Grid.Row="1" Spacing="20">
+                <Image Source="logo-white" Aspect="AspectFit" HeightRequest="125" />
+                <Label x:Name="Header" TextColor="White" HorizontalTextAlignment="Center" Text="Welcome to &#xA;                gMusic" FontSize="30" />
             </StackLayout>
-        </StackLayout>
+            <StackLayout Padding="20" Grid.Column="1" Grid.Row="2">
+                <StackLayout Orientation="Vertical" VerticalOptions="End">
+                    <Button Text="Login" BorderWidth="1" BorderColor="White" TextColor="White" x:Name="LoginButton" Clicked="LoginButtonClicked" />
+                    <Button Text="Skip" TextColor="White" x:Name="SkipButton" Clicked="SkipButtonClicked" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

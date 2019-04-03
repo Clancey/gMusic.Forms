@@ -19,6 +19,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.4.859" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.4.859" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />

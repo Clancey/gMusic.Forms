@@ -161,7 +161,7 @@ namespace gMusic.Managers
 		readonly Dictionary<string, MusicProvider> Collection = new Dictionary<string, MusicProvider>();
 
 		//If IPodOnly, iPod on counts
-		public int Count => Collection.Count(x=> x.Value.RequiresAuthentication);// +  (Settings.IPodOnly && Settings.IncludeIpod ? 1 : 0);
+		public int Count => Collection.Count(x=> x.Value.RequiresAuthentication) + (Settings.IPodOnly && Settings.IncludeIpod ? 1 : 0);
 
 		public MusicProvider [] CurrentProviders => Collection.Where (x => x.Value.RequiresAuthentication).Select(x=> x.Value).ToArray ();
 

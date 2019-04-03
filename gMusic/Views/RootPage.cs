@@ -34,7 +34,7 @@ namespace gMusic
 
 			if (ApiManager.Shared.Count > 0)
 				return;
-			Root.Navigation.PushModalAsync (new NavigationPage(new WelcomePage ()));
+			Root.Navigation.PushModalAsync (new WelcomePage ());
             //MasterDetail.Master.Icon = new SvgImageSource { SvgName = Images.MenuIconName, MaxSize = 15f };
 			
         }
