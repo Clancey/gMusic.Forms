@@ -8,7 +8,7 @@
                         <ContentView IsVisible="{Binding HasImage}" HeightRequest="35" WidthRequest="35">
                             <Image x:Name="Image" Aspect="AspectFit"  Source="{Binding Image}" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </ContentView>
-                        <Label Text="{Binding Title}" TextColor="White" VerticalOptions="Center" />
+                        <Label Text="{Binding Title}" Style="{Binding LabelStyle}" VerticalOptions="Center" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

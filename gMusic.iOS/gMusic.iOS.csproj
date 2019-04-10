@@ -135,6 +135,12 @@
     <BundleResource Include="Resources\logo-white%402x.png" />
     <BundleResource Include="Resources\launchBg.png" />
     <BundleResource Include="Resources\launchBg%402x.png" />
+    <BundleResource Include="..\Fonts\Heebo-Regular.ttf">
+      <Link>Resources\Heebo-Regular.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Fonts\Heebo-Thin.ttf">
+      <Link>Resources\Heebo-Thin.ttf</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

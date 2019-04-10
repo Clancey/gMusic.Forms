@@ -12,5 +12,7 @@ namespace gMusic.ViewModels
         public Page Page { get; set; }
 
         public bool HasImage => Image != null;
+
+		public Style LabelStyle => Page == null ? FormsStyleExtensions.MenuHeaderLabelStyle : FormsStyleExtensions.MenuLabelStyle;
     }
 }

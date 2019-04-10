@@ -4,8 +4,8 @@
         <ffimageloading:CachedImage Margin="5" d:ImageSrc="http://lh3.googleusercontent.com/_0mvh5XaOwhfDROmqadX1N7morS0kYH7Za4Ym9C5W8H0vQq9X4OkAJz-NTDgOX_Sq1ZIfQi-Vw" x:Name="Image" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" Aspect="AspectFill" HeightRequest="35" WidthRequest="35">
         </ffimageloading:CachedImage>
         <StackLayout VerticalOptions="Center">
-            <Label Text="{Binding Name}" d:Text="All the Small Things" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-            <Label Text="{Binding DetailText}" d:Text="Blink-182" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+            <Label x:Name="Text" Text="{Binding Name}" d:Text="All the Small Things" LineBreakMode="NoWrap"  FontSize="16" />
+            <Label x:Name="Detail" Text="{Binding DetailText}" d:Text="Blink-182" LineBreakMode="NoWrap" FontSize="13" />
         </StackLayout>
     </StackLayout>
 </ViewCell>

@@ -26,6 +26,7 @@
     <Folder Include="Apis\" />
     <Folder Include="Resources\" />
     <Folder Include="Resources\Svg\" />
+    <Folder Include="Styles\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ApiConstants.cs" />

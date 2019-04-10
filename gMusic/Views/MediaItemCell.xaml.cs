@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using gMusic.Models;
-
+using gMusic.Styles;
 namespace gMusic.Views
 {
     public partial class MediaItemCell : ViewCell
@@ -10,6 +10,8 @@ namespace gMusic.Views
         public MediaItemCell()
         {
             InitializeComponent();
+			Text.StyleAsMainText ();
+			Detail.StyleAsSubText ();
             Image.LoadingPlaceholder = Image.ErrorPlaceholder = Images.DefaultAlbumArt;
         }
         protected override void OnBindingContextChanged()

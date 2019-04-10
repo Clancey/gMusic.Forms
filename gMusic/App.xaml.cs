@@ -16,8 +16,7 @@ namespace gMusic
         public App()
         {
             InitializeComponent();
-
-
+			this.Resources.AddGmusicStyles ();
             MainPage = new RootPage();
         }
 

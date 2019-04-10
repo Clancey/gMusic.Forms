@@ -26,9 +26,23 @@ namespace gMusic.iOS
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             Images.AlbumArtScreenSize = (int)NMath.Max(UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height);
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+			ApplyStyles ();
+			LoadApplication (new App());
+			//var font = UIFont.FromName ("SFUIDisplay-Thin", 20).ToFont;
 
-            return base.FinishedLaunching(app, options);
+			//UIFont.PreferredBody.PointSize
+			//var formsFont = Font
+			return base.FinishedLaunching(app, options);
         }
+		void ApplyStyles()
+		{
+			Styles.Style.HeaderFontSize = (int)UIFont.PreferredTitle1.PointSize;
+			Styles.Style.MainTextFontSize = (int)UIFont.PreferredSubheadline.PointSize;
+			Styles.Style.ButtonFontsize = (int)UIFont.PreferredSubheadline.PointSize;
+			Styles.Style.DetailFontSize = (int)UIFont.PreferredCaption1.PointSize;
+			Styles.Fonts.NormalFontName = "Heebo-Regular";
+			Styles.Fonts.ThinFontName = "Heebo-Thin";
+			Styles.Style.ResetAllFonts ();
+		}
     }
 }

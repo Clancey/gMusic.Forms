@@ -13,6 +13,7 @@ namespace gMusic.Data
 			Directory.CreateDirectory(Locations.MusicDir);
 			Directory.CreateDirectory(Locations.LibDir);
 			Directory.CreateDirectory(Locations.TmpMusicCacheDir);
+			Directory.CreateDirectory (Locations.ImageCache);
 #if __IOS__
 			try
 			{
@@ -53,5 +54,6 @@ namespace gMusic.Data
 		public static readonly string TmpDir = Path.Combine(BaseDir, "tmp");
 		public static readonly string DocumentsDir = Path.Combine(BaseDir, "Documents/");
 		public static readonly string MusicDir = Path.Combine(DocumentsDir, "Music");
+		public static readonly string ImageCache = Path.Combine (LibDir, "Images");
 	}
 }
