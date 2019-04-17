@@ -6,18 +6,29 @@ using gMusic.Managers;
 using Xamarin.Forms;
 
 namespace gMusic.Styles {
-	public class Style {
-		public static Style CurrentStyle { get; set; }
+	public class Styles {
+
+		static Styles currentStyle;
+		public static Styles CurrentStyle {
+			get { return currentStyle; }
+			set {
+				if (currentStyle == value)
+					return;
+				Settings.CurrentStyle = value.Id;
+				currentStyle = value;
+				NotificationManager.Shared.ProcStyleChanged ();
+			}
+		}
 		public static int HeaderFontSize = 28;
 		public static int MainTextFontSize = 15;
 		public static int DetailFontSize = 12;
 		public static int ButtonFontsize = 12;
 
-		static Style ()
+		static Styles ()
 		{
-			AvailableStyles = new List<Style>
+			AvailableStyles = new List<Styles>
 			{
-				new Style(),
+				new Styles(),
 				new DarkStyle(),
 			};
 
@@ -27,11 +38,31 @@ namespace gMusic.Styles {
 			
 		}
 
+		public void Apply(App app)
+		{
+			Apply (app.Resources);
+		}
 
-		public static Style DefaultStyle => AvailableStyles [0];
+		public void Apply(Page page)
+		{
+			Apply (page.Resources);
+		}
+
+		public void Apply(ResourceDictionary resource)
+		{
+			resource.Apply (MainTextLableStyle);
+			resource.Apply (SubTextLableStyle);
+			resource.Apply (MenuHeaderLabelStyle);
+			resource.Apply (MenuLabelStyle);
+			resource [nameof (BackgroundColor)] = BackgroundColor;
+
+		}
+
+
+		public static Styles DefaultStyle => AvailableStyles [0];
 		public string Id { get; set; } = "Default";
 
-		public static List<Style> AvailableStyles { get; private set; }
+		public static List<Styles> AvailableStyles { get; private set; }
 
 
 		public static bool IsDeviceDark { get; set; }
@@ -44,6 +75,7 @@ namespace gMusic.Styles {
 			get => headerTextFont ?? (headerTextFont = Fonts.NormalFont (HeaderFontSize)).Value;
 			set => headerTextFont = value;
 		}
+
 		Font? headerTextThinFont;
 		public Font HeaderTextThinFont
 			{
@@ -53,15 +85,61 @@ namespace gMusic.Styles {
 
 		//public UIStatusBarStyle StatusBarColor { get; set; } = UIStatusBarStyle.Default;
 
-		Color headerTextColor;
- 
+		Color? headerTextColor;
 		public Color HeaderTextColor {
-			get { return headerTextColor; }
+			get { return headerTextColor ?? (headerTextColor = AccentColor).Value; }
 			set { headerTextColor = value; }
 		}
+
+		LabelStyle mainTextLableStyle;
+		public LabelStyle MainTextLableStyle {
+			get => mainTextLableStyle ?? (mainTextLableStyle = new LabelStyle {
+				Name = nameof(MainTextLableStyle),
+				Font = MainTextFont,
+				TextColor =  MainTextColor,
+				FontSize = MainTextFontSize,
+			});
+			set => mainTextLableStyle = value;
+		}
+
+		LabelStyle subTextLableStyle;
+		public LabelStyle SubTextLableStyle {
+			get => subTextLableStyle ?? (subTextLableStyle = new LabelStyle {
+				Name = nameof (SubTextLableStyle),
+				Font = SubTextFont,
+				TextColor = SubTextColor,
+				FontSize = DetailFontSize,
+			});
+			set => subTextLableStyle = value;
+		}
+
+
+		LabelStyle menuHeaderLabelStyle;
+		public LabelStyle MenuHeaderLabelStyle {
+			get => menuHeaderLabelStyle ?? (menuHeaderLabelStyle = new LabelStyle {
+				Name = nameof (MenuHeaderLabelStyle),
+				Font = HeaderTextThinFont,
+				TextColor = MenuTextColor,
+				FontSize = HeaderFontSize,
+			});
+			set => menuHeaderLabelStyle = value;
+		}
+
+		LabelStyle menuLabelStyle;
+		public LabelStyle MenuLabelStyle {
+			get => menuLabelStyle ?? (menuLabelStyle = new LabelStyle {
+				Name = nameof (MenuLabelStyle),
+				Font = MenuTextFont,
+				TextColor = MenuTextColor,
+				FontSize = HeaderFontSize,
+			});
+			set => menuLabelStyle = value;
+		}
+
 		public static void ResetAllFonts()
 		{
 			AvailableStyles.ForEach (x => x.ResetFonts ());
+			NotificationManager.Shared.ProcStyleChanged ();
 		}
 		public virtual void ResetFonts()
 		{
@@ -69,6 +147,12 @@ namespace gMusic.Styles {
 			buttonTextFont = null;
 			subTextFont = null;
 			headerTextFont = null;
+
+			//Labels
+			menuLabelStyle = null;
+			menuHeaderLabelStyle = null;
+			mainTextLableStyle = null;
+			subTextLableStyle = null;
 		}
 
 		Font? mainTextFont;
@@ -109,7 +193,7 @@ namespace gMusic.Styles {
 		public Color PlaybackControlTint { get; set; } = Color.Black;
 	}
 
-	public class DarkStyle : Style {
+	public class DarkStyle : Styles {
 		public DarkStyle ()
 		{
 			Id = "Dark Theme";
@@ -123,10 +207,11 @@ namespace gMusic.Styles {
 			//StatusBarColor = UIStatusBarStyle.LightContent;
 		}
 	}
+
 	public static class StyleExtensions {
-		public static Style GetStyle (this View view)
+		public static Styles GetStyle (this View view)
 		{
-			return Style.CurrentStyle;
+			return Styles.CurrentStyle;
 		}
 		//public static Style GetStyle (this App window)
 		//{
@@ -141,7 +226,7 @@ namespace gMusic.Styles {
 			return label;
 		}
 
-		public static T StyleAsMainText<T> (this T label, Style style) where T : Label
+		public static T StyleAsMainText<T> (this T label, Styles style) where T : Label
 		{
 			label.FontFamily = style.MainTextFont.FontFamily;
 			label.FontSize = style.MainTextFont.FontSize;
@@ -159,7 +244,7 @@ namespace gMusic.Styles {
 			return label;
 		}
 
-		public static T StyleAsSubText<T> (this T label, Style style) where T : Label
+		public static T StyleAsSubText<T> (this T label, Styles style) where T : Label
 		{
 			label.FontFamily = style.MainTextFont.FontFamily;
 			label.FontSize = style.MainTextFont.FontSize;

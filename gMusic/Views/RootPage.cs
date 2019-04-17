@@ -14,14 +14,15 @@ namespace gMusic
     public class RootPage
     {
         public List<NavigationItem> Items { get; set; } = new List<NavigationItem>
-        {
-            new NavigationItem{Title = Strings.Search, Image = Images.Menu.SearchIcon},
-            new NavigationItem{Title = Strings.MusicLibraryHeading},
+		{
+			new NavigationItem{Title = Strings.Search, Image = Images.Menu.SearchIcon, Page = new NavigationPage(new SearchPage())},
+			new NavigationItem{Title = Strings.MusicLibraryHeading},
 			new NavigationItem{Title = Strings.Artists, Page = new NavigationPage(new ArtistsPage()),Image = Images.Menu.ArtistIcon },
 			new NavigationItem{Title = Strings.Album, Page = new NavigationPage(new AlbumsPage()), Image = Images.Menu.AlbumIcon },
 			new NavigationItem{Title = Strings.Genres, Page = new NavigationPage(new GenresPage()), Image = Images.Menu.GenreIcon},
 			new NavigationItem{Title = Strings.Songs, Page = new NavigationPage(new SongsPage()), Image = Images.Menu.SongsIcon},
 			new NavigationItem{Title = Strings.Playlists, Page = new NavigationPage(new PlaylistsPage()), Image = Images.Menu.PlaylistIcon},
+			new NavigationItem{Title = Strings.Settings, Page = new NavigationPage(new SettingsPage()),Image = Images.Menu.SettingsIcon }
 			//new MenuItem(Strings.Search,"SVG/search.svg",20,new SearchPage()){SaveIndex = false},
 			////new NavigationHeaderItem("my music"),
 			//new NavigationItem(Strings.Artists, "SVG/artist.svg", new ArtistsPage()),

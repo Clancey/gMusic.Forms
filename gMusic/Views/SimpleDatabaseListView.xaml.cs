@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using gMusic.Managers;
 using gMusic.ViewModels;
 using Xamarin.Forms;
 
@@ -26,6 +27,18 @@ namespace gMusic.Views {
 		{
 			base.OnAppearing ();
 			await ViewModel.ReloadData ();
+			NotificationManager.Shared.StyleChanged += Shared_StyleChanged;
+		}
+
+		private void Shared_StyleChanged (object sender, EventArgs e)
+		{
+			ViewModel.ReloadData ();
+		}
+
+		protected override void OnDisappearing ()
+		{
+			base.OnDisappearing ();
+			NotificationManager.Shared.StyleChanged -= Shared_StyleChanged;
 		}
 	}
 }

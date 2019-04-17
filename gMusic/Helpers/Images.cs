@@ -20,6 +20,7 @@ namespace gMusic
 			public static NGraphicsSVGImageSource GenreIcon = new NGraphicsSVGImageSource () { SvgName = "genres.svg", MaxSize = 28, TintColor = Color.White };
 			public static NGraphicsSVGImageSource SongsIcon = new NGraphicsSVGImageSource () { SvgName = "songs.svg", MaxSize = 28, TintColor = Color.White };
 			public static NGraphicsSVGImageSource PlaylistIcon = new NGraphicsSVGImageSource () { SvgName = "playlists.svg", MaxSize = 28, TintColor = Color.White };
+			public static NGraphicsSVGImageSource SettingsIcon = new NGraphicsSVGImageSource () { SvgName = "settings.svg", MaxSize = 28, TintColor = Color.White };
 		}
     }
 }

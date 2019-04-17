@@ -32,17 +32,20 @@ namespace gMusic.iOS
 
 			//UIFont.PreferredBody.PointSize
 			//var formsFont = Font
+			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"UIContentSizeCategoryDidChangeNotification", (n) => {
+				ApplyStyles ();
+			});
 			return base.FinishedLaunching(app, options);
         }
 		void ApplyStyles()
 		{
-			Styles.Style.HeaderFontSize = (int)UIFont.PreferredTitle1.PointSize;
-			Styles.Style.MainTextFontSize = (int)UIFont.PreferredSubheadline.PointSize;
-			Styles.Style.ButtonFontsize = (int)UIFont.PreferredSubheadline.PointSize;
-			Styles.Style.DetailFontSize = (int)UIFont.PreferredCaption1.PointSize;
+			Styles.Styles.HeaderFontSize = (int)UIFont.PreferredTitle1.PointSize;
+			Styles.Styles.MainTextFontSize = (int)UIFont.PreferredSubheadline.PointSize;
+			Styles.Styles.ButtonFontsize = (int)UIFont.PreferredSubheadline.PointSize;
+			Styles.Styles.DetailFontSize = (int)UIFont.PreferredCaption1.PointSize;
 			Styles.Fonts.NormalFontName = "Heebo-Regular";
 			Styles.Fonts.ThinFontName = "Heebo-Thin";
-			Styles.Style.ResetAllFonts ();
+			Styles.Styles.ResetAllFonts ();
 		}
     }
 }

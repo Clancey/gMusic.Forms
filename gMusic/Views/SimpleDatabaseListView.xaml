@@ -3,7 +3,7 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="ItemsListView" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Display}" GroupShortNameBinding="{Binding Display}" ItemsSource="{Binding Source, Mode=TwoWay}" VerticalOptions="FillAndExpand" HasUnevenRows="True" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
+                CachingStrategy="RecycleElement" BackgroundColor="{DynamicResource BackgroundColor}" ItemSelected="OnItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <cells:MediaItemCell />

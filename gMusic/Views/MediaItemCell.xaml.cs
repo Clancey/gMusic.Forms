@@ -10,8 +10,8 @@ namespace gMusic.Views
         public MediaItemCell()
         {
             InitializeComponent();
-			Text.StyleAsMainText ();
-			Detail.StyleAsSubText ();
+			//Text.StyleAsMainText ();
+			//Detail.StyleAsSubText ();
             Image.LoadingPlaceholder = Image.ErrorPlaceholder = Images.DefaultAlbumArt;
         }
         protected override void OnBindingContextChanged()

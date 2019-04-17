@@ -17,10 +17,16 @@ namespace gMusic
         {
             InitializeComponent();
 			this.Resources.AddGmusicStyles ();
+			NotificationManager.Shared.StyleChanged += Shared_StyleChanged;
             MainPage = new RootPage();
         }
 
-        protected override void OnStart()
+		private void Shared_StyleChanged (object sender, EventArgs e)
+		{
+			this.Resources.AddGmusicStyles ();
+		}
+
+		protected override void OnStart()
         {
             // Handle when your app starts
         }
