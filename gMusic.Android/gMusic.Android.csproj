@@ -88,6 +88,7 @@
     <Compile Include="Controls\AnchorBottomSheetBehavior.DragCallback.cs" />
     <Compile Include="Renderers\NGraphicsExtensions.cs" />
     <Compile Include="Renderers\NGraphicsSVGImageSourceHandler.cs" />
+    <Compile Include="Renderers\GradientListViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -113,6 +114,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
     <AndroidResource Include="Resources\values\attrs.xml" />
+    <AndroidResource Include="Resources\drawable\gradient.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />
