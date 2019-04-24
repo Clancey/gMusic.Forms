@@ -23,14 +23,21 @@ namespace UIKit
 			imageView.Image = image;
 		}
 
-		public static UIImage LoadImageFromSvg(this string svg, Size size,
+		public static UIImage LoadImageFromSvg (this string svg, Size size,
+			UIImageRenderingMode renderingMode = UIImageRenderingMode.Automatic)
+		{
+			var file = ResourceHelper.GetEmbeddedResourceStream (svg);
+			return file.LoadImageFromSvgStream (svg, size, renderingMode);
+		}
+
+			public static UIImage LoadImageFromSvgStream(this Stream stream,string svg, Size size,
 			UIImageRenderingMode renderingMode = UIImageRenderingMode.Automatic)
 		{
 			try
 			{
-				using (var file = ResourceHelper.GetEmbeddedResourceStream (svg))
+				using (stream)
 				{
-					var graphic = Graphic.LoadSvg( new StreamReader(file));
+					var graphic = Graphic.LoadSvg( new StreamReader(stream));
 					//Shame on Size not being Equatable ;)
 					if (size.Width <= 0 || size.Height <= 0)
 						size = graphic.Size;

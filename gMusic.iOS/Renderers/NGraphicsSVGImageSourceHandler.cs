@@ -15,7 +15,9 @@ namespace gMusic.iOS.Renderers {
 			var source = imagesource as NGraphicsSVGImageSource;
 			if(source == null)
 				throw new NotImplementedException ();
-			var image = source.SvgName.LoadImageFromSvg(new NGraphics.Size(source.Size.Width,source.Size.Height));
+
+			var s = source.ApplyTint(ResourceHelper.GetEmbeddedResourceStream (source.SvgName));
+			var image = s.LoadImageFromSvgStream(source.SvgName, new NGraphics.Size(source.Size.Width,source.Size.Height));
 			return Task.FromResult (image);
 			//var svgSource = imagesource as SvgImageSource;
 			//return Task.FromResult (svgSource.SvgName.LoadImageFromSvg (new NGraphics.Size (svgSource.Size.Width, svgSource.Size.Height)));
