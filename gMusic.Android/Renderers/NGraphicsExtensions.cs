@@ -4,12 +4,13 @@ using NGraphics;
 using Android.Widget;
 using Android.Graphics;
 using gMusic;
+using gMusic.Droid;
 
 namespace Android {
 	public static class NGraphicsExtensions {
 		static readonly IPlatform Platform = new AndroidPlatform ();
-		//TODO: Fixme
-		static readonly double Scale = 1;// (double)MusicPlayer.App.Context.Resources.DisplayMetrics.Density;
+
+		public static double Scale { get; set; } = 1;
 
 		//public static void LoadSvg(this ImageView imageView, string svg)
 		//{

@@ -18,10 +18,17 @@ namespace gMusic.Droid
             Shared = this;
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
-            base.OnCreate(savedInstanceState);
+			Android.NGraphicsExtensions.Scale = Resources.DisplayMetrics.Density;
+			base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+			ApplyFonts ();
             LoadApplication(new App());
         }
+
+		void ApplyFonts()
+		{
+			Styles.Fonts.NormalFontName = "Heebo-Regular.ttf#Heebo-Regular";
+			Styles.Fonts.ThinFontName = "Heebo-Thin.ttf#Heebo-Thin";
+		}
     }
 }

@@ -43,10 +43,10 @@ namespace gMusic.Managers
 		{
 			var apis = Settings.CurrentApiModels.ToList();
 			apis.ForEach(CreateApi);
-			#if __IOS__
+#if __IOS__
 			var ipod = new MusicPlayer.Api.iPodApi.iPodProvider();
 			Collection.Add(ipod.Id,ipod);
-			#elif __OSX__
+#elif __OSX__
 
 			var ipod = new ITunesProvider();
 			ipod.Disabled = !Settings.IncludeIpod;
@@ -56,8 +56,10 @@ namespace gMusic.Managers
 				Disabled = Settings.ExcludeFileSystem
 			};
 			Collection.Add(fileSytem.Id,fileSytem);
-			#endif
+#endif
 			//await CreateYouTube ();
+
+			StartSync ();
 		}
 
 		HttpMessageHandler CreateHandler()
@@ -284,17 +286,17 @@ namespace gMusic.Managers
 			switch (serviceType)
 			{
 				case ServiceType.Amazon:
-				return "SVG/amazon.svg";
+				return "amazon.svg";
 				case ServiceType.DropBox:
-				return "SVG/dropbox-outline.svg";
+				return "dropbox-outline.svg";
 				case ServiceType.Google:
-				return "SVG/googleMusic.svg";
+				return "googleMusic.svg";
 				case ServiceType.SoundCloud:
-				return "SVG/soundCloudColor.svg";
+				return "soundCloudColor.svg";
 				case ServiceType.YouTube:
-				return "SVG/youtubeLogo.svg";
+				return "youtubeLogo.svg";
 				case ServiceType.OneDrive:
-				return "SVG/onedrive.svg";
+				return "onedrive.svg";
 			}
 			return "";
 		}

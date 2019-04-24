@@ -51,7 +51,7 @@
     <Reference Include="Mono.Android.Export" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.293080" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
@@ -128,6 +128,14 @@
       <Project>{B6F3432E-2EA2-4F32-8409-2A30F53A7B47}</Project>
       <Name>gMusic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="..\Fonts\Heebo-Regular.ttf">
+      <Link>Assets\Heebo-Regular.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Fonts\Heebo-Thin.ttf">
+      <Link>Assets\Heebo-Thin.ttf</Link>
+    </AndroidAsset>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

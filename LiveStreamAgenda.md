@@ -1,5 +1,10 @@
 # Agenda 4/23/2019
-
+- [ ] Setting Screen
+	[ ] Account Login
+- [ ] Tinted Images
+- [ ] Image Toggle Button
+- [ ] Finish NowPlaying screen
+	
 # Agenda 4/17/2019
 - [x] Gradient ListView Android
 - [x] Add Styles
@@ -30,7 +35,5 @@
 - [ ] Blur Views
 - [ ] Popup Menus
 - [ ] Playlist editing
-- [ ] Image Toggle Button
-- [ ] Finish NowPlaying screen
 - [ ] Show Spinner
 - [ ] Add Last.FM Support
