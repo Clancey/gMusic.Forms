@@ -1,12 +1,16 @@
-#Agenda 4/10/2019
-- [ ] Welcome scren android
-- [ ] Gradient ListView Android
-- [ ] Search Screen
-- [ ] Tinted Images
-- [ ] Build Settings Screen
-- [ ] Add Styles
-    - [ ] Add Dynamic Fonts
-    - [ ] Custom Fonts
+# Agenda 4/23/2019
+
+# Agenda 4/17/2019
+- [x] Gradient ListView Android
+- [x] Add Styles
+	- [x] Clean up Styles
+	- [x] Theme Switcher 
+	- [x] Add Dynamic Fonts
+
+
+# Agenda 4/10/2019
+- [x] Add Styles
+    - [x] Custom Fonts
 
 # Agenda 4/3/2019
 
@@ -16,7 +20,10 @@
 
 # Future Tasks
 
-- [ ] Theme Switcher 
+- [ ] Build Settings Screen
+- [ ] Welcome screen android
+- [ ] Search Screen
+- [ ] Tinted Images
 - [ ] Audio Playback
 - [ ] Local Audio  (iPod Playback)
 - [ ] Video Playback
