@@ -22,5 +22,14 @@ namespace gMusic
 			public static NGraphicsSVGImageSource PlaylistIcon = new NGraphicsSVGImageSource () { SvgName = "playlists.svg", MaxSize = 28, TintColor = Color.White };
 			public static NGraphicsSVGImageSource SettingsIcon = new NGraphicsSVGImageSource () { SvgName = "settings.svg", MaxSize = 28, TintColor = Color.White };
 		}
+
+		public static class NowPlayingScreen {
+			public static NGraphicsSVGImageSource ThumbsDown = new NGraphicsSVGImageSource () { SvgName = "thumbsDown.svg", MaxSize = 28, TintColor = Color.White };
+			public static NGraphicsSVGImageSource Previous = new NGraphicsSVGImageSource () { SvgName = "previous.svg", MaxSize = 24, TintColor = Color.White };
+			public static NGraphicsSVGImageSource Play = new NGraphicsSVGImageSource () { SvgName = "playButton.svg", MaxSize = 36, TintColor = Color.White };
+			public static NGraphicsSVGImageSource Pause = new NGraphicsSVGImageSource () { SvgName = "pauseButton.svg", MaxSize = 28, TintColor = Color.White };
+			public static NGraphicsSVGImageSource Next = new NGraphicsSVGImageSource () { SvgName = "next.svg", MaxSize = 24, TintColor = Color.White };
+			public static NGraphicsSVGImageSource ThumbsUp = new NGraphicsSVGImageSource () { SvgName = "thumbsUp.svg", MaxSize = 28, TintColor = Color.White };
+		}
     }
 }

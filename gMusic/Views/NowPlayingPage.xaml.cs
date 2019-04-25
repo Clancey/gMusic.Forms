@@ -8,6 +8,36 @@ namespace gMusic.Views {
 		public NowPlayingPage ()
 		{
 			InitializeComponent ();
+			ControlsStack.Children.Clear ();
+			ControlsStack.Children.Add (CreateButton(Images.NowPlayingScreen.ThumbsDown, (b)=> {
+
+			}));
+			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Previous, (b) => {
+
+			}));
+			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Play, (b) => {
+
+			}));
+			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Next, (b) => {
+
+			}));
+			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.ThumbsUp, (b) => {
+
+			}));
+
 		}
+
+		static SvgImageButton CreateButton(NGraphicsSVGImageSource source, Action<SvgImageButton> action)
+		{
+			return new SvgImageButton {
+				Image = {
+					Source = source,
+				},
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.Center,
+				Tapped = action,
+			};
+		}
+	
 	}
 }
