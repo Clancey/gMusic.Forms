@@ -136,6 +136,9 @@
     <AndroidAsset Include="..\Fonts\Heebo-Thin.ttf">
       <Link>Assets\Heebo-Thin.ttf</Link>
     </AndroidAsset>
+    <AndroidAsset Include="..\Fonts\gMusicIcons.ttf">
+      <Link>Assets\gMusicIcons.ttf</Link>
+    </AndroidAsset>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

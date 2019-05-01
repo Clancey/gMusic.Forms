@@ -29,6 +29,7 @@ namespace gMusic.Droid
 		{
 			Styles.Fonts.NormalFontName = "Heebo-Regular.ttf#Heebo-Regular";
 			Styles.Fonts.ThinFontName = "Heebo-Thin.ttf#Heebo-Thin";
+			Styles.Fonts.IconFontName = "gMusicIcons.ttf#gMusicIcons-Regular";
 		}
     }
 }
