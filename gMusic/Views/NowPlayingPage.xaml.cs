@@ -9,13 +9,13 @@ namespace gMusic.Views {
 		{
 			InitializeComponent ();
 			ControlsStack.Children.Clear ();
-			ControlsStack.Children.Add (CreateButton(Images.NowPlayingScreen.ThumbsDown, (b)=> {
+			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.ThumbsDown, (b) => {
 
 			}));
 			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Previous, (b) => {
 
 			}));
-			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Play, (b) => {
+			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Pause, Images.NowPlayingScreen.Play, (b) => {
 
 			}));
 			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Next, (b) => {
@@ -27,17 +27,25 @@ namespace gMusic.Views {
 
 		}
 
-		static SvgImageButton CreateButton (ImageSource source, Action<SvgImageButton> action)
+		static ToggleButton CreateButton (ImageSource source, Action<ToggleButton> action)
 		{
-			return new SvgImageButton {
-				Image = {
-					Source = source,
-				},
+			return new ImageColorToggleButton {
+				Source = source,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.Center,
 				Tapped = action,
 			};
 		}
-	
+		static ToggleButton CreateButton (ImageSource onImage, ImageSource offImage, Action<ToggleButton> action)
+		{
+			return new ImageToggleButton {
+				OnImageSource = onImage,
+				OffImageSource = offImage,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.Center,
+				Tapped = action,
+			};
+		}
+
 	}
 }
