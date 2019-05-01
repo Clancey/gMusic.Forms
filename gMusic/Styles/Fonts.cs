@@ -16,6 +16,8 @@ namespace gMusic.Styles {
 		{
 			return Font.OfSize (ThinFontName, size) ;
 		}
+
+		public static string IconFontName { get; set; } = "gMusicIcons";
 	}
 }
 

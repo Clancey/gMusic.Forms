@@ -27,7 +27,7 @@ namespace gMusic.Views {
 
 		}
 
-		static SvgImageButton CreateButton(NGraphicsSVGImageSource source, Action<SvgImageButton> action)
+		static SvgImageButton CreateButton (ImageSource source, Action<SvgImageButton> action)
 		{
 			return new SvgImageButton {
 				Image = {

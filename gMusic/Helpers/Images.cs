@@ -1,5 +1,6 @@
 ﻿using System;
 using FFImageLoading.Svg.Forms;
+using gMusic.Styles;
 using Xamarin.Forms;
 
 namespace gMusic
@@ -14,22 +15,22 @@ namespace gMusic
 
         public static class Menu
         {
-			public static NGraphicsSVGImageSource SearchIcon = new NGraphicsSVGImageSource() { SvgName = "search.svg", MaxSize = 28 , TintColor = Color.White};
-			public static NGraphicsSVGImageSource ArtistIcon = new NGraphicsSVGImageSource () { SvgName = "artist.svg", MaxSize = 28, TintColor = Color.White };
-			public static NGraphicsSVGImageSource AlbumIcon = new NGraphicsSVGImageSource () { SvgName = "album.svg", MaxSize = 28, TintColor = Color.White };
-			public static NGraphicsSVGImageSource GenreIcon = new NGraphicsSVGImageSource () { SvgName = "genres.svg", MaxSize = 28, TintColor = Color.White };
-			public static NGraphicsSVGImageSource SongsIcon = new NGraphicsSVGImageSource () { SvgName = "songs.svg", MaxSize = 28, TintColor = Color.White };
-			public static NGraphicsSVGImageSource PlaylistIcon = new NGraphicsSVGImageSource () { SvgName = "playlists.svg", MaxSize = 28, TintColor = Color.White };
-			public static NGraphicsSVGImageSource SettingsIcon = new NGraphicsSVGImageSource () { SvgName = "settings.svg", MaxSize = 28, TintColor = Color.White };
+			public static ImageSource SearchIcon = IconFont.CreateFont (IconFont.IconSearch, Color.White, 20);
+			public static ImageSource ArtistIcon = IconFont.CreateFont (IconFont.IconArtist, Color.White);
+			public static ImageSource AlbumIcon = IconFont.CreateFont (IconFont.IconAlbum, Color.White);
+			public static ImageSource GenreIcon = IconFont.CreateFont (IconFont.IconGenres, Color.White);
+			public static ImageSource SongsIcon = IconFont.CreateFont (IconFont.IconSongs, Color.White);
+			public static ImageSource PlaylistIcon = IconFont.CreateFont (IconFont.IconPlaylists, Color.White);
+			public static ImageSource SettingsIcon = IconFont.CreateFont (IconFont.IconSettings, Color.White);
 		}
 
 		public static class NowPlayingScreen {
-			public static NGraphicsSVGImageSource ThumbsDown = new NGraphicsSVGImageSource () { SvgName = "thumbsDown.svg", MaxSize = 28, TintColor = Color.White };
-			public static NGraphicsSVGImageSource Previous = new NGraphicsSVGImageSource () { SvgName = "previous.svg", MaxSize = 24, TintColor = Color.White };
-			public static NGraphicsSVGImageSource Play = new NGraphicsSVGImageSource () { SvgName = "playButton.svg", MaxSize = 36, TintColor = Color.White };
-			public static NGraphicsSVGImageSource Pause = new NGraphicsSVGImageSource () { SvgName = "pauseButton.svg", MaxSize = 28, TintColor = Color.White };
-			public static NGraphicsSVGImageSource Next = new NGraphicsSVGImageSource () { SvgName = "next.svg", MaxSize = 24, TintColor = Color.White };
-			public static NGraphicsSVGImageSource ThumbsUp = new NGraphicsSVGImageSource () { SvgName = "thumbsUp.svg", MaxSize = 28, TintColor = Color.White };
+			public static ImageSource ThumbsDown = IconFont.CreateFont (IconFont.IconThumbsDown, Color.White, 28);
+			public static ImageSource Previous = IconFont.CreateFont (IconFont.IconPrevious, Color.White, 24);
+			public static ImageSource Play = IconFont.CreateFont (IconFont.IconPlayButton, Color.White, 36);
+			public static ImageSource Pause = IconFont.CreateFont (IconFont.IconPauseButton, Color.White, 36);
+			public static ImageSource Next = IconFont.CreateFont (IconFont.IconNext, Color.White, 24);
+			public static ImageSource ThumbsUp = IconFont.CreateFont (IconFont.IconThumbsUp, Color.White, 28);
 		}
     }
 }
