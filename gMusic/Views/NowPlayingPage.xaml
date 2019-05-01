@@ -34,7 +34,7 @@
                     <Label Text="All the Small Things" HorizontalTextAlignment="Center" />
                     <Label Text="Blink-182" HorizontalTextAlignment="Center"/>
                 </StackLayout>
-                <Button Grid.Column="2" Text="Play" HorizontalOptions="Center"/>
+
             </Grid>
             
         </AbsoluteLayout>

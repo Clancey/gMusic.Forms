@@ -31,6 +31,10 @@ namespace gMusic
 			public static ImageSource Pause = IconFont.CreateFont (IconFont.IconPauseButton, Color.White, 36);
 			public static ImageSource Next = IconFont.CreateFont (IconFont.IconNext, Color.White, 24);
 			public static ImageSource ThumbsUp = IconFont.CreateFont (IconFont.IconThumbsUp, Color.White, 28);
+
+
+			public static ImageSource PlayBordered => IconFont.CreateFont (IconFont.IconPlayButtonBordered, Styles.Styles.CurrentStyle.AccentColor, 36);
+			public static ImageSource PauseBordered => IconFont.CreateFont (IconFont.IconPauseButtonBordered, Styles.Styles.CurrentStyle.AccentColor, 36);
 		}
     }
 }

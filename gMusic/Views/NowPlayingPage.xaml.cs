@@ -25,6 +25,10 @@ namespace gMusic.Views {
 
 			}));
 
+			MiniPlayer.Children.Add (CreateButton (Images.NowPlayingScreen.PauseBordered, Images.NowPlayingScreen.PlayBordered, (b) => {
+
+			}),2,0);
+
 		}
 
 		static ToggleButton CreateButton (ImageSource source, Action<ToggleButton> action)
