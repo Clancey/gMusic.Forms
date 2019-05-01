@@ -25,16 +25,16 @@ namespace gMusic
 		}
 
 		public static class NowPlayingScreen {
-			public static ImageSource ThumbsDown = IconFont.CreateFont (IconFont.IconThumbsDown, Color.White, 28);
-			public static ImageSource Previous = IconFont.CreateFont (IconFont.IconPrevious, Color.White, 24);
-			public static ImageSource Play = IconFont.CreateFont (IconFont.IconPlayButton, Color.White, 36);
-			public static ImageSource Pause = IconFont.CreateFont (IconFont.IconPauseButton, Color.White, 36);
-			public static ImageSource Next = IconFont.CreateFont (IconFont.IconNext, Color.White, 24);
-			public static ImageSource ThumbsUp = IconFont.CreateFont (IconFont.IconThumbsUp, Color.White, 28);
+			public static FontImageSource ThumbsDown = IconFont.CreateFont (IconFont.IconThumbsDown, Color.White, 25);
+			public static FontImageSource Previous = IconFont.CreateFont (IconFont.IconPrevious, Color.White, 25);
+			public static FontImageSource Play = IconFont.CreateFont (IconFont.IconPlayButton, Color.White, 30);
+			public static FontImageSource Pause = IconFont.CreateFont (IconFont.IconPauseButton, Color.White, 30);
+			public static FontImageSource Next = IconFont.CreateFont (IconFont.IconNext, Color.White, 25);
+			public static FontImageSource ThumbsUp = IconFont.CreateFont (IconFont.IconThumbsUp, Color.White, 25);
 
 
-			public static ImageSource PlayBordered => IconFont.CreateFont (IconFont.IconPlayButtonBordered, Styles.Styles.CurrentStyle.AccentColor, 36);
-			public static ImageSource PauseBordered => IconFont.CreateFont (IconFont.IconPauseButtonBordered, Styles.Styles.CurrentStyle.AccentColor, 36);
+			public static FontImageSource PlayBordered => IconFont.CreateFont (IconFont.IconPlayButtonBordered, Styles.Styles.CurrentStyle.AccentColor, 36);
+			public static FontImageSource PauseBordered => IconFont.CreateFont (IconFont.IconPauseButtonBordered, Styles.Styles.CurrentStyle.AccentColor, 36);
 		}
     }
 }

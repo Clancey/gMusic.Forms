@@ -31,7 +31,7 @@ namespace gMusic.Views {
 
 		}
 
-		static ToggleButton CreateButton (ImageSource source, Action<ToggleButton> action)
+		static ToggleButton CreateButton (FontImageSource source, Action<ToggleButton> action)
 		{
 			return new ImageColorToggleButton {
 				Source = source,
@@ -40,12 +40,12 @@ namespace gMusic.Views {
 				Tapped = action,
 			};
 		}
-		static ToggleButton CreateButton (ImageSource onImage, ImageSource offImage, Action<ToggleButton> action)
+		static ToggleButton CreateButton (FontImageSource onImage, FontImageSource offImage, Action<ToggleButton> action)
 		{
 			return new ImageToggleButton {
 				OnImageSource = onImage,
 				OffImageSource = offImage,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.Center,
 				Tapped = action,
 			};

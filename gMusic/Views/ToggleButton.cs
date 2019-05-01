@@ -4,8 +4,8 @@ using Xamarin.Forms;
 namespace gMusic.Views {
 
 	public class ImageToggleButton : ToggleButton {
-		ImageSource onImageSource;
-		public ImageSource OnImageSource {
+		FontImageSource onImageSource;
+		public FontImageSource OnImageSource {
 			get => onImageSource;
 			set {
 				onImageSource = value;
@@ -13,8 +13,8 @@ namespace gMusic.Views {
 			}
 		}
 
-		ImageSource offImageSource;
-		public ImageSource OffImageSource {
+		FontImageSource offImageSource;
+		public FontImageSource OffImageSource {
 			get => offImageSource;
 			set {
 				offImageSource = value;
@@ -53,14 +53,11 @@ namespace gMusic.Views {
 
 		protected override void SetState ()
 		{
-			var fontSource = Source as FontImageSource;
-			if (fontSource == null)
-				return;
-			fontSource.Color = this.Toggled ? onColor : offColor;
+			Source.Color = this.Toggled ? onColor : offColor;
 		}
 	}
 
-	public abstract class ToggleButton : ImageButton {
+	public abstract class ToggleButton : ContentView {
 
 		bool toggled;
 		public bool Toggled {
@@ -71,11 +68,23 @@ namespace gMusic.Views {
 			}
 		}
 
+		protected Image Image { get; set; }
 		public Action<ToggleButton> Tapped { get; set; }
 		public ToggleButton ()
 		{
-			
-			this.Clicked += ToggleButton_Clicked;
+			this.Content = Image = new Image {
+				Aspect = Aspect.AspectFit
+			};
+			this.Content.GestureRecognizers.Add (new TapGestureRecognizer {
+				Command = new Command (() => {
+					Tapped?.Invoke (this);
+				})
+			});
+		}
+
+		public FontImageSource Source{
+			get => Image.Source as FontImageSource;
+			set => Image.Source = value;
 		}
 
 		private void ToggleButton_Clicked (object sender, EventArgs e)

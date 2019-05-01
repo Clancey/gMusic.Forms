@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="Blue" xmlns:gMusic="clr-namespace:gMusic.Views;assembly=gMusic" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.NowPlayingPage"  xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
     <ContentPage.Content>
         <AbsoluteLayout>
@@ -22,19 +22,17 @@
             </Grid>
             <Grid x:Name="NavBar" BackgroundColor="Lime" AbsoluteLayout.LayoutBounds="0,0,1,64" AbsoluteLayout.LayoutFlags="WidthProportional">
             </Grid>
-            
-            <Grid x:Name="MiniPlayer" BackgroundColor="Fuchsia" AbsoluteLayout.LayoutBounds="0,0,1,54" AbsoluteLayout.LayoutFlags="WidthProportional">
+            <Grid x:Name="MiniPlayer" Margin="6" AbsoluteLayout.LayoutBounds="0,0,1,54" AbsoluteLayout.LayoutFlags="WidthProportional">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30" />
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
                  <ffimageloading:CachedImage Margin="5" x:Name="Image" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" Aspect="AspectFill" HeightRequest="35" WidthRequest="35"/>
                 <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand">
                     <Label Text="All the Small Things" HorizontalTextAlignment="Center" />
                     <Label Text="Blink-182" HorizontalTextAlignment="Center"/>
                 </StackLayout>
-
             </Grid>
             
         </AbsoluteLayout>
