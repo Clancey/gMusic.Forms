@@ -10,5 +10,7 @@ namespace gMusic
 		}
 
 		public float OverHang { get; set; } = 74;
+
+		public float PercentVisible { get; set; }
 	}
 }

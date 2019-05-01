@@ -354,7 +354,9 @@ namespace gMusic.Forms.iOS
                     case UIGestureRecognizerState.Changed:
                         frame.Y = translation + startY;
                         frame.Y = NMath.Min(frame.Height, NMath.Max(frame.Y, Model.OverHang * -1));
-                        _masterController.View.Frame = frame;
+						(this.Element as SlideUpPanel).PercentVisible = (float)((frame.Height - frame.Y) / frame.Height);
+
+						_masterController.View.Frame = frame;
                         break;
                     case UIGestureRecognizerState.Ended:
                         isPanning = false;
@@ -364,11 +366,14 @@ namespace gMusic.Forms.iOS
                             ? (velocity < 0)
                             : (translation * -1 > 100);
                         float playbackBarHideTollerance = (float)Model.OverHang * 2 / 3;
-                        if (show)
-                            Presented = true;
-                        else
-                            Presented = false;
-                        LayoutChildren(true);
+						if (show) {
+							Presented = true;
+							(this.Element as SlideUpPanel).PercentVisible = 1;
+						} else {
+							Presented = false;
+							(this.Element as SlideUpPanel).PercentVisible = 0;
+						}
+						LayoutChildren (true);
                         break;
                 }
             })
