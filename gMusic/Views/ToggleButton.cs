@@ -77,7 +77,9 @@ namespace gMusic.Views {
 			};
 			this.Content.GestureRecognizers.Add (new TapGestureRecognizer {
 				Command = new Command (() => {
+					Toggled = !toggled;
 					Tapped?.Invoke (this);
+					SetState ();
 				})
 			});
 		}
@@ -85,12 +87,6 @@ namespace gMusic.Views {
 		public FontImageSource Source{
 			get => Image.Source as FontImageSource;
 			set => Image.Source = value;
-		}
-
-		private void ToggleButton_Clicked (object sender, EventArgs e)
-		{
-			Toggled = !toggled;
-			Tapped?.Invoke (this);
 		}
 
 		protected abstract void SetState ();

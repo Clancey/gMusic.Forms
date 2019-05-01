@@ -1,7 +1,7 @@
 # Agenda 5/1/2019
-- [ ] Font icons
-- [ ] Tinted Images
-- [ ] Image Toggle Button
+- [x] Font icons
+- [x] Tinted Images
+- [x] Image Toggle Button
 
 
 # Agenda 4/23/2019
@@ -32,7 +32,6 @@
 - [ ] Build Settings Screen
 - [ ] Welcome screen android
 - [ ] Search Screen
-- [ ] Tinted Images
 - [ ] Audio Playback
 - [ ] Local Audio  (iPod Playback)
 - [ ] Video Playback
