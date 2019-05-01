@@ -1,9 +1,13 @@
-# Agenda 4/23/2019
-- [ ] Setting Screen
-	[x] Account Login
+# Agenda 5/1/2019
+- [ ] Font icons
 - [ ] Tinted Images
 - [ ] Image Toggle Button
-- [x] Finish NowPlaying screen
+
+
+# Agenda 4/23/2019
+- [x] Setting Screen
+	- [x] Account Login
+- [x] Work on NowPlaying screen
 	
 # Agenda 4/17/2019
 - [x] Gradient ListView Android
