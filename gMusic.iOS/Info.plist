@@ -38,8 +38,7 @@
 	<array>
 		<string>Heebo-Thin.ttf</string>
 		<string>Heebo-Regular.ttf</string>
-		<string>SF-UI-Display-Regular.ttf</string>
-		<string>SF-UI-Display-Thin.ttf</string>
+		<string>gMusicIcons.ttf</string>
 	</array>
 </dict>
 </plist>

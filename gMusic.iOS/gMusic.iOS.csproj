@@ -141,6 +141,9 @@
     <BundleResource Include="..\Fonts\Heebo-Thin.ttf">
       <Link>Resources\Heebo-Thin.ttf</Link>
     </BundleResource>
+    <BundleResource Include="..\Fonts\gMusicIcons.ttf">
+      <Link>Resources\gMusicIcons.ttf</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
