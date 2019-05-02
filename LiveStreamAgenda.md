@@ -1,3 +1,14 @@
+# Agenda 5/8/2019
+- [ ] Audio Playback
+	- [ ] Playlist Management
+	- [ ] Fade Player
+	- [ ] Bass Audio player
+	- [ ] Downloader  
+	- [ ] AV Audio Player 
+	- [ ] Android Audio Player 
+	- [ ] Http Server
+	- [ ] Equalizer
+
 # Agenda 5/1/2019
 - [x] Font icons
 - [x] Tinted Images
