@@ -1,9 +1,11 @@
 # Agenda 5/8/2019
 - [ ] Audio Playback
+	- [ ] Downloader
+		- [ ] Precache
+		- [ ] Cache last song
 	- [ ] Playlist Management
 	- [ ] Fade Player
 	- [ ] Bass Audio player
-	- [ ] Downloader  
 	- [ ] AV Audio Player 
 	- [ ] Android Audio Player 
 	- [ ] Http Server

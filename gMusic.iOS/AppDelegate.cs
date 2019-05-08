@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using ManagedBass;
 using UIKit;
 using Xamarin.Forms;
 
@@ -35,6 +36,7 @@ namespace gMusic.iOS
 			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"UIContentSizeCategoryDidChangeNotification", (n) => {
 				ApplyStyles ();
 			});
+			Bass.Configure (Configuration.IOSMixAudio, 0);
 			return base.FinishedLaunching(app, options);
         }
 		void ApplyStyles()

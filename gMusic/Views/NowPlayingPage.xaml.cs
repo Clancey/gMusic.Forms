@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using gMusic.Managers;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
@@ -19,12 +20,12 @@ namespace gMusic.Views {
 
 			}));
 			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Previous, async (b) => {
-
+				PlaybackManager.Shared.Previous ();
 				await Task.Delay (toggleDelay);
 				b.Toggled = false;
 			}));
 			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Pause, Images.NowPlayingScreen.Play, (b) => {
-
+				PlaybackManager.Shared.Play ();
 			}));
 			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Next, async (b) => {
 				await Task.Delay (toggleDelay);
@@ -39,7 +40,6 @@ namespace gMusic.Views {
 			}), 2, 0);
 
 			BottomBar.Children.Add (CreateButton (Images.NowPlayingScreen.BottomBar.ShareButton, async (b) => {
-
 				await Task.Delay (toggleDelay);
 				b.Toggled = false;
 			}));
