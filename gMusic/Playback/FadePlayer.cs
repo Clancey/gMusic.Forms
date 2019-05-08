@@ -3,7 +3,7 @@ using gMusic.Models;
 
 namespace gMusic.Playback {
 	public class FadePlayer {
-		Player currentPlayer = new BassPlayer ();
+		Player currentPlayer { get; set; }// = new BassPlayer ();
 		public FadePlayer ()
 		{
 		}
