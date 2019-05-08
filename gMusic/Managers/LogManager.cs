@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace gMusic.Managers
 {
 
-	internal class LogManager : ManagerBase<LogManager>
+	public class LogManager : ManagerBase<LogManager>
 	{
 		public void Report(Exception ex,
 							   [CallerMemberName] string memberName = "",
@@ -81,6 +81,11 @@ namespace gMusic.Managers
 			} catch (Exception ex) {
 				Console.WriteLine (ex);
 			}
+		}
+
+		public void Report (Exception ex)
+		{
+			throw new NotImplementedException ();
 		}
 
 		public void Log(string message, MediaItemBase mediaItem,

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
-using ManagedBass;
+using gMusic.iOS.Playback;
+using gMusic.Playback;
+//using ManagedBass;
 using UIKit;
 using Xamarin.Forms;
 
@@ -27,6 +29,7 @@ namespace gMusic.iOS
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             Images.AlbumArtScreenSize = (int)NMath.Max(UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height);
             global::Xamarin.Forms.Forms.Init();
+			NativeInit ();
 			ApplyStyles ();
 			LoadApplication (new App());
 			//var font = UIFont.FromName ("SFUIDisplay-Thin", 20).ToFont;
@@ -36,9 +39,15 @@ namespace gMusic.iOS
 			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"UIContentSizeCategoryDidChangeNotification", (n) => {
 				ApplyStyles ();
 			});
-			Bass.Configure (Configuration.IOSMixAudio, 0);
+			//Bass.Configure (Configuration.IOSMixAudio, 0);
+
 			return base.FinishedLaunching(app, options);
         }
+
+		void NativeInit()
+		{
+			FadePlayer.CreatePlayer = (pd) => new AVMediaPlayer  ();
+		}
 		void ApplyStyles()
 		{
 			Styles.Styles.HeaderFontSize = (int)UIFont.PreferredTitle1.PointSize;

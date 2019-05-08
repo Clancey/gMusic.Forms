@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using gMusic.Models;
 using gMusic.Playback;
 
 namespace gMusic.Managers {
@@ -7,7 +8,7 @@ namespace gMusic.Managers {
 		public FadePlayer Player { get; } = new FadePlayer ();
 		public async void Play ()
 		{
-			
+			Player.Play ();
 		}
 
 		public async void Pause ()
@@ -23,6 +24,11 @@ namespace gMusic.Managers {
 		public void Previous()
 		{
 
+		}
+
+		public void Play (Song song)
+		{
+			Player.PlaySong (song);
 		}
 	}
 }

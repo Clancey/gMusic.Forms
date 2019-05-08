@@ -81,6 +81,8 @@
     <Compile Include="Renderers\GradientListViewRenderer.cs" />
     <Compile Include="Renderers\BlurredImageView.cs" />
     <Compile Include="Renderers\NGraphicsExtensions.cs" />
+    <Compile Include="Playback\AVMediaPlayer.cs" />
+    <Compile Include="Playback\AVPlayerExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -148,6 +150,7 @@
     <BundleResource Include="..\Fonts\gMusicIcons.ttf">
       <Link>Resources\gMusicIcons.ttf</Link>
     </BundleResource>
+    <BundleResource Include="Resources\empty.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -184,12 +187,6 @@
     <PackageReference Include="NGraphics">
       <Version>0.5.0</Version>
     </PackageReference>
-    <PackageReference Include="ManagedBass.Fx">
-      <Version>2.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="ManagedBass">
-      <Version>2.0.4</Version>
-    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -200,15 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <NativeReference Include="libbass_fx.a">
-      <Kind>Static</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
-    <NativeReference Include="libbass.a">
-      <Kind>Static</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
+    <Folder Include="Playback\" />
   </ItemGroup>
 </Project>
