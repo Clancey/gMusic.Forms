@@ -9,8 +9,7 @@ using gMusic.Models.Scrobbling;
 
 namespace gMusic.Playback {
 	public class FadePlayer : Player {
-		public static Func<SongPlaybackData, Player> CreatePlayer { get; set; }
-
+		public static Func<SongPlaybackData, Player> CreatePlayer { get; set; } = (s)=> new BassPlayer ();
 
 		readonly Dictionary<string, PlaybackData> CurrentData = new Dictionary<string, PlaybackData> ();
 		readonly Dictionary<string, string> SongIdTracks = new Dictionary<string, string> ();
@@ -445,7 +444,7 @@ namespace gMusic.Playback {
 
 			var isVideo = isVideoDict [song.Id];
 			var data = await MusicManager.Shared.GetPlaybackData (song, isVideo);
-			var player = CreatePlayer (data);
+			var player = CreatePlayer?.Invoke(data) ?? new BassPlayer();
 			player.StateChanged = (state) => {
 				if (player.CurrentSongId == CurrentSongId) {
 					State = state;
