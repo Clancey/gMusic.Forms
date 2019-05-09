@@ -288,6 +288,11 @@ namespace gMusic.iOS.Playback {
 			{
 				player.DidCancelLoadingRequest (resourceLoader, loadingRequest);
 			}
+
+			public override bool ShouldWaitForRenewalOfRequestedResource (AVAssetResourceLoader resourceLoader, AVAssetResourceRenewalRequest renewalRequest)
+			{
+				return player.ShouldWaitForLoadingOfRequestedResource (resourceLoader, renewalRequest);
+			}
 		}
 
 
@@ -346,8 +351,14 @@ namespace gMusic.iOS.Playback {
 				}
 
 				var dataRequest = loadingRequest.DataRequest;
-
+				Console.WriteLine ("**************");
+				Console.WriteLine ("**************");
+				Console.WriteLine ($"REQUESTING DATATA!!!!! {dataRequest.CurrentOffset} - {dataRequest.RequestedLength}");
 				var startOffset = dataRequest.CurrentOffset > 0 ? dataRequest.CurrentOffset : dataRequest.RequestedOffset;
+
+				Console.WriteLine ("**************");
+				Console.WriteLine ("**************");
+
 				if (startOffset == currentDownloadHelper.TotalLength)
 					return true;
 
@@ -372,7 +383,6 @@ namespace gMusic.iOS.Playback {
 				fileHandle.SeekToFileOffset ((ulong)startOffset);
 				var data = fileHandle.ReadDataOfLength ((uint)numberOfBytesToRespondWith);
 				dataRequest.Respond (data);
-
 
 				var endOffset = startOffset + dataRequest.RequestedLength;
 				var didRespondFully = currentDownloadHelper.CurrentSize >= endOffset;

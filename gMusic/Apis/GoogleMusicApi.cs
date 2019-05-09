@@ -340,7 +340,7 @@ namespace gMusic.Api.GoogleMusic
 				{
 					var device = devices[deviceIndex];
 					DeviceId = device.Id;
-					DeviceName = device.FriendlyName;
+					DeviceName = device.FriendlyName ?? "My Phone";
 				}
 				//TODO: Fix this
 				//ApiManager.Shared.SaveApi(this);

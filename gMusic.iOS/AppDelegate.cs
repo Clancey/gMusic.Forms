@@ -46,6 +46,8 @@ namespace gMusic.iOS
 
 		void NativeInit()
 		{
+			Utility.DeviceName = Helpers.Device.Name;
+			Utility.IsSimulator = Helpers.Device.IsSim;
 			FadePlayer.CreatePlayer = (pd) => new AVMediaPlayer  ();
 		}
 		void ApplyStyles()

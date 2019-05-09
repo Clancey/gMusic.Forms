@@ -16,7 +16,7 @@ namespace gMusic.ViewModels
 		public object this[int index] {
 			get {
 				try {
-					Debug.WriteLine ($"Loading {index}");
+					//Debug.WriteLine ($"Loading {index}");
 					if (IsGrouped)
 						return new GroupedList<T> (Database, GroupInfo, index) {
 							Display = Database?.SectionHeader<T> (GroupInfo, index) ?? "",
@@ -124,7 +124,7 @@ namespace gMusic.ViewModels
 		public object this[int index] {
 			get {
 				try {
-					Debug.WriteLine ($"Loading {Section}:{index}");
+					//Debug.WriteLine ($"Loading {Section}:{index}");
 					var item = Database.ObjectForRow<T> (GroupInfo, Section, index);
 					return item;
 				} catch (Exception ex) {

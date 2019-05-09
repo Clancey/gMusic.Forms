@@ -8,7 +8,7 @@ namespace gMusic
 		public static async void SetSecured(string key, string value)
 		{
 			try {
-				await SecureStorage.SetAsync (key, value);
+				await SecureStorage.SetAsync (key, value ?? "");
 			} catch (Exception ex) {
 				LogManager.Shared.Report (ex);
 				// Possible that device doesn't support secure storage on device.

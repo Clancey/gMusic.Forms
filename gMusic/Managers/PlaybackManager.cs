@@ -28,7 +28,12 @@ namespace gMusic.Managers {
 
 		public void Play (Song song)
 		{
-			Player.PlaySong (song);
+			Player.PlaySong (song,false,true);
+		}
+
+		public void NextTrackWithoutPause()
+		{
+
 		}
 	}
 }

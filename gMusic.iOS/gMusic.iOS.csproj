@@ -83,6 +83,7 @@
     <Compile Include="Renderers\NGraphicsExtensions.cs" />
     <Compile Include="Playback\AVMediaPlayer.cs" />
     <Compile Include="Playback\AVPlayerExtension.cs" />
+    <Compile Include="Helpers\Device.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -198,5 +199,6 @@
   <ItemGroup>
     <Folder Include="Renderers\" />
     <Folder Include="Playback\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>
