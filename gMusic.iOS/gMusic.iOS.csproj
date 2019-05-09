@@ -42,7 +42,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lbass -lbass_fx -framework CFNetwork -framework AudioToolbox -framework SystemConfiguration -framework Accelerate -force_load ${ProjectDir}/libbass.a -force_load ${ProjectDir}/libbass_fx.a"</MtouchExtraArgs>
+    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lbass  -lbass_fx"</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,7 +57,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lbass -lbass_fx -framework CFNetwork -framework AudioToolbox -framework SystemConfiguration -framework Accelerate -force_load ${ProjectDir}/libbass.a -force_load ${ProjectDir}/libbass_fx.a"</MtouchExtraArgs>
+    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lbass  -lbass_fx"</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -69,7 +69,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lbass -lbass_fx -framework CFNetwork -framework AudioToolbox -framework SystemConfiguration -framework Accelerate -force_load ${ProjectDir}/libbass.a -force_load ${ProjectDir}/libbass_fx.a"</MtouchExtraArgs>
+    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lbass  -lbass_fx"</MtouchExtraArgs>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
