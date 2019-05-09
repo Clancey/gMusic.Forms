@@ -28,7 +28,8 @@ namespace gMusic
 
 		protected override void OnStart()
         {
-            // Handle when your app starts
+			// Handle when your app starts
+			LocalWebServer.Shared.Start ();
         }
 
         protected override void OnSleep()

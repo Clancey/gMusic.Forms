@@ -295,7 +295,6 @@ namespace gMusic.iOS.Playback {
 			}
 		}
 
-
 		SimpleQueue<AVAssetResourceLoadingRequest> pendingRequests = new SimpleQueue<AVAssetResourceLoadingRequest> ();
 		public bool ShouldWaitForLoadingOfRequestedResource (AVAssetResourceLoader resourceLoader, AVAssetResourceLoadingRequest loadingRequest)
 		{

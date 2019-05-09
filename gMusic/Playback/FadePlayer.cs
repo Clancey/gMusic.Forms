@@ -485,6 +485,18 @@ namespace gMusic.Playback {
 		public override float Volume { get => CurrentPlayer.Volume; set => CurrentPlayer.Volume = value; }
 		public override bool IsPlayerItemValid => CurrentPlayer?.IsPlayerItemValid ?? false;
 
+		public async Task<PlaybackData> GetPlaybackDataForWebServer (string id)
+		{
+			var data = GetPlaybackData (id);
+			if (data != null && data.DownloadHelper != null)
+				return data;
+			var video = false;// id == currentSong?.Id ? isVideo : false;
+			var song = Database.Main.GetObject<Song, TempSong> (id);
+			var result = await prepareSong (song, video);
+			return result.Item2;
+
+
+		}
 
 	}
 }
