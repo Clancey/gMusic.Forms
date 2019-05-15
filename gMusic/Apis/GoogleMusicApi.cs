@@ -39,7 +39,7 @@ namespace gMusic.Api.GoogleMusic
 		public string GeneratedDeviceId { get; set; }
 	}
 
-	internal class GoogleMusicApi : GoogleApi
+	public class GoogleMusicApi : GoogleApi
 	{
 		static GoogleMusicApi()
 		{

@@ -1,16 +1,23 @@
+# Agenda 5/15/2019
+ - [ ] Android Bass Playback
+ - [ ] Android Audio Player 
+ - [ ] Playlist Management
+ - [ ] UrlSessionDelegate
+ - [ ] Equalizer
+ 	- [ ] Bass
+ 	- [ ] Native iOS
+ 	- [ ] 
+
 # Agenda 5/8/2019
 - [ ] Audio Playback
-	- [ ] Downloader
+	- [X] Downloader
 		- [x] Precache
 		- [x] Cache last song
-	- [ ] Playlist Management
 	- [x] Fade Player
 	- [x] Bass Audio player
 	- [x] AV Audio Player 
-	- [ ] Android Audio Player 
 	- [x] Http Server
-	- [ ] Equalizer
-[]()
+
 # Agenda 5/1/2019
 - [x] Font icons
 - [x] Tinted Images
