@@ -1,12 +1,13 @@
 # Agenda 5/15/2019
- - [ ] Android Bass Playback
+ - [x] Android Login!
+ - [X] Android Bass Playback
  - [ ] Android Audio Player 
  - [ ] Playlist Management
  - [ ] UrlSessionDelegate
  - [ ] Equalizer
  	- [ ] Bass
  	- [ ] Native iOS
- 	- [ ] 
+ 	- [ ] Native Android 
 
 # Agenda 5/8/2019
 - [ ] Audio Playback

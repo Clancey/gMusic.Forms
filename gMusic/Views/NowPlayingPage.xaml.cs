@@ -9,6 +9,8 @@ namespace gMusic.Views {
 
 		ImageColorToggleButton thumbsUpButton;
 		ImageColorToggleButton thumbsDownButton;
+		ImageToggleButton playPauseButton;
+		ImageToggleButton miniPlayPauseButton;
 
 		const int toggleDelay = 100;
 		public NowPlayingPage ()
@@ -24,8 +26,11 @@ namespace gMusic.Views {
 				await Task.Delay (toggleDelay);
 				b.Toggled = false;
 			}));
-			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Pause, Images.NowPlayingScreen.Play, (b) => {
-				PlaybackManager.Shared.Play ();
+			ControlsStack.Children.Add (playPauseButton = CreateButton (Images.NowPlayingScreen.Pause, Images.NowPlayingScreen.Play, (b) => {
+				if(b.Toggled)
+					PlaybackManager.Shared.Play ();
+				else
+					PlaybackManager.Shared.Pause ();
 			}));
 			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Next, async (b) => {
 				await Task.Delay (toggleDelay);
@@ -35,8 +40,11 @@ namespace gMusic.Views {
 
 			}));
 
-			MiniPlayer.Children.Add (CreateButton (Images.NowPlayingScreen.PauseBordered, Images.NowPlayingScreen.PlayBordered, (b) => {
-
+			MiniPlayer.Children.Add (miniPlayPauseButton = CreateButton (Images.NowPlayingScreen.PauseBordered, Images.NowPlayingScreen.PlayBordered, (b) => {
+				if (b.Toggled)
+					PlaybackManager.Shared.Play ();
+				else
+					PlaybackManager.Shared.Pause ();
 			}), 2, 0);
 
 			BottomBar.Children.Add (CreateButton (Images.NowPlayingScreen.BottomBar.ShareButton, async (b) => {
@@ -56,6 +64,13 @@ namespace gMusic.Views {
 				b.Toggled = false;
 			}));
 
+			NotificationManager.Shared.PlaybackStateChanged += Shared_PlaybackStateChanged;
+
+		}
+
+		void Shared_PlaybackStateChanged (object sender, EventArgs<Models.PlaybackState> e)
+		{
+			miniPlayPauseButton.Toggled = playPauseButton.Toggled = (e.Data == Models.PlaybackState.Buffering || e.Data ==  Models.PlaybackState.Playing);
 		}
 
 		static ImageColorToggleButton CreateButton (FontImageSource source, Action<ToggleButton> action)

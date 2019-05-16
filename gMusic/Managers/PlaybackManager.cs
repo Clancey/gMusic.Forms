@@ -5,7 +5,9 @@ using gMusic.Playback;
 
 namespace gMusic.Managers {
 	public class PlaybackManager : ManagerBase<PlaybackManager> {
-		public FadePlayer Player { get; } = new FadePlayer ();
+		public FadePlayer Player { get; } = new FadePlayer {
+			StateChanged = NotificationManager.Shared.ProcPlaybackStateChanged,
+		};
 		public async void Play ()
 		{
 			Player.Play ();
@@ -13,7 +15,7 @@ namespace gMusic.Managers {
 
 		public async void Pause ()
 		{
-
+			Player.Pause ();
 		}
 
 		public void Next()
