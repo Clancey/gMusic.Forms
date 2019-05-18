@@ -15,9 +15,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Punchclock" Version="3.1.1" />
-    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.9.961" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.9.961" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.9.961" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.10.972" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.10.972" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.10.972" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
     <PackageReference Include="ManagedBass.Fx" Version="2.0.1" />
