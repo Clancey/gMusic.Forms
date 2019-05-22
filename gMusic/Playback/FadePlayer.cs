@@ -6,6 +6,7 @@ using gMusic.Data;
 using gMusic.Managers;
 using gMusic.Models;
 using gMusic.Models.Scrobbling;
+using Localizations;
 
 namespace gMusic.Playback {
 	public class FadePlayer : Player {
@@ -28,7 +29,7 @@ namespace gMusic.Playback {
 			}
 		};
 
-		Song currentSong;
+		Song _currentSong;
 		Song nextSong;
 		Song fadingToSong;
 		bool isUsingFirst = false;
@@ -44,8 +45,14 @@ namespace gMusic.Playback {
 			};
 		}
 
-		public Player CurrentPlayer => GetPlayer (currentSong);
-		public Song CurrentSong => currentSong;
+		public Player CurrentPlayer => GetPlayer (CurrentSong);
+
+
+		public Song CurrentSong {
+			get { return _currentSong; }
+			set { ProcPropertyChanged (ref _currentSong, value); }
+		}
+
 		public Player SecondaryPlayer => GetPlayer (nextSong);
 
 		public override bool Play ()
@@ -53,7 +60,7 @@ namespace gMusic.Playback {
 			var success = CurrentPlayer?.Play () ?? false;
 			if (!success && CurrentSong != null) {
 				isVideoDict.TryGetValue (CurrentSongId, out var isVideo);
-				PlaySong (currentSong, isVideo);
+				PlaySong (CurrentSong, isVideo);
 				return true;
 			}
 			SetVideo (CurrentPlayer);
@@ -107,8 +114,8 @@ namespace gMusic.Playback {
 		public async Task<bool> PrepareSong (Song song, bool isVideo)
 		{
 			try {
-				if (currentSong == null)
-					currentSong = song;
+				if (CurrentSong == null)
+					CurrentSong = song;
 				eqApplied = false;
 				isVideoDict [song.Id] = isVideo;
 				var player = await GetPlayer (song, true);
@@ -144,7 +151,44 @@ namespace gMusic.Playback {
 			return player;
 		}
 
-		public override async Task<bool> PlaySong (Song song, bool isVideo, bool forcePlay = false)
+		public override async Task<bool> PlaySong (Song song, bool isVideo = false, bool forcePlay = false)
+		{
+			playbackStarted = DateTime.Now;
+
+			Pause ();
+			CleanupSong (CurrentSong);
+			CurrentSong = song;
+			Settings.CurrentTrackId = "";
+			Settings.CurrentPlaybackIsVideo = isVideo;
+			NotificationManager.Shared.ProcCurrentTrackPositionChanged (new TrackPosition {
+				CurrentTime = 0,
+				Duration = 0,
+			});
+			if (song == null) {
+				State = PlaybackState.Stopped;
+				return false;
+			}
+			State = PlaybackState.Buffering;
+
+			var success = await playSong (song, isVideo, forcePlay);
+			//ScrobbleManager.Shared.SetNowPlaying (song, Settings.CurrentTrackId);
+			if (CurrentSong != song)
+				return false;
+			if (!success) {
+				AutoSkipCount++;
+				this.State = PlaybackState.Stopped;
+				if (AutoSkipCount < 5)
+					PlaybackManager.Shared.NextTrack ();
+				else {
+					this.Pause ();
+					App.ShowAlert (Strings.RenameError, Strings.ThereWasAnErrorPlayingTrack);
+				}
+			} else
+				AutoSkipCount = 0;
+
+			return true;
+		}
+		async Task<bool> playSong (Song song, bool isVideo, bool forcePlay = false)
 		{
 			if (!isVideo && song.MediaTypes.Length == 1 && song.MediaTypes [0] == MediaType.Video)
 				isVideo = true;
@@ -153,7 +197,7 @@ namespace gMusic.Playback {
 			if (fadingToSong != song)
 				StopAllOthers (song);
 			eqApplied = false;
-			currentSong = song;
+			CurrentSong = song;
 			if (forcePlay) {
 				try {
 					var player = await GetPlayer (song, true, true);
@@ -327,6 +371,8 @@ namespace gMusic.Playback {
 
 
 		double lastSeconds;
+		private DateTime playbackStarted;
+
 		async Task<Tuple<bool, PlaybackData>> _prepareSong (Song song, bool playVideo = false)
 		{
 			try {
@@ -484,6 +530,8 @@ namespace gMusic.Playback {
 		public override float Volume { get => CurrentPlayer.Volume; set => CurrentPlayer.Volume = value; }
 		public override bool IsPlayerItemValid => CurrentPlayer?.IsPlayerItemValid ?? false;
 
+		public int AutoSkipCount { get; private set; }
+
 		public async Task<PlaybackData> GetPlaybackDataForWebServer (string id)
 		{
 			var data = GetPlaybackData (id);
@@ -497,6 +545,11 @@ namespace gMusic.Playback {
 
 		}
 
+		public async void PrepareFirstTrack (Song song, bool currentPlaybackIsVideo)
+		{
+			CurrentSong = song;
+			await this.PrepareSong (song, currentPlaybackIsVideo);
+		}
 	}
 }
 

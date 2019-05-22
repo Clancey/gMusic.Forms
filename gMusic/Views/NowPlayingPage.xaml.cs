@@ -33,6 +33,7 @@ namespace gMusic.Views {
 					PlaybackManager.Shared.Pause ();
 			}));
 			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Next, async (b) => {
+				await PlaybackManager.Shared.NextTrack ();
 				await Task.Delay (toggleDelay);
 				b.Toggled = false;
 			}));

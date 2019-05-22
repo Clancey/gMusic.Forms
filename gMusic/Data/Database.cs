@@ -6,38 +6,31 @@ using SimpleDatabase;
 using SQLite;
 using gMusic.Models;
 
-namespace gMusic.Data
-{
-	internal class Database : SimpleDatabaseConnection
-	{
-		public static Database Main { get; set; } = setupDb();
-		static Database setupDb(bool shouldDeleteOnFail = true)
+namespace gMusic.Data {
+	internal class Database : SimpleDatabaseConnection {
+		public static Database Main { get; set; } = setupDb ();
+		static Database setupDb (bool shouldDeleteOnFail = true)
 		{
-			try
-			{
-				return new Database(new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.Create, true));
-			}
-			catch (Exception ex)
-			{
-				if (shouldDeleteOnFail)
-				{
-					LogManager.Shared.Report(ex);
-					File.Delete(dbPath);
-				}
-				else
+			try {
+				return new Database (new SQLiteConnection (dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.Create, true));
+			} catch (Exception ex) {
+				if (shouldDeleteOnFail) {
+					LogManager.Shared.Report (ex);
+					File.Delete (dbPath);
+				} else
 					throw ex;
 			}
 
-			return setupDb(false);
+			return setupDb (false);
 		}
-		static string dbPath => Path.Combine(Locations.LibDir, "db.db");
+		static string dbPath => Path.Combine (Locations.LibDir, "db.db");
 		SQLiteConnection connection;
-		public Database(SQLiteConnection connection) : base(connection)
+		public Database (SQLiteConnection connection) : base (connection)
 		{
 			this.connection = connection;
-			connection.ExecuteScalar<string>("PRAGMA journal_mode=WAL");
+			connection.ExecuteScalar<string> ("PRAGMA journal_mode=WAL");
 
-			CreateTables(
+			CreateTables (
 				typeof (Album),
 				typeof (AlbumArtwork),
 				typeof (AlbumIds),
@@ -81,7 +74,7 @@ namespace gMusic.Data
 
 		}
 
-		public void ResetDatabase()
+		public void ResetDatabase ()
 		{
 			DropAndCreateTable<TempPlaylistSong> ();
 			DropAndCreateTable<TempPlaylist> ();
@@ -115,21 +108,36 @@ namespace gMusic.Data
 
 		}
 
-		public void DropTable<T>()
+		public void DropTable<T> ()
 		{
-			var map = connection.GetMapping(typeof(T));
-			Execute($"drop table if exists {map.TableName}");
+			var map = connection.GetMapping (typeof (T));
+			Execute ($"drop table if exists {map.TableName}");
 		}
-		public void DropAndCreateTable<T>()
+		public void DropAndCreateTable<T> ()
 		{
-			DropTable<T>();
-			connection.CreateTable<T>();
+			DropTable<T> ();
+			connection.CreateTable<T> ();
 		}
 
-		public T GetObject<T, T1>(object id) where T1 : T, new() where T : new()
+		public T GetObject<T, T1> (object id) where T1 : T, new() where T : new()
 		{
-			var obj = GetObject<T>(id);
-			return EqualityComparer<T>.Default.Equals(obj, default(T)) ? GetObject<T1>(id) : obj;
+			var obj = GetObject<T> (id);
+			return EqualityComparer<T>.Default.Equals (obj, default (T)) ? GetObject<T1> (id) : obj;
+		}
+
+		public GroupInfo CreateGroupInfo (Playlist playlist) => new GroupInfo {
+			Filter = $"PlaylistId = \"{playlist.Id}\"",
+			OrderBy = "SOrder"
+		};
+
+		public GroupInfo CreateGroupInfo (AutoPlaylist playlist, bool offlineOnly = false)
+		{
+
+			var gi = new GroupInfo { Filter = playlist.WhereClause, OrderBy = playlist.OrderByClause, Limit = playlist.Limit };
+			if (offlineOnly && Settings.ShowOfflineOnly) {
+				gi.Filter = gi.Filter + (string.IsNullOrEmpty (gi.Filter) ? " " : " and ") + "OfflineCount > 0";
+			}
+			return gi;
 		}
 	}
 }

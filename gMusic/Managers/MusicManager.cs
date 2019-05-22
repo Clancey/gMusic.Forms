@@ -656,7 +656,7 @@ namespace gMusic.Managers
 			if (song == null)
 				return true;
 			if (song.Id == Settings.CurrentSong)
-				PlaybackManager.Shared.Next();
+				await PlaybackManager.Shared.NextTrack();
 			return await SetRating(song, 1);
 		}
 

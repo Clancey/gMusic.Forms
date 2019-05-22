@@ -3,17 +3,16 @@ using System.Threading.Tasks;
 using gMusic.Models;
 
 namespace gMusic.Playback {
-	public abstract class Player : IDisposable {
+	public abstract class Player : BaseModel, IDisposable {
 		public Action<PlaybackState> StateChanged { get; set; }
 
 		PlaybackState state;
 		public virtual PlaybackState State {
 			get => state;
 			set {
-				if (value == state)
-					return;
-				state = value;
-				StateChanged?.Invoke (state);
+
+				if(ProcPropertyChanged (ref state, value))
+					StateChanged?.Invoke (state);
 			}
 		}
 

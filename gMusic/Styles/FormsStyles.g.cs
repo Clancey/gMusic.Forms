@@ -946,22 +946,22 @@ namespace Xamarin.Forms {
 			get => GetValue<bool> (Shell.FlyoutIsPresentedProperty);
 			set => SetValue (Shell.FlyoutIsPresentedProperty, value);
 		}
-		public Xamarin.Forms.DataTemplate GroupHeaderTemplate {
-			get => GetValue<Xamarin.Forms.DataTemplate> (Shell.GroupHeaderTemplateProperty);
-			set => SetValue (Shell.GroupHeaderTemplateProperty, value);
-		}
-		public Xamarin.Forms.ShellItemCollection Items {
-			get => GetValue<Xamarin.Forms.ShellItemCollection> (Shell.ItemsProperty);
-			set => SetValue (Shell.ItemsProperty, value);
-		}
+		//public Xamarin.Forms.DataTemplate GroupHeaderTemplate {
+		//	get => GetValue<Xamarin.Forms.DataTemplate> (Shell.GroupHeaderTemplateProperty);
+		//	set => SetValue (Shell.GroupHeaderTemplateProperty, value);
+		//}
+		//public Xamarin.Forms.ShellItemCollection Items {
+		//	get => GetValue<Xamarin.Forms.ShellItemCollection> (Shell.ItemsProperty);
+		//	set => SetValue (Shell.ItemsProperty, value);
+		//}
 		public Xamarin.Forms.DataTemplate ItemTemplate {
 			get => GetValue<Xamarin.Forms.DataTemplate> (Shell.ItemTemplateProperty);
 			set => SetValue (Shell.ItemTemplateProperty, value);
 		}
-		public Xamarin.Forms.MenuItemCollection MenuItems {
-			get => GetValue<Xamarin.Forms.MenuItemCollection> (Shell.MenuItemsProperty);
-			set => SetValue (Shell.MenuItemsProperty, value);
-		}
+		//public Xamarin.Forms.MenuItemCollection MenuItems {
+		//	get => GetValue<Xamarin.Forms.MenuItemCollection> (Shell.MenuItemsProperty);
+		//	set => SetValue (Shell.MenuItemsProperty, value);
+		//}
 		public Xamarin.Forms.DataTemplate MenuItemTemplate {
 			get => GetValue<Xamarin.Forms.DataTemplate> (Shell.MenuItemTemplateProperty);
 			set => SetValue (Shell.MenuItemTemplateProperty, value);

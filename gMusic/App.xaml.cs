@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using gMusic.Managers;
 using Localizations;
+using System.Threading.Tasks;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace gMusic
@@ -18,6 +19,7 @@ namespace gMusic
             InitializeComponent();
 			this.Resources.AddGmusicStyles ();
 			NotificationManager.Shared.StyleChanged += Shared_StyleChanged;
+			PlaybackManager.Shared.Init ();
             MainPage = new RootPage();
         }
 
@@ -53,6 +55,22 @@ namespace gMusic
 		public static void ShowAlert(string title, string message)
 		{
 			Current.MainPage.DisplayAlert(title,message,Strings.Ok);
+		}
+
+		internal static Task<bool> CheckForOffline ()
+		{
+			return Task.FromResult(true);
+			//throw new NotImplementedException ();
+		}
+
+		internal static void Playing ()
+		{
+			//throw new NotImplementedException ();
+		}
+
+		internal static void StoppedPlaying ()
+		{
+			//throw new NotImplementedException ();
 		}
 	}
 }

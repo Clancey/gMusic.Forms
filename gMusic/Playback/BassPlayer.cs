@@ -81,7 +81,11 @@ namespace gMusic {
 			}
 		}
 
-		int streamHandle;
+		int? _streamHandle;
+		int streamHandle {
+			get => _streamHandle ?? 0;
+			set => _streamHandle = value;
+		}
 		int bufferSync;
 		int endSync;
 		FileProcedures fileProcs;

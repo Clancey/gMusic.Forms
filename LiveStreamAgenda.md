@@ -1,14 +1,20 @@
-# Agenda 5/15/2019
- - [x] Android Login!
- - [X] Android Bass Playback
- - [ ] Android Audio Player 
+
+# Agenda 5/22/2019
  - [ ] Playlist Management
- - [ ] UrlSessionDelegate
  - [ ] Equalizer
  	- [ ] Bass
  	- [ ] Native iOS
  	- [ ] Native Android 
+ - [ ] UrlSessionDelegate
+ - [ ] Android Audio Player 
 
+
+
+# Agenda 5/15/2019
+ - [x] Android Login!
+ - [X] Android Bass Playback
+ 
+ 
 # Agenda 5/8/2019
 - [ ] Audio Playback
 	- [X] Downloader
@@ -53,7 +59,6 @@
 - [ ] Build Settings Screen
 - [ ] Welcome screen android
 - [ ] Search Screen
-- [ ] Audio Playback
 - [ ] Local Audio  (iPod Playback)
 - [ ] Video Playback
 - [ ] Blur Views
