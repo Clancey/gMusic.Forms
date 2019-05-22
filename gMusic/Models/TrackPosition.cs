@@ -4,7 +4,7 @@ using System.Text;
 
 namespace gMusic.Models
 {
-	internal class TrackPosition
+	public class TrackPosition
 	{
 		public double CurrentTime { get; set; }
 

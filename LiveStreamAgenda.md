@@ -1,6 +1,6 @@
 
 # Agenda 5/22/2019
- - [ ] Playlist Management
+ - [x] Playlist Management
  - [ ] Equalizer
  	- [ ] Bass
  	- [ ] Native iOS

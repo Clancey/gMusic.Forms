@@ -59,13 +59,13 @@ namespace gMusic.Views {
 
 	public abstract class ToggleButton : ContentView {
 
-		bool toggled;
+		public static readonly BindableProperty ToggledProperty =  BindableProperty.Create (nameof(Toggled), typeof (bool), typeof (ToggleButton), false,propertyChanged: (bindable, oldValue, newValue) => {
+			((ToggleButton)bindable).SetState ();
+		});
+		
 		public bool Toggled {
-			get => toggled;
-			set {
-				toggled = value;
-				SetState ();
-			}
+			get => (bool)GetValue(ToggledProperty);
+			set => SetValue (ToggledProperty, value);
 		}
 
 		protected Image Image { get; set; }
@@ -77,7 +77,7 @@ namespace gMusic.Views {
 			};
 			this.Content.GestureRecognizers.Add (new TapGestureRecognizer {
 				Command = new Command (() => {
-					Toggled = !toggled;
+					Toggled = !Toggled;
 					Tapped?.Invoke (this);
 					SetState ();
 				})

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using gMusic.Data;
 using gMusic.Managers;
+using gMusic.Models;
+using gMusic.ViewModels;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
+
 	public partial class NowPlayingPage : ContentPage {
 
 		ImageColorToggleButton thumbsUpButton;
@@ -13,14 +17,19 @@ namespace gMusic.Views {
 		ImageToggleButton miniPlayPauseButton;
 
 		const int toggleDelay = 100;
+
+		ViewModel NowPlayingViewModel => (ViewModel)BindingContext;
 		public NowPlayingPage ()
 		{
+			this.BindingContext = new ViewModel ();
 			InitializeComponent ();
 			ControlsStack.Children.Clear ();
 
-			ControlsStack.Children.Add (thumbsDownButton = CreateButton (Images.NowPlayingScreen.ThumbsDown, (b) => {
-
+			ControlsStack.Children.Add (thumbsDownButton = CreateButton (Images.NowPlayingScreen.ThumbsDown, async (b) => {
+				await NowPlayingViewModel.ThumbsDown ();
 			}));
+			thumbsDownButton.SetBinding (ToggleButton.ToggledProperty, $"{nameof (NowPlayingViewModel.CurrentSong)}.{nameof (Song.Rating)}", converter: new ThumbsDownDataConverter ());
+
 			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Previous, async (b) => {
 				PlaybackManager.Shared.Previous ();
 				await Task.Delay (toggleDelay);
@@ -37,9 +46,10 @@ namespace gMusic.Views {
 				await Task.Delay (toggleDelay);
 				b.Toggled = false;
 			}));
-			ControlsStack.Children.Add (thumbsUpButton = CreateButton (Images.NowPlayingScreen.ThumbsUp, (b) => {
-
+			ControlsStack.Children.Add (thumbsUpButton = CreateButton (Images.NowPlayingScreen.ThumbsUp, async (b) => {
+				await NowPlayingViewModel.ThumbsUp ();
 			}));
+			thumbsUpButton.SetBinding (ToggleButton.ToggledProperty, $"{nameof(NowPlayingViewModel.CurrentSong)}.{nameof(Song.Rating)}", converter: new ThumbsUpDataConverter ());
 
 			MiniPlayer.Children.Add (miniPlayPauseButton = CreateButton (Images.NowPlayingScreen.PauseBordered, Images.NowPlayingScreen.PlayBordered, (b) => {
 				if (b.Toggled)
@@ -53,8 +63,12 @@ namespace gMusic.Views {
 				b.Toggled = false;
 			}));
 			BottomBar.Children.Add (CreateButton (Images.NowPlayingScreen.BottomBar.ShuffleButton, (b) => {
+				Settings.ShuffleSongs = b.Toggled;
+				if (Settings.ShuffleSongs) {
+					PlaybackManager.Shared.ShuffleCurrentPlaylist ();
+				}
+			},Settings.ShuffleSongs));
 
-			}));
 			BottomBar.Children.Add (CreateButton (Images.NowPlayingScreen.BottomBar.RepeatButton, (b) => {
 
 			}));
@@ -69,17 +83,22 @@ namespace gMusic.Views {
 
 		}
 
+		private void Slider_ValueChanged (object sender, ValueChangedEventArgs e)
+		{
+		}
+
 		void Shared_PlaybackStateChanged (object sender, EventArgs<Models.PlaybackState> e)
 		{
 			miniPlayPauseButton.Toggled = playPauseButton.Toggled = (e.Data == Models.PlaybackState.Buffering || e.Data ==  Models.PlaybackState.Playing);
 		}
 
-		static ImageColorToggleButton CreateButton (FontImageSource source, Action<ToggleButton> action)
+		static ImageColorToggleButton CreateButton (FontImageSource source, Action<ToggleButton> action, bool state = false)
 		{
 			return new ImageColorToggleButton {
 				Source = source,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.Center,
+				Toggled = state,
 				Tapped = action,
 			};
 		}
