@@ -10,6 +10,6 @@ namespace gMusic
 
 		public static string AppCenterAndroid = "";
 
-		public static string AppCenterApiKey => $"ios={AppCenteriOS};android={AppCenterAndroid}"
+		public static string AppCenterApiKey => $"ios={AppCenteriOS};android={AppCenterAndroid}";
 	}
 }
