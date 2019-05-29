@@ -13,6 +13,7 @@ using System.Linq;
 using gMusic.Data;
 using gMusic.Api.GoogleMusic;
 using Localizations;
+using gMusic.Managers;
 
 namespace gMusic.ViewModels
 {
@@ -22,5 +23,10 @@ namespace gMusic.ViewModels
         {
             Title = Strings.Songs;
         }
+
+		public virtual async void OnTap (Song song)
+		{
+			await PlaybackManager.Shared.Play (song, Source.GroupInfo);
+		}
 	}
 }

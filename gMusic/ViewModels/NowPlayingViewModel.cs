@@ -5,13 +5,18 @@ using gMusic.Managers;
 using gMusic.Models;
 
 namespace gMusic.ViewModels {
-	public class ViewModel : BaseViewModel {
+	public class NowPlayingViewModel : BaseViewModel {
 
 		Song currentSong;
 		public Song CurrentSong {
 			get => currentSong;
-			set => this.SetProperty (ref currentSong, value);
+			set {
+				if (this.SetProperty (ref currentSong, value))
+					SongChanged?.Invoke ();
+			}
 		}
+
+		public Action SongChanged;
 
 		TrackPosition trackPosition;
 		public TrackPosition TrackPosition {
@@ -19,7 +24,7 @@ namespace gMusic.ViewModels {
 			set => SetProperty (ref trackPosition, value);
 		}
 
-		public ViewModel ()
+		public NowPlayingViewModel ()
 		{
 			NotificationManager.Shared.CurrentSongChanged += Shared_CurrentSongChanged;
 			if(!string.IsNullOrWhiteSpace(Settings.CurrentSong))
@@ -53,9 +58,7 @@ namespace gMusic.ViewModels {
 			if (currentSong == null)
 				return false;
 			if (currentSong.Rating != 1) {
-				var t = MusicManager.Shared.ThumbsDown (CurrentSong);
-				await Task.WhenAll (PlaybackManager.Shared.NextTrack (), t);
-				return t.Result;
+				return await MusicManager.Shared.ThumbsDown (CurrentSong);
 			}
 
 			return await MusicManager.Shared.Unrate (currentSong);

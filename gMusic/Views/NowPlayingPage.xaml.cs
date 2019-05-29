@@ -18,17 +18,22 @@ namespace gMusic.Views {
 
 		const int toggleDelay = 100;
 
-		ViewModel NowPlayingViewModel => (ViewModel)BindingContext;
+		NowPlayingViewModel ViewModel => (NowPlayingViewModel)BindingContext;
 		public NowPlayingPage ()
 		{
-			this.BindingContext = new ViewModel ();
+			this.BindingContext = new NowPlayingViewModel ();
+			ViewModel.SongChanged = () => {
+				SetState ();
+			};
+
 			InitializeComponent ();
 			ControlsStack.Children.Clear ();
 
 			ControlsStack.Children.Add (thumbsDownButton = CreateButton (Images.NowPlayingScreen.ThumbsDown, async (b) => {
-				await NowPlayingViewModel.ThumbsDown ();
+				SetState ();
+				await ViewModel.ThumbsDown ();
+				SetState ();
 			}));
-			thumbsDownButton.SetBinding (ToggleButton.ToggledProperty, $"{nameof (NowPlayingViewModel.CurrentSong)}.{nameof (Song.Rating)}", converter: new ThumbsDownDataConverter ());
 
 			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Previous, async (b) => {
 				PlaybackManager.Shared.Previous ();
@@ -47,10 +52,11 @@ namespace gMusic.Views {
 				b.Toggled = false;
 			}));
 			ControlsStack.Children.Add (thumbsUpButton = CreateButton (Images.NowPlayingScreen.ThumbsUp, async (b) => {
-				await NowPlayingViewModel.ThumbsUp ();
+				SetState ();
+				await ViewModel.ThumbsUp ();
+				SetState ();
 			}));
-			thumbsUpButton.SetBinding (ToggleButton.ToggledProperty, $"{nameof(NowPlayingViewModel.CurrentSong)}.{nameof(Song.Rating)}", converter: new ThumbsUpDataConverter ());
-
+			
 			MiniPlayer.Children.Add (miniPlayPauseButton = CreateButton (Images.NowPlayingScreen.PauseBordered, Images.NowPlayingScreen.PlayBordered, (b) => {
 				if (b.Toggled)
 					PlaybackManager.Shared.Play ();
@@ -79,8 +85,16 @@ namespace gMusic.Views {
 				b.Toggled = false;
 			}));
 
+			SetState ();
 			NotificationManager.Shared.PlaybackStateChanged += Shared_PlaybackStateChanged;
 
+		}
+
+		void SetState()
+		{
+			var song = ViewModel.CurrentSong;
+			thumbsDownButton.Toggled = song?.Rating == 1;
+			thumbsUpButton.Toggled = song?.Rating == 5;
 		}
 
 		private void Slider_ValueChanged (object sender, ValueChangedEventArgs e)

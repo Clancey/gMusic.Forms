@@ -13,7 +13,7 @@ namespace gMusic.Managers
 
 	public class LogManager : ManagerBase<LogManager>
 	{
-		public void Report(Exception ex,
+		public void Report(Exception ex, 
 							   [CallerMemberName] string memberName = "",
 							   [CallerFilePath] string sourceFilePath = "",
 							   [CallerLineNumber] int sourceLineNumber = 0)

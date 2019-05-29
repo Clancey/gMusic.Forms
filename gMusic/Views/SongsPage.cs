@@ -17,13 +17,14 @@ namespace gMusic.Views {
 		protected override void OnItemSelected (object sender, SelectedItemChangedEventArgs args)
 		{
 			var song = args.SelectedItem as Song;
-			//TODO: pass this into the playback manager
-			PlaybackManager.Shared.Play (song);
-			//this.Navigation.PushAsync (new SongsPage {
-			//	BindingContext = new ArtistSongsViewModel {
-			//		Artist = artist,
-			//	}
-			//});
+			var songViewModel = BindingContext as SongsViewModel;
+
+			if (songViewModel != null)
+				songViewModel.OnTap (song);
+			else
+				PlaybackManager.Shared.Play (song);
 		}
+
+		
 	}
 }

@@ -22,7 +22,8 @@ namespace gMusic
 			new NavigationItem{Title = Strings.Genres, Page = new NavigationPage(new GenresPage()), Image = Images.Menu.GenreIcon},
 			new NavigationItem{Title = Strings.Songs, Page = new NavigationPage(new SongsPage()), Image = Images.Menu.SongsIcon},
 			new NavigationItem{Title = Strings.Playlists, Page = new NavigationPage(new PlaylistsPage()), Image = Images.Menu.PlaylistIcon},
-			new NavigationItem{Title = Strings.Settings, Page = new NavigationPage(new SettingsPage()),Image = Images.Menu.SettingsIcon }
+			new NavigationItem{Title = Strings.Settings, Page = new NavigationPage(new SettingsPage()),Image = Images.Menu.SettingsIcon },
+			new NavigationItem {Title = Strings.CurrentPlaylist, Page = new NavigationPage(new CurrentPlaylistPage())},
 			//new MenuItem(Strings.Search,"SVG/search.svg",20,new SearchPage()){SaveIndex = false},
 			////new NavigationHeaderItem("my music"),
 			//new NavigationItem(Strings.Artists, "SVG/artist.svg", new ArtistsPage()),

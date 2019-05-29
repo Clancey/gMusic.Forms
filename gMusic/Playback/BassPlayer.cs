@@ -10,6 +10,8 @@ using System.Timers;
 using gMusic.Data;
 using System.Collections.Generic;
 using PlaybackState = gMusic.Models.PlaybackState;
+using System.Diagnostics;
+
 namespace gMusic {
 	/// <summary>
 	/// Wrapper around OutputQueue and AudioFileStream to allow streaming of various filetypes
@@ -96,7 +98,6 @@ namespace gMusic {
 		bool shouldBePlaying = false;
 		bool isDisposed = false;
 		bool hasBassStarted = false;
-
 		public BassPlayer ()
 		{
 			State = PlaybackState.Stopped;
@@ -157,15 +158,22 @@ namespace gMusic {
 		}
 		public override void Dispose ()
 		{
+			Debug.WriteLine ("Disposing Bass Player");
 			isDisposed = true;
 			progressTimer.Elapsed -= ProgressTimerChanged;
+
+			Debug.WriteLine ("Disposing Bass Player: Stoping");
 			Stop ();
+			Debug.WriteLine ("Disposing Bass Player: Removing Handles");
 			RemoveHandles ();
+			Debug.WriteLine ("Disposing Bass Player: Clearing BassFileProceduresManager");
 			BassFileProceduresManager.ClearProcedure (fileProcUser);
 			BassFileProceduresManager.ClearProcedure (endSyncUser);
 			BassFileProceduresManager.ClearProcedure (bufferSyncUser);
 			if (currentPlayers.Contains (this))
 				currentPlayers.Remove (this);
+
+			Debug.WriteLine ($"Bass Player Disposed: {currentPlayers.Count}");
 		}
 
 		public override float [] AudioLevels {
@@ -264,6 +272,14 @@ namespace gMusic {
 
 		void SetState ()
 		{
+			if(this == null) {
+				LogManager.Shared.Report (new Exception ($"Bass Player: Callback object disposed") {
+					Data = {
+						["Players in Memory"] = currentPlayers.Count,
+					}
+				});
+				return;
+			}
 			if (!IsPlayerItemValid) {
 				State = shouldBePlaying && !string.IsNullOrWhiteSpace (CurrentSongId) ? PlaybackState.Buffering : PlaybackState.Stopped;
 				return;
@@ -431,6 +447,7 @@ namespace gMusic {
 				BassFileProceduresManager.ClearProcedure (endSyncUser);
 				BassFileProceduresManager.ClearProcedure (bufferSyncUser);
 				streamHandle = Bass.StreamFree (streamHandle) ? 0 : streamHandle;
+				Console.WriteLine ("FREEED!!!!");
 			} else
 				streamHandle = 0;
 

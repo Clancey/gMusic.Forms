@@ -185,7 +185,7 @@ namespace gMusic.Managers {
 			}
 
 
-			PlayNext (song);
+			await PlayNext (song);
 			await NextTrack (playVideo);
 
 		}
@@ -931,7 +931,7 @@ namespace gMusic.Managers {
 			App.ShowNotImplmented (new Dictionary<string, string> { { "Media Type", item?.GetType ().ToString () } });
 		}
 
-		public async void PlayNext (Song song)
+		public async Task PlayNext (Song song)
 		{
 			var currIndex = Database.Main.ExecuteScalar<int> ("select rowid from SongsOrdered where Id = ?", song.Id);
 			if (currIndex > 0 && CurrentSongIndex > 0) {
