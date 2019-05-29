@@ -1,6 +1,6 @@
 
-# Agenda 5/22/2019
- - [x] Playlist Management
+# Agenda 5/29/2019
+ - [ ] Playlist Management
  - [ ] Equalizer
  	- [ ] Bass
  	- [ ] Native iOS
@@ -8,6 +8,10 @@
  - [ ] UrlSessionDelegate
  - [ ] Android Audio Player 
 
+
+# Agenda 5/22/2019
+ - [x] Playlist Management
+ - [x] Playback UI
 
 
 # Agenda 5/15/2019
