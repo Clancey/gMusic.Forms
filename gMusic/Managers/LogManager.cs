@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-//using Microsoft.AppCenter.Analytics;
-//using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 
 namespace gMusic.Managers
@@ -22,12 +22,12 @@ namespace gMusic.Managers
 			{
 
 				Console.WriteLine("{0} - {1} - {2} \r\n {3}", sourceFilePath, memberName, sourceLineNumber, ex);
-				//Crashes.TrackError(ex, new Dictionary<string, string>{
-				//	{"Exception",ex.Message},
-				//	{"Method",memberName},
-				//	{"File Name",CleansFilePath(sourceFilePath)},
-				//	{"Line Number",sourceLineNumber.ToString()},
-				//});
+				Crashes.TrackError (ex, new Dictionary<string, string>{
+					{"Exception",ex.Message},
+					{"Method",memberName},
+					{"File Name",CleansFilePath(sourceFilePath)},
+					{"Line Number",sourceLineNumber.ToString()},
+				});
 			}
 			catch (Exception ex1)
 			{
@@ -37,7 +37,7 @@ namespace gMusic.Managers
 
 		void TrackEvent(string name, Dictionary<string, string> data = null)
 		{
-			//Task.Run(() => Analytics.TrackEvent(name, data));
+			Task.Run (() => Analytics.TrackEvent (name, data));
 		}
 		void TrackEvent(string name, string key, string value)
 		{
@@ -85,7 +85,7 @@ namespace gMusic.Managers
 
 		public void Report (Exception ex)
 		{
-			throw new NotImplementedException ();
+			Crashes.TrackError (ex);
 		}
 
 		public void Log(string message, MediaItemBase mediaItem,

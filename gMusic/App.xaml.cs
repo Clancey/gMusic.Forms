@@ -7,42 +7,45 @@ using System.Collections.Generic;
 using gMusic.Managers;
 using Localizations;
 using System.Threading.Tasks;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Analytics;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-namespace gMusic
-{
-    public partial class App : Application
-    {
+[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
+namespace gMusic {
+	public partial class App : Application {
 
-        public App()
-        {
-            InitializeComponent();
+		public App ()
+		{
+			AppCenter.Start (ApiConstants.AppCenterApiKey, typeof (Analytics), typeof (Crashes));
+
+			InitializeComponent ();
 			this.Resources.AddGmusicStyles ();
 			NotificationManager.Shared.StyleChanged += Shared_StyleChanged;
 			PlaybackManager.Shared.Init ();
-            MainPage = new RootPage();
-        }
+			MainPage = new RootPage ();
+		}
 
 		private void Shared_StyleChanged (object sender, EventArgs e)
 		{
 			this.Resources.AddGmusicStyles ();
 		}
 
-		protected override void OnStart()
-        {
+		protected override void OnStart ()
+		{
 			// Handle when your app starts
 			LocalWebServer.Shared.Start ();
-        }
+		}
 
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
+		protected override void OnSleep ()
+		{
+			// Handle when your app sleeps
+		}
 
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
+		protected override void OnResume ()
+		{
+			// Handle when your app resumes
+		}
 
 		public static void ShowNotImplmented (Dictionary<string, string> extra = null,
 											 [CallerMemberName] string function = "",
@@ -52,14 +55,14 @@ namespace gMusic
 			LogManager.Shared.LogNotImplemented (extra, function, sourceFilePath, sourceLineNumber);
 			ShowAlert (Strings.Sorry, $"Coming soon: {function}");
 		}
-		public static void ShowAlert(string title, string message)
+		public static void ShowAlert (string title, string message)
 		{
-			Current.MainPage.DisplayAlert(title,message,Strings.Ok);
+			Current.MainPage.DisplayAlert (title, message, Strings.Ok);
 		}
 
 		internal static Task<bool> CheckForOffline ()
 		{
-			return Task.FromResult(true);
+			return Task.FromResult (true);
 			//throw new NotImplementedException ();
 		}
 

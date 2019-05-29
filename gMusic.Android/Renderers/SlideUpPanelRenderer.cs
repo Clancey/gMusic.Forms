@@ -14,7 +14,6 @@ using Android.Runtime;
 using gMusic.Forms.Droid;
 using gMusic;
 using gMusic.Droid;
-using gMusic.Droid;
 
 [assembly: ExportRenderer(typeof(SlideUpPanel), typeof(SlideUpPanelRenderer))]
 namespace gMusic.Forms.Droid
