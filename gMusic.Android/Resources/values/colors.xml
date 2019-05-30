@@ -6,4 +6,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="startGradient">#FF2A68</color>
     <color name="endGradient">#FF5E3A</color>
+    <color name="colorOverlay">#E6FFFFFF</color>
 </resources>

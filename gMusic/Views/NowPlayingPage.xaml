@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage  BackgroundColor="Blue" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"  xmlns:gMusic="clr-namespace:gMusic.Views;assembly=gMusic" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.NowPlayingPage" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+<ContentPage  BackgroundColor="White" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"  xmlns:gMusic="clr-namespace:gMusic.Views;assembly=gMusic" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.NowPlayingPage" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
     <ContentPage.Content>
         <AbsoluteLayout>
+            <ffimageloading:CachedImage x:Name="BackgroundImage" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"  DownsampleToViewSize="true" Aspect="AspectFill"/>
+            <gMusic:BlurView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
             <Grid x:Name="AlbumArtworkView" AbsoluteLayout.LayoutBounds="0,56,1,1" AbsoluteLayout.LayoutFlags="SizeProportional">
             </Grid>
-            <Grid BackgroundColor="Silver" x:Name="BottomControls" AbsoluteLayout.LayoutBounds="0,1,1,300" AbsoluteLayout.LayoutFlags="WidthProportional,YProportional">
+            <Grid BackgroundColor="#80FFFFFF" x:Name="BottomControls" AbsoluteLayout.LayoutBounds="0,1,1,300" AbsoluteLayout.LayoutFlags="WidthProportional,YProportional">
                 <Grid>
                     <Slider Value="{Binding TrackPosition.Percent}" ValueChanged="Slider_ValueChanged" Grid.ColumnSpan="3"/>
                     <Label Text="{Binding TrackPosition.CurrentTimeString}" Grid.Row="1" />
@@ -19,15 +21,15 @@
                 </StackLayout>
                 <StackLayout x:Name="BottomBar" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="3" />
             </Grid>
-            <Grid x:Name="NavBar" BackgroundColor="Lime" AbsoluteLayout.LayoutBounds="0,0,1,64" AbsoluteLayout.LayoutFlags="WidthProportional">
+            <Grid x:Name="NavBar" AbsoluteLayout.LayoutBounds="0,0,1,64" AbsoluteLayout.LayoutFlags="WidthProportional">
             </Grid>
             <Grid x:Name="MiniPlayer" Margin="6" AbsoluteLayout.LayoutBounds="0,0,1,54" AbsoluteLayout.LayoutFlags="WidthProportional">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
-                <ffimageloading:CachedImage Margin="5" x:Name="Image" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" Aspect="AspectFill" HeightRequest="35" WidthRequest="35" />
+                <ffimageloading:CachedImage Margin="5" MinimumWidthRequest="35" MinimumHeightRequest="35" x:Name="Image" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" Aspect="AspectFill" HeightRequest="35" WidthRequest="35" />
                 <StackLayout Grid.Column="1" HorizontalOptions="CenterAndExpand">
                     <Label Text="{Binding CurrentSong.Name}" d:Text="All the Small Things" HorizontalTextAlignment="Center" />
                     <Label Text="{Binding CurrentSong.DetailText}" d:Text="Blink-182" HorizontalTextAlignment="Center" />

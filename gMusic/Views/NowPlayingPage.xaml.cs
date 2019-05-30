@@ -90,11 +90,31 @@ namespace gMusic.Views {
 
 		}
 
-		void SetState()
+		async void SetState()
 		{
 			var song = ViewModel.CurrentSong;
 			thumbsDownButton.Toggled = song?.Rating == 1;
 			thumbsUpButton.Toggled = song?.Rating == 5;
+			await UpdateArtwork (song);
+		}
+
+		async Task UpdateArtwork(Song song)
+		{
+			if (song == null)
+				return;
+			var urlTask = song.GetArtworkUrl ();
+			if (!urlTask.IsCompleted)
+				SetImageSource (Images.DefaultAlbumArt);
+			var url = await urlTask;
+			if (song != ViewModel.CurrentSong)
+				return;
+			if (string.IsNullOrWhiteSpace (url))
+				return;
+			SetImageSource (new UriImageSource { Uri = new Uri (url) });
+		}
+		void SetImageSource(ImageSource source)
+		{
+			BackgroundImage.Source = Image.Source = source;
 		}
 
 		private void Slider_ValueChanged (object sender, ValueChangedEventArgs e)

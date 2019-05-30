@@ -1,6 +1,9 @@
 
 # Agenda 5/29/2019
- - [ ] Playlist Management
+ - [x] Playlist Management
+ - [ ] Now Playing screen
+	 - [ ] Album Art
+	 - [ ] Blurs
  - [ ] Equalizer
  	- [ ] Bass
  	- [ ] Native iOS
