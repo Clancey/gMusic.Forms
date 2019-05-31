@@ -345,6 +345,8 @@ namespace gMusic.Droid
 
 		public override bool OnTouchEvent(CoordinatorLayout parent, Java.Lang.Object childObject, MotionEvent @event)
 		{
+			if (mViewDragHelper == null)
+				return false;
 			View child = Android.Runtime.Extensions.JavaCast<View>(childObject);
 
 			if (!child.IsShown)

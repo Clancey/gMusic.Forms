@@ -39,5 +39,6 @@ namespace gMusic.Droid.Renderers {
 				SetNativeControl (blurView);
 			}
 		}
+		
 	}
 }

@@ -115,6 +115,10 @@
     <Compile Include="Renderers\GradientListViewRenderer.cs" />
     <Compile Include="WebAuthenticator.cs" />
     <Compile Include="Renderers\BlurViewRender.cs" />
+    <Compile Include="Renderers\BottomDrawerShellRenderer.cs" />
+    <Compile Include="Renderers\BottomDrawerShellFlyoutRenderer.cs" />
+    <Compile Include="Renderers\BottomDrawer.cs" />
+    <Compile Include="Renderers\GradientShellFlyoutTemplatedContentRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
