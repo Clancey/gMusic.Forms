@@ -26,7 +26,7 @@ namespace gMusic {
 			this.Resources.AddGmusicStyles ();
 			NotificationManager.Shared.StyleChanged += Shared_StyleChanged;
 			PlaybackManager.Shared.Init ();
-			MainPage = new RootPage ();
+			MainPage = new RootShell ();
 		}
 
 		private void Shared_StyleChanged (object sender, EventArgs e)

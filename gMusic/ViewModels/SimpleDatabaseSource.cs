@@ -49,16 +49,7 @@ namespace gMusic.ViewModels
 			}
 		}
 
-		public int Count
-		{
-			get
-			{
-				var c = (IsGrouped ? Database?.NumberOfSections<T>(GroupInfo) : Database?.RowsInSection<T>(GroupInfo, 0)) ?? 0;
-				if (c == 0)
-					Console.WriteLine("what?");
-				return c;
-			}
-		}
+		public int Count => (IsGrouped ? Database?.NumberOfSections<T>(GroupInfo) : Database?.RowsInSection<T>(GroupInfo, 0)) ?? 0;
 
 		public SimpleDatabaseConnection Database { get; set; }
 

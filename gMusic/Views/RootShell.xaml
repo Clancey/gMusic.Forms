@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:BottomDrawerShell FlyoutBackgroundColor="Fuchsia" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:gMusic.Views" Title="TestShell" x:Class="gMusic.Views.RootShell">
+    <local:BottomDrawerShell.DrawerPage>
+        <local:NowPlayingPage />
+    </local:BottomDrawerShell.DrawerPage>
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White" />
+            </Style>
+            <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    <local:BottomDrawerShell.ItemTemplate>
+        <DataTemplate x:Key="menuItemTemplate">
+            <StackLayout BackgroundColor="Transparent" Orientation="Horizontal" Padding="6" Spacing="6">
+                <ContentView HeightRequest="35" WidthRequest="35">
+                    <Image x:Name="Image" Aspect="AspectFit" Source="{Binding Icon}" HorizontalOptions="Center" VerticalOptions="Center" />
+                </ContentView>
+                <Label Text="{Binding Title}" Style="{DynamicResource MenuLabelStyle}" VerticalOptions="Center" />
+            </StackLayout>
+        </DataTemplate>
+    </local:BottomDrawerShell.ItemTemplate>
+</local:BottomDrawerShell>
