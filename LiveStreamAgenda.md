@@ -1,15 +1,20 @@
-
-# Agenda 5/29/2019
- - [x] Playlist Management
- - [X] Now Playing screen
+# Agenda 6/05/2019
+ - [] Now Playing screen
 	 - [ ] Album Art
-	 - [X] Blurs
+	 - [ ] Top Bar
+	 - 
+ - [ ] Search Screen
  - [ ] Equalizer
  	- [ ] Bass
  	- [ ] Native iOS
  	- [ ] Native Android 
  - [ ] UrlSessionDelegate
  - [ ] Android Audio Player 
+
+# Agenda 5/29/2019
+ - [x] Playlist Management
+ - [X] Now Playing screen
+	 - [X] Blurs
 
 
 # Agenda 5/22/2019
@@ -23,7 +28,7 @@
  
  
 # Agenda 5/8/2019
-- [ ] Audio Playback
+- [x] Audio Playback
 	- [X] Downloader
 		- [x] Precache
 		- [x] Cache last song
@@ -65,7 +70,6 @@
 
 - [ ] Build Settings Screen
 - [ ] Welcome screen android
-- [ ] Search Screen
 - [ ] Local Audio  (iPod Playback)
 - [ ] Video Playback
 - [ ] Blur Views
