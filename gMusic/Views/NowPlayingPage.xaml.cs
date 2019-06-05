@@ -87,7 +87,7 @@ namespace gMusic.Views {
 
 			SetState ();
 			NotificationManager.Shared.PlaybackStateChanged += Shared_PlaybackStateChanged;
-
+			UpdateVisibile (0f);
 		}
 
 		async void SetState()
@@ -149,6 +149,22 @@ namespace gMusic.Views {
 		}
 
 
+		public void UpdateVisibile(float percent)
+		{
+			Console.WriteLine (percent);
+			float visible = 0;
+			const float min = .5f;
+			const float max = .9f;
+			const float maxRange = max - min;
+			if(percent >= min) {
+				var p = percent - min;
+				p = p / maxRange;
+				visible = Math.Min (1f, p);
+			}
+			NavBar.Opacity = visible;
+			MiniPlayer.Opacity = 1f - visible;
+
+		}
 		//protected override void LayoutChildren (double x, double y, double width, double height)
 		//{
 		//	base.LayoutChildren (x, y, width, height);

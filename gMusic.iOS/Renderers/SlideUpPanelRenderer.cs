@@ -353,7 +353,7 @@ namespace gMusic.Forms.iOS
                         break;
                     case UIGestureRecognizerState.Changed:
                         frame.Y = translation + startY;
-                        frame.Y = NMath.Min(frame.Height, NMath.Max(frame.Y, Model.OverHang * -1));
+                        frame.Y = NMath.Min(frame.Height, frame.Y);
 						(this.Element as SlideUpPanel).PercentVisible = (float)((frame.Height - frame.Y) / frame.Height);
 
 						_masterController.View.Frame = frame;

@@ -27,7 +27,7 @@
                 <gMusic:VolumeView Grid.Row="3"/>
                 <StackLayout x:Name="BottomBar" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="4" />
             </Grid>
-            <Grid x:Name="NavBar" AbsoluteLayout.LayoutBounds="0,0,1,64" AbsoluteLayout.LayoutFlags="WidthProportional">
+            <Grid x:Name="NavBar" BackgroundColor="Fuchsia" AbsoluteLayout.LayoutBounds="0,0,1,64" AbsoluteLayout.LayoutFlags="WidthProportional">
             </Grid>
             <Grid x:Name="MiniPlayer" Margin="6" AbsoluteLayout.LayoutBounds="0,0,1,54" AbsoluteLayout.LayoutFlags="WidthProportional">
                 <Grid.ColumnDefinitions>
