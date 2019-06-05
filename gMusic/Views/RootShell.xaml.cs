@@ -16,8 +16,11 @@ namespace gMusic.Views {
 			};
 			if (item.Page != null) {
 				flyout.Items.Add (new ShellContent {
-					Content = item.Page
+					Content = item.Page,
 				});
+			}
+			else {
+				flyout.IsEnabled = false;
 			}
 			return flyout;
 		}
