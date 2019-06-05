@@ -5,6 +5,7 @@ namespace gMusic.Views {
 		public VolumeView ()
 		{
 			BackgroundColor = Color.Wheat;
+			HeightRequest = 30;
 		}
 	}
 }

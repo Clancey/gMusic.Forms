@@ -24,7 +24,8 @@
                 <StackLayout Orientation="Horizontal" x:Name="ControlsStack" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                     <Label Text="Playback controls" />
                 </StackLayout>
-                <StackLayout x:Name="BottomBar" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="3" />
+                <gMusic:VolumeView Grid.Row="3"/>
+                <StackLayout x:Name="BottomBar" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="4" />
             </Grid>
             <Grid x:Name="NavBar" AbsoluteLayout.LayoutBounds="0,0,1,64" AbsoluteLayout.LayoutFlags="WidthProportional">
             </Grid>

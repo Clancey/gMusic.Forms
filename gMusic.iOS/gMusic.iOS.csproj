@@ -87,6 +87,7 @@
     <Compile Include="Helpers\Device.cs" />
     <Compile Include="Playback\BassFileProcedures.cs" />
     <Compile Include="Renderers\BlurViewRenderer.cs" />
+    <Compile Include="Renderers\VolumeViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
