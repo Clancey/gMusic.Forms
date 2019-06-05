@@ -5,8 +5,13 @@
             <ffimageloading:CachedImage x:Name="BackgroundImage" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"  DownsampleToViewSize="true" Aspect="AspectFill"/>
             <gMusic:BlurView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
             <Grid x:Name="AlbumArtworkView" AbsoluteLayout.LayoutBounds="0,56,1,1" AbsoluteLayout.LayoutFlags="SizeProportional">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition x:Name="PaddingRow" Height="356"/>
+                    </Grid.RowDefinitions>
+                <gMusic:AlbumArtView x:Name="AlbumArtView"/>
             </Grid>
-            <Grid BackgroundColor="#80FFFFFF" x:Name="BottomControls" AbsoluteLayout.LayoutBounds="0,1,1,300" AbsoluteLayout.LayoutFlags="WidthProportional,YProportional">
+            <Grid x:Name="BottomControls" BackgroundColor="#80FFFFFF" AbsoluteLayout.LayoutBounds="0,1,1,300" AbsoluteLayout.LayoutFlags="WidthProportional,YProportional">
                 <Grid>
                     <Slider Value="{Binding TrackPosition.Percent}" ValueChanged="Slider_ValueChanged" Grid.ColumnSpan="3"/>
                     <Label Text="{Binding TrackPosition.CurrentTimeString}" Grid.Row="1" />

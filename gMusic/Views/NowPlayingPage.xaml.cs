@@ -115,6 +115,7 @@ namespace gMusic.Views {
 		void SetImageSource(ImageSource source)
 		{
 			BackgroundImage.Source = Image.Source = source;
+			AlbumArtView.Source = source;
 		}
 
 		private void Slider_ValueChanged (object sender, ValueChangedEventArgs e)
@@ -146,6 +147,14 @@ namespace gMusic.Views {
 				Tapped = action,
 			};
 		}
+
+
+		//protected override void LayoutChildren (double x, double y, double width, double height)
+		//{
+		//	base.LayoutChildren (x, y, width, height);
+		//	var h = BottomControls.Height;
+		//	PaddingRow.Height = h - 56;
+		//}
 
 	}
 }
