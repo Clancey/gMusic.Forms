@@ -11,10 +11,12 @@ namespace gMusic.Views {
 			frame = new Frame () {
 				Content = image = new CachedImage {
 					DownsampleToViewSize = true,
+					Aspect = Aspect.AspectFill
 				},
-				BackgroundColor = Color.LightGray,
+				BackgroundColor = Color.Gray,
 				BorderColor = Color.Transparent,
 				HasShadow = false,
+				CornerRadius = 0,
 				Padding = new Thickness (.5),
 			};
 			this.Children.Add (frame);
@@ -26,14 +28,14 @@ namespace gMusic.Views {
 			get => image.Source;
 			set => image.Source = value;
 		}
-
+		public double Padding { get; set; } = 0;
 
 		public double MaxImageSize = 512;
 		protected override void LayoutChildren (double x, double y, double width, double height)
 		{
 
 			var s = Math.Min (width, height);
-			s = Math.Min (MaxImageSize, s);
+			s = Math.Min (MaxImageSize, s - Padding);
 
 			var newX = (width - s) / 2;
 			var newY = (height - s) / 2;

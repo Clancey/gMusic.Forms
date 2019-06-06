@@ -1,15 +1,23 @@
+
+# Agenda 
+- [ ] Now Playing screen
+	- [ ] Padding 	
+	- [ ] Titles overflow
+
+- [ ] Use new album artwork view for song cells	
+ 
+- [ ] Search Screen
+- [ ] Equalizer
+- [ ] Bass
+- [ ] Native iOS
+- [ ] Native Android 
+- [ ] UrlSessionDelegate
+- [ ] Android Audio Player 
+
 # Agenda 6/05/2019
- - [] Now Playing screen
-	 - [ ] Album Art
-	 - [ ] Top Bar
-	 - 
- - [ ] Search Screen
- - [ ] Equalizer
- 	- [ ] Bass
- 	- [ ] Native iOS
- 	- [ ] Native Android 
- - [ ] UrlSessionDelegate
- - [ ] Android Audio Player 
+ - [x] Now Playing screen
+	 - [x] Album Art
+	 - [x] Top Bar
 
 # Agenda 5/29/2019
  - [x] Playlist Management
