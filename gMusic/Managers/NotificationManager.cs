@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using gMusic.Managers;
 using gMusic.Models;
+using Xamarin.Forms;
 
 namespace gMusic.Managers
 {
-	internal class NotificationManager : ManagerBase<NotificationManager>
+	public class NotificationManager : ManagerBase<NotificationManager>
 	{
 		public event EventHandler<EventArgs<Song>> CurrentSongChanged;
 
@@ -217,5 +218,12 @@ namespace gMusic.Managers
 		{
 			LanguageChanged?.InvokeOnMainThread(this);
 		}
+
+		public event EventHandler<EventArgs<Thickness>> InsetAreaChanged;
+		public void ProcInsetAreaChanged (Thickness thickness)
+		{
+			InsetAreaChanged?.InvokeOnMainThread (this, thickness);
+		}
+
 	}
 }

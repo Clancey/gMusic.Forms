@@ -10,7 +10,6 @@ using Xamarin.Forms;
 namespace gMusic.Views {
 
 	public partial class NowPlayingPage : ContentPage {
-
 		ImageColorToggleButton thumbsUpButton;
 		ImageColorToggleButton thumbsDownButton;
 		ImageToggleButton playPauseButton;
@@ -22,6 +21,9 @@ namespace gMusic.Views {
 		public NowPlayingPage ()
 		{
 			this.BindingContext = new NowPlayingViewModel ();
+
+			NotificationManager.Shared.InsetAreaChanged += Shared_InsetAreaChanged;
+
 			ViewModel.SongChanged = () => {
 				SetState ();
 			};
@@ -85,9 +87,36 @@ namespace gMusic.Views {
 				b.Toggled = false;
 			}));
 
+
+			MiniPlayer.GestureRecognizers.Add (new TapGestureRecognizer {
+				Command = new Command ((obj) => {
+					NotificationManager.Shared.ProcToggleNowPlaying ();
+				})
+			});
+
+			navCloseButton.ImageSource = Images.NowPlayingScreen.NavBar.CloseButton;
+			navCloseButton.Clicked += (sender, e) => {
+				NotificationManager.Shared.ProcCloseNowPlaying ();
+			};
+
+
+			navCurrentPlayist.ImageSource = Images.NowPlayingScreen.NavBar.CurrentPlayistButton;
+			navCurrentPlayist.Clicked += (sender, e) => {
+				this.Navigation.PushModalAsync (new NavigationPage (new CurrentPlaylistPage ()));
+			};
+
 			SetState ();
 			NotificationManager.Shared.PlaybackStateChanged += Shared_PlaybackStateChanged;
 			UpdateVisibile (0f);
+		}
+		double navLeftPadding;
+		double navTopPadding;
+		private void Shared_InsetAreaChanged (object sender, EventArgs<Thickness> e)
+		{
+			var thickness = e.Data;
+			navLeftPadding = thickness.Left;
+			navTopPadding = thickness.Top;
+			UpdateNavLayout ();
 		}
 
 		async void SetState()
@@ -153,7 +182,7 @@ namespace gMusic.Views {
 		{
 			Console.WriteLine (percent);
 			float visible = 0;
-			const float min = .5f;
+			const float min = .7f;
 			const float max = .9f;
 			const float maxRange = max - min;
 			if(percent >= min) {
@@ -161,8 +190,29 @@ namespace gMusic.Views {
 				p = p / maxRange;
 				visible = Math.Min (1f, p);
 			}
-			NavBar.Opacity = visible;
+			NavBar.Opacity = navVisiblePercent = visible;
 			MiniPlayer.Opacity = 1f - visible;
+			UpdateNavLayout ();
+		}
+
+		float navVisiblePercent;
+		void UpdateNavLayout()
+		{
+			var topPadding = navTopPadding;
+			const float navBarHeight = 64f;
+			const float miniBarHeight = 56f;
+
+			var range = topPadding + navBarHeight;
+			var travelled = navVisiblePercent * range;
+			var y = (-navBarHeight) + travelled;
+
+			AbsoluteLayout.SetLayoutBounds (NavBar, new Rectangle (navLeftPadding, y, 1, navBarHeight));
+
+			var miniPlayerY = -miniBarHeight;
+			miniPlayerY += miniBarHeight * (1f - navVisiblePercent);
+			AbsoluteLayout.SetLayoutBounds (MiniPlayer, new Rectangle (0, miniPlayerY, 1, miniBarHeight));
+
+
 
 		}
 		//protected override void LayoutChildren (double x, double y, double width, double height)

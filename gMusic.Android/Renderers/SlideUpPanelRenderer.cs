@@ -111,7 +111,6 @@ namespace gMusic.Forms.Droid
 
             AddView(_masterLayout);
             behaviour = AnchorBottomSheetBehavior.From(_masterLayout);
-
             behaviour.PeekHeight = 200;
 
 

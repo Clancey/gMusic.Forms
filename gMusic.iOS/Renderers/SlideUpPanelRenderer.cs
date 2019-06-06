@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using gMusic;
 using gMusic.Forms;
 using gMusic.Forms.iOS;
+using gMusic.Managers;
 
 [assembly: ExportRenderer(typeof(SlideUpPanel), typeof(SlideUpPanelRenderer))]
 namespace gMusic.Forms.iOS
@@ -33,6 +34,12 @@ namespace gMusic.Forms.iOS
 
 		public SlideUpPanelRenderer()
 		{
+			NotificationManager.Shared.ToggleNowPlaying += (sender, e) => {
+				Presented = !Presented;
+			};
+			NotificationManager.Shared.CloseNowPlaying += (sender, e) => {
+				Presented = false;
+			};
 		}
 
 		IMasterDetailPageController MasterDetailPageController => Element as IMasterDetailPageController;
@@ -45,7 +52,8 @@ namespace gMusic.Forms.iOS
 				if (_presented == value)
 					return;
 				_presented = value;
-				LayoutChildren(true);
+				(this.Element as SlideUpPanel).PercentVisible = value ? 1 : 0;
+				LayoutChildren (true);
 
 				((IElementController)Element).SetValueFromRenderer(MasterDetailPage.IsPresentedProperty, value);
 			}
@@ -353,7 +361,7 @@ namespace gMusic.Forms.iOS
                         break;
                     case UIGestureRecognizerState.Changed:
                         frame.Y = translation + startY;
-                        frame.Y = NMath.Min(frame.Height, frame.Y);
+						frame.Y = NMath.Min (frame.Height, NMath.Max (frame.Y, 0));
 						(this.Element as SlideUpPanel).PercentVisible = (float)((frame.Height - frame.Y) / frame.Height);
 
 						_masterController.View.Frame = frame;

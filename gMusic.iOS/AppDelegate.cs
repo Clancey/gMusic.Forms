@@ -8,6 +8,7 @@ using gMusic.Playback;
 using ManagedBass;
 using UIKit;
 using Xamarin.Forms;
+using gMusic.Managers;
 
 namespace gMusic.iOS
 {
@@ -31,7 +32,11 @@ namespace gMusic.iOS
             global::Xamarin.Forms.Forms.Init();
 			NativeInit ();
 			LoadApplication (new App());
-			return base.FinishedLaunching(app, options);
+			var result = base.FinishedLaunching(app, options);
+			var inset = app.KeyWindow.SafeAreaInsets;
+			var thick = new Thickness (inset.Left, inset.Top, inset.Right, inset.Bottom);
+			NotificationManager.Shared.ProcInsetAreaChanged (thick);
+			return result;
         }
 
 		void NativeInit()
@@ -54,5 +59,9 @@ namespace gMusic.iOS
 			Styles.Fonts.ThinFontName = "Heebo-Thin";
 			Styles.Styles.ResetAllFonts ();
 		}
-    }
+		public override void OnActivated (UIApplication uiApplication)
+		{
+			base.OnActivated (uiApplication);
+		}
+	}
 }
