@@ -41,6 +41,7 @@ namespace gMusic.iOS
 
 		void NativeInit()
 		{
+			BassIos.Init ();
 			Utility.DeviceName = Helpers.Device.Name;
 			Utility.IsSimulator = Helpers.Device.IsSim;
 			FadePlayer.CreatePlayer = (pd) => pd.IsVideo ? (Player)new AVMediaPlayer  () : new BassPlayer();
