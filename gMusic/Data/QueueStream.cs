@@ -10,7 +10,9 @@ namespace gMusic.Data
 	public class QueueStream : Stream
 	{
 		Stream writeStream;
-		Stream readStream;
+
+		Stream _readStream;
+		Stream readStream => _readStream ?? (_readStream = new FileStream (FilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 4096));
 		long size;
 		bool done;
 		object plock = new object();
@@ -25,17 +27,21 @@ namespace gMusic.Data
 		{
 			FilePath = file;
 			writeStream = new FileStream(file, FileMode.Create, FileAccess.Write, FileShare.ReadWrite, 4096);
-			readStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 4096);
 		}
 
 		public void SetNewFile(string filePath)
 		{
 			lock (plock)
 			{
+				FilePath = filePath;
 				var position = Position;
-				readStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 4096);
-				readStream.Seek(position, SeekOrigin.Begin);
-				writeStream.Dispose();
+				_readStream.Close ();
+				_readStream.Dispose ();
+				_readStream = null;
+				if (position > 0)
+					readStream.Seek(position, SeekOrigin.Begin);
+				writeStream?.Close ();
+				writeStream?.Dispose();
 				writeStream = null;
 			}
 		}
@@ -70,7 +76,7 @@ namespace gMusic.Data
 
 		public override long Position
 		{
-			get { return readStream.Position; }
+			get { return _readStream?.Position ?? 0; }
 			set { readStream.Position = value; }
 		}
 
@@ -116,9 +122,14 @@ namespace gMusic.Data
 
 		public void Done()
 		{
+			if (done)
+				return;
 			lock (plock)
 			{
 				Monitor.Pulse(plock);
+				writeStream?.Close ();
+				writeStream?.Dispose ();
+				writeStream = null;
 				done = true;
 			}
 		}

@@ -338,6 +338,7 @@ namespace gMusic.Managers
 				if (finished)
 				{
 					State = DownloadState.Completed;
+					Stream.Done ();
 					var newFilePath = TempFileManager.Shared.Add(TrackId, FilePath);
 					Stream.SetNewFile(newFilePath);
 				}
@@ -462,6 +463,7 @@ namespace gMusic.Managers
 				Task.Run(() => NotificationManager.Shared.ProcSongDownloadPulsed(SongId,1f));
 #pragma warning restore 4014
 			}
+			Stream.Done ();
 			Console.WriteLine ($"Total length: {Stream.FinalLength}");
 			
 			Console.WriteLine($"Finished processing stream {TrackId} - {success}");
