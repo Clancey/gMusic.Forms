@@ -9,6 +9,8 @@ using gMusic;
 using gMusic.Forms;
 using gMusic.Forms.iOS;
 using gMusic.Managers;
+using MediaPlayer;
+using gMusic.iOS.Renderers;
 
 [assembly: ExportRenderer(typeof(SlideUpPanel), typeof(SlideUpPanelRenderer))]
 namespace gMusic.Forms.iOS
@@ -341,7 +343,8 @@ namespace gMusic.Forms.iOS
 				bool isMovingCell =
 							touch.View.ToString().IndexOf("UITableViewCellReorderControl", StringComparison.InvariantCultureIgnoreCase) >
 							-1;
-				if (isMovingCell || touch.View is UISlider)// || touch.View is MPVolumeView )
+		
+				if (isMovingCell || touch.View is UISlider || touch.View is ProgressViewRenderer || touch.View is MPVolumeView )
 					return false;
 				return true;
 			};

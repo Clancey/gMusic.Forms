@@ -3,12 +3,9 @@
 - [ ] Now Playing screen
 	- [ ] Padding 	
 	- [ ] Titles overflow
-
-- [ ] Use new album artwork view for song cells	
- 
+- [ ] Use new album artwork view for song cells 
 - [ ] Search Screen
 - [ ] Equalizer
-- [ ] Bass
 - [ ] Native iOS
 - [ ] Native Android 
 - [ ] UrlSessionDelegate

@@ -36,6 +36,11 @@ namespace gMusic
 			public static FontImageSource PlayBordered => IconFont.CreateFont (IconFont.IconPlayButtonBordered, Styles.Styles.CurrentStyle.AccentColor, 36);
 			public static FontImageSource PauseBordered => IconFont.CreateFont (IconFont.IconPauseButtonBordered, Styles.Styles.CurrentStyle.AccentColor, 36);
 
+			public static NGraphicsSVGImageSource SliderThumb = new NGraphicsSVGImageSource{
+				SvgName = "gMusic.Resources.Svg.playbackSliderThumb.svg",
+				Size = new Size(37,37),
+			};
+
 			public static class NavBar {
 				public static FontImageSource CloseButton => IconFont.CreateFont (IconFont.IconClose, Styles.Styles.CurrentStyle.AccentColor, 25);
 				public static FontImageSource CurrentPlayistButton => IconFont.CreateFont (IconFont.IconPlaylists, Styles.Styles.CurrentStyle.AccentColor, 30);

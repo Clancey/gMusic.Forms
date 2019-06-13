@@ -88,6 +88,9 @@
     <Compile Include="Playback\BassFileProcedures.cs" />
     <Compile Include="Renderers\BlurViewRenderer.cs" />
     <Compile Include="Renderers\VolumeViewRenderer.cs" />
+    <Compile Include="Renderers\ScrubberViewRenderer.cs" />
+    <Compile Include="Renderers\OBSlider.cs" />
+    <Compile Include="Renderers\ProgressViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

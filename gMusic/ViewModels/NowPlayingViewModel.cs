@@ -11,7 +11,7 @@ namespace gMusic.ViewModels {
 		public Song CurrentSong {
 			get => currentSong;
 			set {
-				if (this.SetProperty (ref currentSong, value))
+				if (this.ProcPropertyChanged (ref currentSong, value))
 					SongChanged?.Invoke ();
 			}
 		}
@@ -21,7 +21,7 @@ namespace gMusic.ViewModels {
 		TrackPosition trackPosition;
 		public TrackPosition TrackPosition {
 			get => trackPosition;
-			set => SetProperty (ref trackPosition, value);
+			set => ProcPropertyChanged (ref trackPosition, value);
 		}
 
 		public NowPlayingViewModel ()

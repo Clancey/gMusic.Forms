@@ -584,7 +584,7 @@ namespace gMusic.Managers {
 			if (string.IsNullOrEmpty (Settings.CurrentSong))
 				return;
 			Settings.CurrentPlaybackPercent = percent;
-			Player.Seek (percent);
+			Player.SeekPercent (percent);
 		}
 
 		public int NextIndex ()

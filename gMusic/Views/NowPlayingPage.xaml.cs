@@ -16,6 +16,7 @@ namespace gMusic.Views {
 		ImageToggleButton miniPlayPauseButton;
 
 		const int toggleDelay = 100;
+		const double bottomViewHeight = 300;
 
 		NowPlayingViewModel ViewModel => (NowPlayingViewModel)BindingContext;
 		public NowPlayingPage ()
@@ -105,17 +106,35 @@ namespace gMusic.Views {
 				this.Navigation.PushModalAsync (new NavigationPage (new CurrentPlaylistPage ()));
 			};
 
+
+
 			SetState ();
 			NotificationManager.Shared.PlaybackStateChanged += Shared_PlaybackStateChanged;
+			NotificationManager.Shared.SongDownloadPulsed += Shared_SongDownloadPulsed;
+			this.ViewModel.SubscribeToProperty (nameof (NowPlayingViewModel.TrackPosition),
+				() => {
+					ProgressBar.PlaybackProgress = ViewModel.TrackPosition.Percent;
+				});
+
 			UpdateVisibile (0f);
 		}
+
+		private void Shared_SongDownloadPulsed (object sender, NotificationManager.SongDowloadEventArgs e)
+		{
+			if (e.SongId != Settings.CurrentSong)
+				return;
+			ProgressBar.DownloadProgress = e.Percent;
+		}
+
 		double navLeftPadding;
 		double navTopPadding;
+		double navBottomPadding;
 		private void Shared_InsetAreaChanged (object sender, EventArgs<Thickness> e)
 		{
 			var thickness = e.Data;
 			navLeftPadding = thickness.Left;
 			navTopPadding = thickness.Top;
+			navBottomPadding = thickness.Bottom;
 			UpdateNavLayout ();
 		}
 
@@ -212,7 +231,10 @@ namespace gMusic.Views {
 			miniPlayerY += miniBarHeight * (1f - navVisiblePercent);
 			AbsoluteLayout.SetLayoutBounds (MiniPlayer, new Rectangle (0, miniPlayerY, 1, miniBarHeight));
 
-
+			var margin = BottomBar.Margin;
+			margin.Bottom = navBottomPadding;
+			BottomBar.Margin = margin;
+			AbsoluteLayout.SetLayoutBounds (BottomControls, new Rectangle (0, 1, 1, bottomViewHeight + navBottomPadding));
 
 		}
 		//protected override void LayoutChildren (double x, double y, double width, double height)

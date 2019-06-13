@@ -26,6 +26,8 @@ namespace gMusic.ViewModels {
 			public object this [int index] {
 				get {
 					var s = PlaybackManager.Shared.GetSong (index);
+					if (s == null)
+						return s;
 					indexes [s.Id] = index;
 					return s;
  				}

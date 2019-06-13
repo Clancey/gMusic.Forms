@@ -34,6 +34,12 @@ namespace gMusic.Playback {
 
 		public abstract void Stop ();
 
+		public void SeekPercent(float percent)
+		{
+			var time = Duration() * percent;
+			Seek (time);
+		}
+
 		public abstract void Seek (double time);
 
 		public abstract float Rate { get; }

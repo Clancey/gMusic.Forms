@@ -3,7 +3,8 @@ using FFImageLoading.Forms;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
-	public class AlbumArtView : AbsoluteLayout{
+	public class AlbumArtView : AbsoluteLayout {
+
 		CachedImage image;
 		Frame frame;
 		public AlbumArtView ()
@@ -22,6 +23,16 @@ namespace gMusic.Views {
 			this.Children.Add (frame);
 			this.VerticalOptions = LayoutOptions.FillAndExpand;
 			this.HorizontalOptions = LayoutOptions.FillAndExpand;
+		}
+
+		public ImageSource LoadingPlaceholder {
+			get => image.LoadingPlaceholder;
+			set => image.LoadingPlaceholder = value;
+		}
+
+		public ImageSource ErrorPlaceholder {
+			get => image.ErrorPlaceholder;
+			set => image.ErrorPlaceholder = value;
 		}
 
 		public ImageSource Source {

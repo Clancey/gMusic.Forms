@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using gMusic.Managers;
 using gMusic.Models;
 using gMusic.ViewModels;
+using Localizations;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
@@ -11,6 +12,13 @@ namespace gMusic.Views {
 		{
 			InitializeComponent ();
 			BindingContext = new CurrentPlaylistViewModel ();
+			this.Title = Strings.CurrentPlaylist;
+			this.ToolbarItems.Add (new ToolbarItem () {
+				IconImageSource = Images.NowPlayingScreen.NavBar.CloseButton,
+				Command = new Command (async () => {
+					await Navigation.PopModalAsync ();
+				})
+			});
 		}
 		CurrentPlaylistViewModel ViewModel => BindingContext as CurrentPlaylistViewModel;
 
