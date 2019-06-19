@@ -17,6 +17,9 @@ namespace gMusic {
 
 		public App ()
 		{
+#if DEBUG
+			InMemoryConsole.Current.Activate ();
+#endif
 			AppCenter.Start (ApiConstants.AppCenterApiKey, typeof (Analytics), typeof (Crashes));
 
 			InitializeComponent ();

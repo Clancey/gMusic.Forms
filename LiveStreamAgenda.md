@@ -1,16 +1,27 @@
-
-# Agenda 
+#Agenda 6/19/2019
 - [ ] Now Playing screen
 	- [ ] Padding 	
 	- [ ] Titles overflow
-- [ ] Use new album artwork view for song cells 
-- [ ] Search Screen
+- [ ] Missing UI
+	- [ ] Search Screen
+	- [ ] Artist Details
+	- [ ] Album Details
+	- [ ] Genre Details
+	- [ ] Genre Images
+	- [ ] Playlists
+	- [ ] Radio
+	- [ ] Debug Console
 - [ ] Equalizer
 - [ ] Native iOS
 - [ ] Native Android 
 - [ ] UrlSessionDelegate
 - [ ] Android Audio Player 
 
+
+# Agenda 6/12/2019
+- [X] Now Playing screen
+	- [x] Progress bar with downloading progress 	
+- [x] Use new album artwork view for song cells 
 # Agenda 6/05/2019
  - [x] Now Playing screen
 	 - [x] Album Art
@@ -82,3 +93,4 @@
 - [ ] Playlist editing
 - [ ] Show Spinner
 - [ ] Add Last.FM Support
+- [] Check if TempFileManger works on Mac for the downloader

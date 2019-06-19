@@ -151,7 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gMusic\gMusic.csproj">
-      <Project>{B6F3432E-2EA2-4F32-8409-2A30F53A7B47}</Project>
+      <Project>{FB4AC764-5100-4368-B778-C0BB623C4F51}</Project>
       <Name>gMusic</Name>
     </ProjectReference>
   </ItemGroup>

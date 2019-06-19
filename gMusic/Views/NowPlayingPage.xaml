@@ -37,10 +37,11 @@
                     <gMusic:ProgressView  x:Name="ProgressBar"
                             ValueChanged="Slider_ValueChanged"
                             Grid.ColumnSpan="3" />
-                    <Label Text="{Binding TrackPosition.CurrentTimeString}"
+                    <Label FontSize="Small" Text="{Binding TrackPosition.CurrentTimeString}"
                            Grid.Row="1" />
                     <Label HorizontalTextAlignment="End"
                            HorizontalOptions="End"
+                           FontSize="Small" 
                            Text="{Binding TrackPosition.RemainingTimeString}"
                            Grid.Row="1"
                            Grid.Column="2" />
