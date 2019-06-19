@@ -10,7 +10,8 @@
 	- [ ] Genre Images
 	- [ ] Playlists
 	- [ ] Radio
-	- [ ] Debug Console
+	- [x] Debug Console
+	- [ ] Popup menu!
 - [ ] Equalizer
 - [ ] Native iOS
 - [ ] Native Android 

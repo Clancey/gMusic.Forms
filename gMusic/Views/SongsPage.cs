@@ -21,8 +21,8 @@ namespace gMusic.Views {
 
 			if (songViewModel != null)
 				songViewModel.OnTap (song);
-			else
-				PlaybackManager.Shared.Play (song);
+			//else
+			//	PlaybackManager.Shared.Play (song);
 		}
 
 		

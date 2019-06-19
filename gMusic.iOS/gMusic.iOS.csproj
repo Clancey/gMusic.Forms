@@ -91,6 +91,7 @@
     <Compile Include="Renderers\ScrubberViewRenderer.cs" />
     <Compile Include="Renderers\OBSlider.cs" />
     <Compile Include="Renderers\ProgressViewRenderer.cs" />
+    <Compile Include="Renderers\TextInputAlert.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -210,6 +211,10 @@
     <ProjectReference Include="..\gMusic\gMusic.csproj">
       <Project>{FB4AC764-5100-4368-B778-C0BB623C4F51}</Project>
       <Name>gMusic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Localizations\Localizations.csproj">
+      <Project>{630262F0-FA3F-4DFB-BD64-EFDB89474F49}</Project>
+      <Name>Localizations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

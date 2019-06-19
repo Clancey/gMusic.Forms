@@ -9,6 +9,7 @@ using ManagedBass;
 using UIKit;
 using Xamarin.Forms;
 using gMusic.Managers;
+using Xamarin.Forms.Platform.iOS;
 
 namespace gMusic.iOS
 {
@@ -36,6 +37,7 @@ namespace gMusic.iOS
 			var inset = app.KeyWindow.SafeAreaInsets;
 			var thick = new Thickness (inset.Left, inset.Top, inset.Right, inset.Bottom);
 			NotificationManager.Shared.ProcInsetAreaChanged (thick);
+			app.KeyWindow.TintColor = Styles.Styles.CurrentStyle.AccentColor.ToUIColor ();
 			return result;
         }
 
@@ -49,6 +51,11 @@ namespace gMusic.iOS
 			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"UIContentSizeCategoryDidChangeNotification", (n) => {
 				ApplyStyles ();
 			});
+
+			App.InputTextFunc = (x) => {
+				var alert = new TextInputAlert (x.title);
+				return alert.GetText (GetTopMostViewController ());
+			};
 		}
 		void ApplyStyles()
 		{
@@ -58,11 +65,27 @@ namespace gMusic.iOS
 			Styles.Styles.DetailFontSize = (int)UIFont.PreferredCaption1.PointSize;
 			Styles.Fonts.NormalFontName = "Heebo-Regular";
 			Styles.Fonts.ThinFontName = "Heebo-Thin";
+
+			
 			Styles.Styles.ResetAllFonts ();
 		}
 		public override void OnActivated (UIApplication uiApplication)
 		{
 			base.OnActivated (uiApplication);
+		}
+
+		static UIViewController GetTopMostViewController()
+		{
+			var window = UIApplication.SharedApplication.KeyWindow;
+			var root = window.RootViewController;
+			if (root != null) {
+				var current = root;
+				while (current.PresentedViewController != null) {
+					current = current.PresentedViewController;
+				}
+				return current;
+			}
+			return window.RootViewController;
 		}
 	}
 }

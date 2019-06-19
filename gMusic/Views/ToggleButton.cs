@@ -37,6 +37,8 @@ namespace gMusic.Views {
 		public Color OnColor {
 			get => onColor;
 			set {
+				if (OnColor == value)
+					return;
 				onColor = value;
 				SetState ();
 			}
@@ -46,6 +48,8 @@ namespace gMusic.Views {
 		public Color OffColor {
 			get => offColor;
 			set {
+				if (offColor == value)
+					return;
 				offColor = value;
 				SetState ();
 			}
@@ -53,7 +57,12 @@ namespace gMusic.Views {
 
 		protected override void SetState ()
 		{
-			Source.Color = this.Toggled ? onColor : offColor;
+			if (Source == null)
+				return;
+			var color = this.Toggled ? onColor : offColor;
+			if (Source.Color == color)
+				return;
+			Source.Color = color;
 		}
 	}
 
@@ -86,7 +95,12 @@ namespace gMusic.Views {
 
 		public FontImageSource Source{
 			get => Image.Source as FontImageSource;
-			set => Image.Source = value;
+			set {
+				if (Image.Source == value)
+					return;
+				Image.Source = value;
+				SetState ();
+			}
 		}
 
 		protected abstract void SetState ();

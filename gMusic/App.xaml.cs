@@ -69,6 +69,9 @@ namespace gMusic {
 			//throw new NotImplementedException ();
 		}
 
+		public static Func<(string title,string ok, string dismiss), Task<string>> InputTextFunc;
+		public static Task<string> GetInputText(string message, string ok, string dismiss) => InputTextFunc((message, ok, dismiss));
+
 		internal static void Playing ()
 		{
 			//throw new NotImplementedException ();

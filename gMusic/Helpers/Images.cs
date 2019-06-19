@@ -13,7 +13,10 @@ namespace gMusic
 
         public static SvgImageSource PlayButton = SvgImageSource.FromResource("gMusic.Resources.Svg.playButtonBordered.svg");
 
-        public static class Menu
+		public static FontImageSource MoreDetails => IconFont.CreateFont (IconFont.IconMore, Color.White);
+
+
+		public static class Menu
         {
 			public static ImageSource SearchIcon => IconFont.CreateFont (IconFont.IconSearch, Color.White, 20);
 			public static ImageSource ArtistIcon => IconFont.CreateFont (IconFont.IconArtist, Color.White);

@@ -68,6 +68,7 @@ namespace gMusic.Styles {
 		public static bool IsDeviceDark { get; set; }
 		public Color AccentSolidColor { get; set; } = Color.FromRgb (255, 43, 103);
 		public Color AccentColor => AccentSolidColor;
+		public Color DisabledColor => Color.LightGray;
 
 
 		Font? headerTextFont;
