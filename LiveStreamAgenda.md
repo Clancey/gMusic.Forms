@@ -7,9 +7,9 @@
 	- [ ] Artist Details
 	- [ ] Album Details
 	- [ ] Genre Details
-	- [ ] Genre Images
+	- [X] Genre Images
 	- [ ] Playlists
-	- [ ] Radio
+	- [X] Radio
 - [ ] Equalizer
 - [ ] Native iOS
 - [ ] Native Android 

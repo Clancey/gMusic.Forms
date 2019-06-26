@@ -22,6 +22,9 @@ namespace gMusic
 			new NavigationItem{Title = Strings.Genres, Page = new NavigationPage(new GenresPage()), Image = Images.Menu.GenreIcon},
 			new NavigationItem{Title = Strings.Songs, Page = new NavigationPage(new SongsPage()), Image = Images.Menu.SongsIcon},
 			new NavigationItem{Title = Strings.Playlists, Page = new NavigationPage(new PlaylistsPage()), Image = Images.Menu.PlaylistIcon},
+			new NavigationItem{Title = Strings.Online},
+			new NavigationItem{Title = Strings.Radio, Page = new NavigationPage(new RadioStationsPage()), Image = Images.Menu.RadioIcon},
+			new NavigationItem{Title = Strings.Settings},
 			new NavigationItem{Title = Strings.Settings, Page = new NavigationPage(new SettingsPage()),Image = Images.Menu.SettingsIcon },
 #if DEBUG
 			new NavigationItem {Title = "Console", Page = new NavigationPage(new ConsolePage()),Image = Images.Menu.SettingsIcon },

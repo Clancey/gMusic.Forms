@@ -16,6 +16,8 @@ namespace gMusic
 		public static FontImageSource MoreDetails => IconFont.CreateFont (IconFont.IconMore, Color.White);
 
 
+		public static FontImageSource DiceIcon => IconFont.CreateFont (IconFont.IconDice, Color.White);
+
 		public static class Menu
         {
 			public static ImageSource SearchIcon => IconFont.CreateFont (IconFont.IconSearch, Color.White, 20);
@@ -24,6 +26,7 @@ namespace gMusic
 			public static ImageSource GenreIcon => IconFont.CreateFont (IconFont.IconGenres, Color.White);
 			public static ImageSource SongsIcon => IconFont.CreateFont (IconFont.IconSongs, Color.White);
 			public static ImageSource PlaylistIcon => IconFont.CreateFont (IconFont.IconPlaylists, Color.White);
+			public static ImageSource RadioIcon => IconFont.CreateFont (IconFont.IconRadio, Color.White);
 			public static ImageSource SettingsIcon => IconFont.CreateFont (IconFont.IconSettings, Color.White);
 		}
 
