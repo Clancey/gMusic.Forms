@@ -9,12 +9,10 @@ using SimpleDatabase;
 
 namespace gMusic.Models
 {
-	public class OnlineRadioStation : RadioStation
-	{
+	public class OnlineRadioStation : RadioStation {
 		
 	}
-	public class RadioStation : MediaItemBase
-	{
+	public class RadioStation : MediaItemBase, IMultiImage {
 		public RadioStation()
 		{
 		}
@@ -57,7 +55,7 @@ namespace gMusic.Models
 			set { allArtwork = value; }
 		}
 
-		public async Task<RadioStationArtwork[]> GetAllArtwork()
+		public async Task<Artwork[]> GetAllArtwork()
 		{
 
 			if (allArtwork != null)

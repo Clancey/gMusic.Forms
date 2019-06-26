@@ -56,7 +56,7 @@ namespace gMusic
 				ConsoleOutput.Enqueue(new Tuple<DateTime, string>(DateTime.Now, value));
 				hasMessages = true;
 			}
-			Debug.WriteLine(value);
+			//Debug.WriteLine(value);
 		}
 
 		string currentLine = "";

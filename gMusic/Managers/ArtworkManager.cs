@@ -71,20 +71,24 @@ namespace gMusic.Managers
 
 		public async Task<string> GetArtwork(Album album)
 		{
-			var artowrk = await album?.GetAllArtwork();
-			return GetUrl(artowrk?.LastOrDefault());
+			var artwork = await album?.GetAllArtwork();
+			return GetUrl(artwork?.LastOrDefault());
 		}
-
+		public async Task<string []> GetArtwork (IMultiImage multiImage)
+		{
+			var artwork = await multiImage.GetAllArtwork ();
+			return artwork.Select (GetUrl).ToArray ();
+		}
 		public async Task<string[]> GetArtwork(Playlist playlist)
 		{
-			var artowrk = await playlist.GetAllArtwork();
-			return artowrk.Select(GetUrl).ToArray();
+			var artwork = await playlist.GetAllArtwork();
+			return artwork.Select(GetUrl).ToArray();
 		}
 
 		public async Task<string[]> GetArtwork(Genre genre)
 		{
-			var artowrk = await genre.GetAllArtwork();
-			return artowrk.Select(GetUrl).ToArray();
+			var artwork = await genre.GetAllArtwork();
+			return artwork.Select(GetUrl).ToArray();
 		}
 
 
@@ -117,8 +121,8 @@ namespace gMusic.Managers
 
 		public async Task<string> GetArtwork(RadioStation station)
 		{
-			var artowrk = await station.GetAllArtwork();
-			return GetUrl(artowrk?.OrderBy(x => x.Ratio).FirstOrDefault());
+			var artwork = await station.GetAllArtwork();
+			return GetUrl(artwork?.OrderBy(x => x.Ratio).FirstOrDefault());
 		}
 	}
 }

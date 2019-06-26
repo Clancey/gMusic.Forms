@@ -10,8 +10,7 @@ using Localizations;
 namespace gMusic.Models
 {
 
-	public class OnlinePlaylist : Playlist
-	{
+	public class OnlinePlaylist : Playlist {
 		public List<OnlinePlaylistEntry> Entries { get; set; }
 		public override string DetailText => "";
 	}
@@ -20,8 +19,7 @@ namespace gMusic.Models
 	{
 		
 	}
-	public class Playlist : MediaItemBase
-	{
+	public class Playlist : MediaItemBase, IMultiImage {
 		public Playlist()
 		{
 		}
@@ -74,7 +72,7 @@ namespace gMusic.Models
 			set { allArtwork = value; }
 		}
 
-		public virtual async Task<AlbumArtwork[]> GetAllArtwork()
+		public virtual async Task<Artwork[]> GetAllArtwork()
 		{
 			if (allArtwork != null)
 				return allArtwork;

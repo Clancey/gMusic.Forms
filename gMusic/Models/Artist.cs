@@ -22,12 +22,10 @@ namespace gMusic.Models
 		public override string DetailText => "";
 	}
 
-	public class TempArtist : Artist
-	{
+	public class TempArtist : Artist {
 	}
 
-	public class Artist : MediaItemBase
-	{
+	public class Artist : MediaItemBase, IMultiImage {
 		public Artist()
 		{
 		}
@@ -75,7 +73,7 @@ namespace gMusic.Models
 			set { allArtwork = value; }
 		}
 
-		public async Task<ArtistArtwork[]> GetAllArtwork()
+		public async Task<Artwork []> GetAllArtwork()
 		{
 			if (allArtwork != null)
 				return allArtwork;

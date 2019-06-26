@@ -5,6 +5,7 @@ using gMusic.Data;
 using SQLite;
 using System.Threading.Tasks;
 using Localizations;
+using System.Linq;
 
 namespace gMusic.Models
 {
@@ -12,8 +13,7 @@ namespace gMusic.Models
 	{
 	}
 
-	public class Genre : MediaItemBase
-	{
+	public class Genre : MediaItemBase, IMultiImage {
 		public Genre()
 		{
 		}
@@ -49,7 +49,7 @@ namespace gMusic.Models
 			set { allArtwork = value; }
 		}
 
-		public async Task<AlbumArtwork[]> GetAllArtwork()
+		public async Task<Artwork []> GetAllArtwork()
 		{
 			if (allArtwork != null)
 				return allArtwork;
@@ -63,7 +63,7 @@ namespace gMusic.Models
 
 			if (tempArtwork != null)
 				art.AddRange(tempArtwork);
-			return allArtwork = art.ToArray();
+			return allArtwork = art.Distinct().Take(4).ToArray();
 		}
 	}
 }

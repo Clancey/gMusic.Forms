@@ -27,5 +27,7 @@ namespace System
 				action(item);
 			}
 		}
+		public static T GetAtIndexOrDefault<T> (this IList<T> list, int index) => list.Count >= index ? default : list [index];
+		
 	}
 }
