@@ -43,6 +43,7 @@ namespace gMusic.Views {
 				});
 				this.ToolbarItems.Add (new ToolbarItem (Strings.Cancel, null, () => {
 					tcs.TrySetCanceled ();
+					this.Navigation.PopModalAsync ();
 				}));
 				
 				this.ToolbarItems.Add (addButton);

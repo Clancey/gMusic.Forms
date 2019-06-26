@@ -1,4 +1,4 @@
-#Agenda 6/19/2019
+# Angda 6/26/2019
 - [ ] Now Playing screen
 	- [ ] Padding 	
 	- [ ] Titles overflow
@@ -10,14 +10,17 @@
 	- [ ] Genre Images
 	- [ ] Playlists
 	- [ ] Radio
-	- [x] Debug Console
-	- [ ] Popup menu!
 - [ ] Equalizer
 - [ ] Native iOS
 - [ ] Native Android 
 - [ ] UrlSessionDelegate
 - [ ] Android Audio Player 
 
+# Agenda 6/19/2019
+- [ ] Missing UI
+	- [x] Playlist creation 
+	- [x] Debug Console
+	- [x] Popup menu!
 
 # Agenda 6/12/2019
 - [X] Now Playing screen
