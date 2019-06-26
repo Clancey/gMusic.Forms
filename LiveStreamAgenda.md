@@ -8,7 +8,7 @@
 	- [ ] Album Details
 	- [ ] Genre Details
 	- [X] Genre Images
-	- [ ] Playlists
+	- [x] Playlists
 	- [X] Radio
 - [ ] Equalizer
 - [ ] Native iOS

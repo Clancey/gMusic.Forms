@@ -75,5 +75,7 @@ namespace gMusic.Models
 		{
 			return Song?.ToString() ?? base.ToString();
 		}
+
+		public static implicit operator MediaItemBase (PlaylistSong song) => song.Song;
 	}
 }

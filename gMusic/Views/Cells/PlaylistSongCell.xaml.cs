@@ -8,24 +8,22 @@ using gMusic.Managers;
 using Localizations;
 using System.Linq;
 
-namespace gMusic.Views
-{
-    public partial class MediaItemCell : ViewCell
-    {
+namespace gMusic.Views {
+	public partial class PlaylistSongCell : ViewCell {
 		ImageColorToggleButton moreDetailsButton;
-        public MediaItemCell()
-        {
-            InitializeComponent();
+		public PlaylistSongCell ()
+		{
+			InitializeComponent ();
 			//Text.StyleAsMainText ();
 			//Detail.StyleAsSubText ();
-            Image.LoadingPlaceholder = Image.ErrorPlaceholder = Images.DefaultAlbumArt;
+			Image.LoadingPlaceholder = Image.ErrorPlaceholder = Images.DefaultAlbumArt;
 			moreDetailsButton = new ImageColorToggleButton {
 				Source = Images.MoreDetails,
 				OnColor = Styles.Styles.CurrentStyle.DisabledColor,
 				OffColor = Styles.Styles.CurrentStyle.AccentColor,
-				Padding = new Thickness(6),
+				Padding = new Thickness (6),
 				Tapped = async (b) => {
-					//TODO Show popup!
+					//TODO: Fix this for playlists
 					var item = BindingContext as MediaItemBase;
 					var popupItems = PopupManager.Shared.CreatePopoptions (item);
 					var task = App.Current.MainPage.DisplayActionSheet (item.Name, Strings.Cancel, null, popupItems.Select (x => x.Title).ToArray ());
@@ -34,7 +32,7 @@ namespace gMusic.Views
 					var result = await task;
 					var selectedItem = popupItems.FirstOrDefault (x => x.Title == result);
 					if (selectedItem.Action != null) {
-						var success = await selectedItem.Action();
+						var success = await selectedItem.Action ();
 					}
 				},
 				VerticalOptions = LayoutOptions.Center,
@@ -43,17 +41,15 @@ namespace gMusic.Views
 
 
 			RootStack.Children.Add (moreDetailsButton);
-        }
-        protected override void OnBindingContextChanged()
-        {
-			//if(BindingContext is PlaylistSong ps) {
-			//	BindingContext = ps.Song;
-			//	return;
-			//}
-            base.OnBindingContextChanged();
-			Image.UpdateArtwork (BindingContext as MediaItemBase);
-        }
+		}
+		protected override void OnBindingContextChanged ()
+		{
+			base.OnBindingContextChanged ();
+			var song = (BindingContext as PlaylistSong).Song;
+			Image.BindingContext = song;
+			Image.UpdateArtwork (song);
+		}
 
-        
-    }
+
+	}
 }

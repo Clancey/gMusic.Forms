@@ -21,8 +21,11 @@ namespace gMusic.Views {
 
 			if (songViewModel != null)
 				songViewModel.OnTap (song);
-			//else
-			//	PlaybackManager.Shared.Play (song);
+			else if(BindingContext is PlaylistSongsViewModel plsvm) {
+				plsvm.OnTap (args.SelectedItem as PlaylistSong);
+			}
+			else 
+				PlaybackManager.Shared.Play (song);
 		}
 
 		

@@ -64,7 +64,7 @@ namespace gMusic.Views {
 				tcs.TrySetResult (playlist);
 				this.Navigation.PopModalAsync ();
 			} else {
-				//this.Navigation.PushAsync (new SongsPage { });
+				this.Navigation.PushAsync (new PlaylistSongPage { Playlist = playlist});
 			}
 		}
 	}

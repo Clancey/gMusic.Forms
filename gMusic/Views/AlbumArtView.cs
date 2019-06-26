@@ -83,8 +83,10 @@ namespace gMusic.Views {
 			if (item == null)
 				return;
 			var urlTask = item.GetArtworkUrl ();
-			if (!urlTask.IsCompleted)
+			if (!urlTask.IsCompleted) {
 				image.Source = Images.DefaultAlbumArt;
+				images.ForEach (i => i.IsVisible = false);
+			}
 			var url = await urlTask;
 			if (item != BindingContext)
 				return;
@@ -126,7 +128,8 @@ namespace gMusic.Views {
 					Children.Add (img);
 				}
 				img.Source = new UriImageSource { Uri = new Uri (urls[i]) };
-			}
+				img.IsVisible = true;
+  			}
 		}
 	}
 }

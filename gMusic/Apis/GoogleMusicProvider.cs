@@ -1121,214 +1121,212 @@ namespace gMusic.Api.GoogleMusic {
 
 		public override async Task<SearchResults> Search (string query)
 		{
-			//TODO: bring this back
-			return null;
-			//var cachedResult = RequestCache<SearchResultResponse>.WebSearchResults.Get(query);
+			var cachedResult = RequestCache<SearchResultResponse>.WebSearchResults.Get(query);
 
-			//return await Task.Run(async () =>
-			//{
-			//	try
-			//	{
-			//		var request = new GoogleMusicApiRequest
-			//		{
-			//			method = "sj.search.subscription",
-			//			parameters = new GoogleMusicApiRequest.SearchParams
-			//			{
-			//				Query = query,
-			//				MaxResults = 25
-			//			}
-			//		};
-			//		var resp = cachedResult ?? await Api.Post<SearchResultResponse>(request);
-			//		var result = new SearchResults
-			//		{
-			//			Query = query,
-			//		};
-			//		foreach (var r in resp.Result.entries)
-			//		{
-			//			try
-			//			{
-			//				if (r.track != null)
-			//				{
-			//					var x = r.track;
-			//					var id = x.Type == 0 ? x.Id : !string.IsNullOrWhiteSpace(x.StoreId) && x.StoreId.StartsWith("T") ? x.StoreId : x.Id;
-			//					var t = new FullTrackData(x.Title, x.Artist, x.AlbumArtist, x.Album, x.Genre)
-			//					{
-			//						Deleted = x.Deleted,
-			//						Duration = x.Duration,
-			//						ArtistServerId = x.ArtistMatchedId,
-			//						AlbumServerId = x.AlbumId,
-			//						AlbumArtwork = x.AlbumArtRef.Select(a => new AlbumArtwork { Url = a.Url }).ToList(),
-			//						ArtistArtwork = x.ArtistArtRef.Select(a => new ArtistArtwork { Url = a.Url }).ToList(),
-			//						MediaType = MediaType.Audio,
-			//						PlayCount = x.PlayCount,
-			//						ServiceId = Api.CurrentAccount.Identifier,
-			//						Id = id,
-			//						ServiceExtra = x.Id == id ? x.StoreId : x.Id,
-			//						ServiceExtra2 = x.Type.ToString(),
-			//						ServiceType = ServiceType.Google,
-			//						Rating = x.Rating,
-			//						FileExtension = "mp3",
-			//						Disc = x.Disc,
-			//						Track = x.Track,
-			//						Year = x.Year,
-			//					};
-			//					if (!r.track.IsAllAccess)
-			//					{
-			//						result.Songs.Add(new Song(t.Title, t.NormalizedTitle));
-			//						continue;
-			//					}
+			return await Task.Run(async () =>
+			{
+				try
+				{
+					var request = new GoogleMusicApiRequest
+					{
+						method = "sj.search.subscription",
+						parameters = new GoogleMusicApiRequest.SearchParams
+						{
+							Query = query,
+							MaxResults = 25
+						}
+					};
+					var resp = cachedResult ?? await Api.Post<SearchResultResponse>(request);
+					var result = new SearchResults
+					{
+						Query = query,
+					};
+					foreach (var r in resp.Result.entries)
+					{
+						try
+						{
+							if (r.track != null)
+							{
+								var x = r.track;
+								var id = x.Type == 0 ? x.Id : !string.IsNullOrWhiteSpace(x.StoreId) && x.StoreId.StartsWith("T") ? x.StoreId : x.Id;
+								var t = new FullTrackData(x.Title, x.Artist, x.AlbumArtist, x.Album, x.Genre)
+								{
+									Deleted = x.Deleted,
+									Duration = x.Duration,
+									ArtistServerId = x.ArtistMatchedId,
+									AlbumServerId = x.AlbumId,
+									AlbumArtwork = x.AlbumArtRef.Select(a => new AlbumArtwork { Url = a.Url }).ToList(),
+									ArtistArtwork = x.ArtistArtRef.Select(a => new ArtistArtwork { Url = a.Url }).ToList(),
+									MediaType = MediaType.Audio,
+									PlayCount = x.PlayCount,
+									ServiceId = Api.CurrentAccount.Identifier,
+									Id = id,
+									ServiceExtra = x.Id == id ? x.StoreId : x.Id,
+									ServiceExtra2 = x.Type.ToString(),
+									ServiceType = ServiceType.Google,
+									Rating = x.Rating,
+									FileExtension = "mp3",
+									Disc = x.Disc,
+									Track = x.Track,
+									Year = x.Year,
+								};
+								if (!r.track.IsAllAccess)
+								{
+									result.Songs.Add(new Song(t.Title, t.NormalizedTitle));
+									continue;
+								}
 
-			//					result.Songs.Add(new OnlineSong(t.Title, t.NormalizedTitle)
-			//					{
-			//						Id = t.SongId,
-			//						Artist = t.Artist,
-			//						Album = t.Album,
-			//						AlbumId = t.AlbumId,
-			//						ArtistId = t.ArtistId,
-			//						Disc = t.Disc,
-			//						Genre = t.Genre,
-			//						Rating = t.Rating,
-			//						TrackCount = t.Track,
-			//						Year = t.Year,
-			//						TrackData = t,
-			//					});
-			//					continue;
-			//				}
-			//				if (r.youtube_video != null)
-			//				{
-			//					var x = r.youtube_video;
-			//					var t = new FullTrackData(x.title, "", "", "", "")
-			//					{
-			//						AlbumArtwork =
-			//							x.thumbnails.Select(a => new AlbumArtwork { Url = a.url, Height = a.height, Width = a.width }).ToList(),
-			//						MediaType = MediaType.Video,
-			//						ServiceId = Api.CurrentAccount.Identifier,
-			//						Id = x.id,
-			//						ServiceType = ServiceType.Google,
-			//						FileExtension = "mp4",
-			//					};
-			//					result.Videos.Add(new OnlineSong(t.Title, t.NormalizedTitle)
-			//					{
-			//						Id = t.SongId,
-			//						Artist = t.Artist,
-			//						Album = t.Album,
-			//						AlbumId = t.AlbumId,
-			//						ArtistId = t.Artist,
-			//						Disc = t.Disc,
-			//						Genre = t.Genre,
-			//						Rating = t.Rating,
-			//						TrackCount = t.Track,
-			//						Year = t.Year,
-			//						TrackData = t
-			//					});
-			//					continue;
-			//				}
+								result.Songs.Add(new OnlineSong(t.Title, t.NormalizedTitle)
+								{
+									Id = t.SongId,
+									Artist = t.Artist,
+									Album = t.Album,
+									AlbumId = t.AlbumId,
+									ArtistId = t.ArtistId,
+									Disc = t.Disc,
+									Genre = t.Genre,
+									Rating = t.Rating,
+									TrackCount = t.Track,
+									Year = t.Year,
+									TrackData = t,
+								});
+								continue;
+							}
+							if (r.youtube_video != null)
+							{
+								var x = r.youtube_video;
+								var t = new FullTrackData(x.title, "", "", "", "")
+								{
+									AlbumArtwork =
+										x.thumbnails.Select(a => new AlbumArtwork { Url = a.url, Height = a.height, Width = a.width }).ToList(),
+									MediaType = MediaType.Video,
+									ServiceId = Api.CurrentAccount.Identifier,
+									Id = x.id,
+									ServiceType = ServiceType.Google,
+									FileExtension = "mp4",
+								};
+								result.Videos.Add(new OnlineSong(t.Title, t.NormalizedTitle)
+								{
+									Id = t.SongId,
+									Artist = t.Artist,
+									Album = t.Album,
+									AlbumId = t.AlbumId,
+									ArtistId = t.Artist,
+									Disc = t.Disc,
+									Genre = t.Genre,
+									Rating = t.Rating,
+									TrackCount = t.Track,
+									Year = t.Year,
+									TrackData = t
+								});
+								continue;
+							}
 
-			//				if (r.album != null)
-			//				{
-			//					var t = new FullTrackData("", r.album.artist, r.album.albumArtist, r.album.name, "");
-			//					var a = new OnlineAlbum(t.Album, t.NormalizedAlbum)
-			//					{
-			//						ServiceType = ServiceType,
-			//						Id = t.AlbumId,
-			//						Artist = t.Artist,
-			//						AlbumArtist = t.AlbumArtist,
-			//						ArtistId = t.ArtistId,
-			//						AlbumId = r.album.albumId,
-			//						Year = r.album.year,
-			//						AllArtwork =
-			//							new[] { new AlbumArtwork { AlbumId = t.AlbumId, Url = r.album.albumArtRef, ServiceType = ServiceType }, },
-			//					};
-			//					result.Albums.Add(a);
-			//					continue;
-			//				}
+							if (r.album != null)
+							{
+								var t = new FullTrackData("", r.album.artist, r.album.albumArtist, r.album.name, "");
+								var a = new OnlineAlbum(t.Album, t.NormalizedAlbum)
+								{
+									ServiceType = ServiceType,
+									Id = t.AlbumId,
+									Artist = t.Artist,
+									AlbumArtist = t.AlbumArtist,
+									ArtistId = t.ArtistId,
+									AlbumId = r.album.albumId,
+									Year = r.album.year,
+									AllArtwork =
+										new[] { new AlbumArtwork { AlbumId = t.AlbumId, Url = r.album.albumArtRef, ServiceType = ServiceType }, },
+								};
+								result.Albums.Add(a);
+								continue;
+							}
 
-			//				if (r.artist != null)
-			//				{
+							if (r.artist != null)
+							{
 
-			//					var t = new FullTrackData("", r.artist.name, r.artist.name, "", "");
-			//					var a = new OnlineArtist(t.Artist, t.NormalizedAlbumArtist)
-			//					{
-			//						OnlineId = r.artist.artistId,
-			//						AllArtwork =
-			//							new[] { new ArtistArtwork { ArtistId = t.ArtistId, ServiceType = ServiceType, Url = r.artist.artistArtRef } },
-			//					};
-			//					result.Artist.Add(a);
-			//					continue;
-			//				}
+								var t = new FullTrackData("", r.artist.name, r.artist.name, "", "");
+								var a = new OnlineArtist(t.Artist, t.NormalizedAlbumArtist)
+								{
+									OnlineId = r.artist.artistId,
+									AllArtwork =
+										new[] { new ArtistArtwork { ArtistId = t.ArtistId, ServiceType = ServiceType, Url = r.artist.artistArtRef } },
+								};
+								result.Artist.Add(a);
+								continue;
+							}
 
-			//				if (r.station != null)
-			//				{
-			//					var artwork = r.station.CompositeArtRefs?.Select(x => new RadioStationArtwork
-			//					{
-			//						ServiceType = ServiceType,
-			//						Url = x.Url,
-			//						Ratio = x.AspectRatio
-			//					}).ToList() ?? new List<RadioStationArtwork>();
-			//					artwork.AddRange(
-			//						r.station?.ImageUrls?.Select(
-			//						x => new RadioStationArtwork { ServiceType = ServiceType, Url = x.Url, Ratio = x.AspectRatio }).ToList() ?? new List<RadioStationArtwork>());
-			//					var s = new OnlineRadioStation()
-			//					{
-			//						ServiceId = Api.Identifier,
-			//						Name = r.station.Name,
-			//						Description = r.station.Description,
-			//						AllArtwork = artwork.ToArray(),
-			//						StationSeeds = r.station.StationSeeds.Select(ss =>
-			//						{
-			//							int k;
-			//							if (!int.TryParse(ss.SeedType, out k))
-			//							{
-			//								Console.WriteLine(ss.SeedType);
-			//							}
-			//							return new RadioStationSeed
-			//							{
-			//								ItemId = ss.Id,
-			//								Description = ss.Kind,
-			//								Kind = k,
-			//							};
-			//						}).ToArray(),
-			//					};
-			//					result.RadioStations.Add(s);
-			//					continue;
-			//				}
+							if (r.station != null)
+							{
+								var artwork = r.station.CompositeArtRefs?.Select(x => new RadioStationArtwork
+								{
+									ServiceType = ServiceType,
+									Url = x.Url,
+									Ratio = x.AspectRatio
+								}).ToList() ?? new List<RadioStationArtwork>();
+								artwork.AddRange(
+									r.station?.ImageUrls?.Select(
+									x => new RadioStationArtwork { ServiceType = ServiceType, Url = x.Url, Ratio = x.AspectRatio }).ToList() ?? new List<RadioStationArtwork>());
+								var s = new OnlineRadioStation()
+								{
+									ServiceId = Api.Identifier,
+									Name = r.station.Name,
+									Description = r.station.Description,
+									AllArtwork = artwork.ToArray(),
+									StationSeeds = r.station.StationSeeds.Select(ss =>
+									{
+										int k;
+										if (!int.TryParse(ss.SeedType, out k))
+										{
+											Console.WriteLine(ss.SeedType);
+										}
+										return new RadioStationSeed
+										{
+											ItemId = ss.Id,
+											Description = ss.Kind,
+											Kind = k,
+										};
+									}).ToArray(),
+								};
+								result.RadioStations.Add(s);
+								continue;
+							}
 
-			//				if (r.playlist != null)
-			//				{
-			//					var p = new OnlinePlaylist
-			//					{
-			//						ServiceType = ServiceType,
-			//						Name = r.playlist.name,
-			//						Owner = r.playlist.ownerName,
-			//						OwnerImage = r.playlist.ownerProfilePhotoUrl,
-			//						ServiceId = Api.Identifier,
-			//						PlaylistType = r.playlist.type,
-			//						ShareToken = r.playlist.shareToken,
-			//						Description = r.playlist.description,
-			//						AllArtwork = r.playlist.albumArtRef?.Select(x => new AlbumArtwork { Url = x.url }).ToArray() ?? new AlbumArtwork[0],
-			//					};
-			//					result.Playlists.Add(p);
-			//					continue;
-			//				}
-			//			}
-			//			catch (Exception ex)
-			//			{
-			//				ex.Data["Description"] = "Error processing Search Entries";
-			//				ex.Data["Service Type"] = ServiceType;
-			//				ex.Data["Entry"] = r.ToJson();
-			//				LogManager.Shared.Report(ex);
-			//			}
-			//		}
+							if (r.playlist != null)
+							{
+								var p = new OnlinePlaylist
+								{
+									ServiceType = ServiceType,
+									Name = r.playlist.name,
+									Owner = r.playlist.ownerName,
+									OwnerImage = r.playlist.ownerProfilePhotoUrl,
+									ServiceId = Api.Identifier,
+									PlaylistType = r.playlist.type,
+									ShareToken = r.playlist.shareToken,
+									Description = r.playlist.description,
+									AllArtwork = r.playlist.albumArtRef?.Select(x => new AlbumArtwork { Url = x.url }).ToArray() ?? new AlbumArtwork[0],
+								};
+								result.Playlists.Add(p);
+								continue;
+							}
+						}
+						catch (Exception ex)
+						{
+							ex.Data["Description"] = "Error processing Search Entries";
+							ex.Data["Service Type"] = ServiceType;
+							ex.Data["Entry"] = r.ToJson();
+							LogManager.Shared.Report(ex);
+						}
+					}
 
-			//		RequestCache<SearchResultResponse>.WebSearchResults.Add(query, resp);
-			//		return result;
-			//	}
-			//	catch (Exception e)
-			//	{
-			//		LogManager.Shared.Report(e);
-			//	}
-			//	return null;
-			//});
+					RequestCache<SearchResultResponse>.WebSearchResults.Add(query, resp);
+					return result;
+				}
+				catch (Exception e)
+				{
+					LogManager.Shared.Report(e);
+				}
+				return null;
+			});
 		}
 
 

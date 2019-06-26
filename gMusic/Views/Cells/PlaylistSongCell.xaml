@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          mc:Ignorable="d"
+          xmlns:gMusic="clr-namespace:gMusic.Views;assembly=gMusic"
+          xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="gMusic.Views.PlaylistSongCell">
+    <StackLayout x:Name="RootStack" BackgroundColor="{DynamicResource BackgroundColor}"
+                 Orientation="Horizontal">
+        <ContentView Margin="6">
+            <gMusic:AlbumArtView
+                x:Name="Image"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                HeightRequest="48"
+                WidthRequest="48" />
+        </ContentView>
+        <StackLayout VerticalOptions="Center"
+                     Spacing="0" HorizontalOptions="FillAndExpand">
+            <Label x:Name="Text"
+                   HorizontalOptions="FillAndExpand"
+                   Text="{Binding Song.Name}"
+                   d:Text="All the Small Things"
+                   Style="{DynamicResource MainTextLableStyle}"
+                   LineBreakMode="TailTruncation" />
+            <Label x:Name="Detail"
+                   HorizontalOptions="FillAndExpand"
+                   Text="{Binding Song.DetailText}"
+                   d:Text="Blink-182"
+                   Style="{DynamicResource SubTextLableStyle}"
+                   LineBreakMode="TailTruncation" />
+        </StackLayout>
+    </StackLayout>
+
+</ViewCell>
