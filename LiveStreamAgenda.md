@@ -1,4 +1,8 @@
-# Angda 6/26/2019
+
+# Agenda 6/3/2019
+[ ] Search Page!
+
+# Agenda 6/26/2019
 - [ ] Now Playing screen
 	- [ ] Padding 	
 	- [ ] Titles overflow
