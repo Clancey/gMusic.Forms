@@ -12,5 +12,16 @@ namespace Xamarin.Forms {
 
 			return hex;
 		}
+
+		public static T AddGesture<T> (this T view, GestureRecognizer gesture) where T : View
+		{
+			view.GestureRecognizers.Add (gesture);
+			return view;
+		}
+		public static T AddTapGesture<T> (this T view, Action<T> onTap) where T : View
+			 => view.AddGesture (new TapGestureRecognizer {
+				 Command = new Command (() => onTap (view))
+			 });
+
 	}
 }
