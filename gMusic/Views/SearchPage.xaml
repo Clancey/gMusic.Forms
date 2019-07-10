@@ -6,11 +6,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <SearchBar x:Name="SearchBar"
-                   TextChanged="Handle_TextChanged"
+                   TextChanged="Handle_TextChanged" BackgroundColor="White"
                    SearchButtonPressed="Handle_SearchButtonPressed" />
-        <gMusic:PanaramaView Grid.Row="1"/>
+        <BoxView BackgroundColor="LightGray" Grid.Row="1" />
+        <gMusic:PanaramaView Grid.Row="2"/>
     </Grid>
 </ContentPage>
