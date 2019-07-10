@@ -159,6 +159,8 @@ namespace gMusic.Data
         public async Task<SearchResults> Search(string searchString)
         {
             var results = new SearchResults();
+            if (string.IsNullOrWhiteSpace(searchString))
+                return results;
             var songs = await QueryAsync<Song>("select * from song where " +
                                                         string.Format("Name like ('%{0}%') or Artist  like ('%{0}%')" + ((Settings.ShowOfflineOnly) ? " and OfflineCount > 0" : ""), searchString));
             if (songs.Count > 0)

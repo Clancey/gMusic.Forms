@@ -6,7 +6,7 @@
     x:Class="gMusic.Views.SearchResultsView">
     <ContentView.Content>
          <ListView x:Name="ItemsListView" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding QuickJump}" ItemsSource="{Binding Sections, Mode=TwoWay}" VerticalOptions="FillAndExpand" HasUnevenRows="True"
-                CachingStrategy="RecycleElement" BackgroundColor="{DynamicResource BackgroundColor}">
+                CachingStrategy="RecycleElement" BackgroundColor="{DynamicResource BackgroundColor}" ItemSelected="OnSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <cells:MediaItemCell />
