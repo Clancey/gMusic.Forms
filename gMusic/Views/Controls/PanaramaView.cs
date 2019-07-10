@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using gMusic.Views.Controls;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
@@ -20,7 +21,8 @@ namespace gMusic.Views {
 			titleColor = selectedColor.MultiplyAlpha (.25);
 			titleFont = Styles.Styles.CurrentStyle.HeaderTextThinFont;
 			
-			Children.Add (scrollView = new ScrollView {
+			Children.Add (scrollView = new PagingScrollView
+            {
 				Orientation = ScrollOrientation.Horizontal,
 				Content = content = new AbsoluteLayout (),
 			});
