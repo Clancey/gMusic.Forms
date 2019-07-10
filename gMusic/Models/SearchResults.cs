@@ -6,20 +6,24 @@ namespace gMusic
 {
 	public class SearchResults
 	{
-		public List<Song> Songs {get;set;} = new List<Song>();
-		public List<Song> Videos { get; set; } = new List<Song>();
+        public List<GroupedMediaItems> Sections = new List<GroupedMediaItems>();
 
-		public List<Artist> Artist {get;set;} = new List<Artist>();
-
-		public List<Album> Albums {get;set;} = new List<Album>();
-
-		public List<Genre> Genres {get;set;} = new List<Genre>();
-
-		public List<Playlist> Playlists {get;set;} = new List<Playlist>();
-
-		public List<RadioStation> RadioStations { get; set; } = new List<RadioStation>();
+        public void Add(string title, List<MediaItemBase> items)
+        {
+            Sections.Add(new GroupedMediaItems(title,items));
+        }
 
 		public string Query { get; set; }
+
+        public class GroupedMediaItems :List<MediaItemBase>
+        {
+            public GroupedMediaItems(string title, List<MediaItemBase> items) : base(items)
+            {
+                Title = title;
+            }
+            public string Title { get; set; }
+            public string QuickJump { get; set; } = "∙";
+        }
 	}
 }
 

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Timers;
+using gMusic.Api;
 using gMusic.Managers;
+using Localizations;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
@@ -21,21 +24,50 @@ namespace gMusic.Views {
 		{
 			searchText = text;
 			searchTimer?.Stop ();
-			//ViewModels.ForEach (x => {
-			//	SearchModel (text, x);
-			//});
-
-			var result = await ApiManager.Shared.GetMusicProvider (Api.ServiceType.Google).Search (text);
+			foreach(var screen in currentSearchScreens)
+            {
+                screen.Search(text);
+            }
+			
 		}
 
-		string searchText;
+        List<SearchResultsView> currentSearchScreens = new List<SearchResultsView>();
+        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var providers = ApiManager.Shared.CurrentProviders.Where(x => x.Capabilities.IndexOf(MediaProviderCapabilities.Searchable) >= 0).ToList();
+            //Panarama.AddPage("Local", new BoxView { BackgroundColor = Color.Green });
+            //Panarama.AddPage("Google", new BoxView { BackgroundColor = Color.Fuchsia });
+            //Panarama.AddPage("YouTube", new BoxView { BackgroundColor = Color.Blue });
+            if (providers.Count + 1 == currentSearchScreens.Count)
+                return;
+            Panarama.Clear();
+            var local = new SearchResultsView { };
+            currentSearchScreens.Add(local);
+            Panarama.AddPage(Strings.Local, local);
+            foreach (var provider in providers)
+            {
+                var searchPage = new SearchResultsView();
+                searchPage.Provider = provider;
+                currentSearchScreens.Add(searchPage);
+                Panarama.AddPage(ApiManager.ServiceTitle(provider.ServiceType), searchPage);
+
+            }
+
+        }
+
+        string searchText;
 		Timer searchTimer;
 		public void KeyPressed (string text)
 		{
 			searchText = text;
 			if (searchTimer == null) {
 				searchTimer = new Timer (1500);
-				searchTimer.Elapsed += (s, e) => Search (searchText);
+                searchTimer.Elapsed += (s, e) =>
+                {
+                    Device.BeginInvokeOnMainThread(() => Search(searchText));
+                };
 			} else
 				searchTimer.Stop ();
 			searchTimer.Start ();

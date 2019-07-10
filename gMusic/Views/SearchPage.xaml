@@ -13,6 +13,6 @@
                    TextChanged="Handle_TextChanged" BackgroundColor="White"
                    SearchButtonPressed="Handle_SearchButtonPressed" />
         <BoxView BackgroundColor="LightGray" Grid.Row="1" />
-        <gMusic:PanaramaView Grid.Row="2"/>
+        <gMusic:PanaramaView x:Name="Panarama" Grid.Row="2"/>
     </Grid>
 </ContentPage>

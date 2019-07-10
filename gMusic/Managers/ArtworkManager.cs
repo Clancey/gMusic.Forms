@@ -77,7 +77,7 @@ namespace gMusic.Managers
 		public async Task<string []> GetArtwork (IMultiImage multiImage)
 		{
 			var artwork = await multiImage.GetAllArtwork ();
-			return artwork.Select (GetUrl).ToArray ();
+			return artwork.Select (GetUrl).Where(x=> !string.IsNullOrWhiteSpace(x)).ToArray ();
 		}
 		public async Task<string[]> GetArtwork(Playlist playlist)
 		{
