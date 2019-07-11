@@ -27,17 +27,18 @@ namespace gMusic.UITests
                     .Android
                     // TODO: Update this path to point to your Android app and uncomment the
                     // code if the app is not included in the solution.
-                    //.ApkFile ("../../../Droid/bin/Debug/xamarinforms.apk")
-                    .StartApp();
+                    .ApkFile("../../../Binaries/com.sweeky.gmusic-Signed.apk")
+                    .StartApp(Xamarin.UITest.Configuration.AppDataMode.DoNotClear);
             }
 
             return ConfigureApp
                 .iOS
                 // TODO: Update this path to point to your iOS app and uncomment the
                 // code if the app is not included in the solution.
-                .DeviceIdentifier("E36055EB-535D-4B75-B732-FC2A2FE4A421")
-                .AppBundle("../../../Binaries/gMusic.iOS.app")
-                .StartApp();
+                .InstalledApp("com.iis.gMusic")
+                //.DeviceIdentifier("449E9DDC-7164-4A4F-B18B-919AC7122758")
+                //.AppBundle("../../../Binaries/gMusic.iOS.app")
+                .StartApp(Xamarin.UITest.Configuration.AppDataMode.DoNotClear);
         }
     }
 }

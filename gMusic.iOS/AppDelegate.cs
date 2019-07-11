@@ -31,10 +31,11 @@ namespace gMusic.iOS
         {
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             Images.AlbumArtScreenSize = (int)NMath.Max(UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height);
+            global::Xamarin.Forms.Forms.Init();
 #if DEBUG
             Xamarin.Calabash.Start();
 #endif
-            global::Xamarin.Forms.Forms.Init();
+
             NativeInit();
             LoadApplication(new App());
             var result = base.FinishedLaunching(app, options);

@@ -16,6 +16,7 @@ namespace gMusic.Views {
 		Color selectedColor;
 		public PanaramaView ()
 		{
+            AutomationId = "PanaramaView";
 			selectedColor = Styles.Styles.CurrentStyle.AccentColor;
 			titleColor = selectedColor.MultiplyAlpha (.25);
 			titleFont = Styles.Styles.CurrentStyle.HeaderTextThinFont;
@@ -133,11 +134,13 @@ namespace gMusic.Views {
 				Text = title,
 				Font = titleFont,
 				TextColor = selectedColor,
+                AutomationId = "SearchResultPageHeader"
 			}.AddTapGesture (ScrollToLabel);
 
 			labels.Add (label);
 			content.Children.Add (label);
 
+            view.AutomationId = "SearchResultView";
 			views.Add (view);
 			content.Children.Add (view);
 		}

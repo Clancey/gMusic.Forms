@@ -9,7 +9,7 @@ namespace gMusic.Views {
 		ScrubberView slider;
 		public ProgressView ()
 		{
-
+            AutomationId = "ProgressView";
 			Children.Add (downloadProgress = new ProgressBar {
 				ProgressColor = Color.DarkGray,
 				Value = 0.8f,

@@ -30,7 +30,6 @@ namespace gMusic.UITests
         {
             app.Screenshot("First screen.");
             app.Repl();
-            //app.Invoke("myBackdoorMethod");
         }
     }
 }
