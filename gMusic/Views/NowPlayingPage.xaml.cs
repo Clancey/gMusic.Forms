@@ -30,94 +30,8 @@ namespace gMusic.Views {
 			};
 
 			InitializeComponent ();
-			ControlsStack.Children.Clear ();
-
-			ControlsStack.Children.Add (thumbsDownButton = CreateButton (Images.NowPlayingScreen.ThumbsDown, async (b) => {
-				SetState ();
-				await ViewModel.ThumbsDown ();
-				SetState ();
-			}));
-
-			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Previous, async (b) => {
-				PlaybackManager.Shared.Previous ();
-				await Task.Delay (toggleDelay);
-				b.Toggled = false;
-			}));
-			ControlsStack.Children.Add (playPauseButton = CreateButton (Images.NowPlayingScreen.Pause, Images.NowPlayingScreen.Play, (b) => {
-				if(b.Toggled)
-					PlaybackManager.Shared.Play ();
-				else
-					PlaybackManager.Shared.Pause ();
-			}));
-			ControlsStack.Children.Add (CreateButton (Images.NowPlayingScreen.Next, async (b) => {
-				await PlaybackManager.Shared.NextTrack ();
-				await Task.Delay (toggleDelay);
-				b.Toggled = false;
-			}));
-			ControlsStack.Children.Add (thumbsUpButton = CreateButton (Images.NowPlayingScreen.ThumbsUp, async (b) => {
-				SetState ();
-				await ViewModel.ThumbsUp ();
-				SetState ();
-			}));
-			
-			MiniPlayer.Children.Add (miniPlayPauseButton = CreateButton (Images.NowPlayingScreen.PauseBordered, Images.NowPlayingScreen.PlayBordered, (b) => {
-				if (b.Toggled)
-					PlaybackManager.Shared.Play ();
-				else
-					PlaybackManager.Shared.Pause ();
-			}), 2, 0);
-
-			BottomBar.Children.Add (CreateButton (Images.NowPlayingScreen.BottomBar.ShareButton, async (b) => {
-				await Task.Delay (toggleDelay);
-				b.Toggled = false;
-			}));
-			BottomBar.Children.Add (CreateButton (Images.NowPlayingScreen.BottomBar.ShuffleButton, (b) => {
-				Settings.ShuffleSongs = b.Toggled;
-				if (Settings.ShuffleSongs) {
-					PlaybackManager.Shared.ShuffleCurrentPlaylist ();
-				}
-			},Settings.ShuffleSongs));
-
-			BottomBar.Children.Add (CreateButton (Images.NowPlayingScreen.BottomBar.RepeatButton, (b) => {
-
-			}));
-
-			BottomBar.Children.Add (CreateButton (Images.NowPlayingScreen.BottomBar.MoreButton, async (b) => {
-				//TODO: Show popup
-				await Task.Delay (toggleDelay);
-				b.Toggled = false;
-			}));
-
-
-			MiniPlayer.GestureRecognizers.Add (new TapGestureRecognizer {
-				Command = new Command ((obj) => {
-					NotificationManager.Shared.ProcToggleNowPlaying ();
-				})
-			});
-
-			navCloseButton.ImageSource = Images.NowPlayingScreen.NavBar.CloseButton;
-			navCloseButton.Clicked += (sender, e) => {
-				NotificationManager.Shared.ProcCloseNowPlaying ();
-			};
-
-
-			navCurrentPlayist.ImageSource = Images.NowPlayingScreen.NavBar.CurrentPlayistButton;
-			navCurrentPlayist.Clicked += (sender, e) => {
-				this.Navigation.PushModalAsync (new NavigationPage (new CurrentPlaylistPage ()));
-			};
-
-
-
-			SetState ();
-			NotificationManager.Shared.PlaybackStateChanged += Shared_PlaybackStateChanged;
-			NotificationManager.Shared.SongDownloadPulsed += Shared_SongDownloadPulsed;
-			this.ViewModel.SubscribeToProperty (nameof (NowPlayingViewModel.TrackPosition),
-				() => {
-					ProgressBar.PlaybackProgress = ViewModel.TrackPosition.Percent;
-				});
-
-			UpdateVisibile (0f);
-		}
+            BuildUI();
+        }
 
 		private void Shared_SongDownloadPulsed (object sender, NotificationManager.SongDowloadEventArgs e)
 		{
@@ -196,7 +110,7 @@ namespace gMusic.Views {
 			};
 		}
 
-
+        float currentPercent;
 		public void UpdateVisibile(float percent)
 		{
 			Console.WriteLine (percent);
@@ -211,7 +125,8 @@ namespace gMusic.Views {
 			}
 			NavBar.Opacity = navVisiblePercent = visible;
 			MiniPlayer.Opacity = 1f - visible;
-			UpdateNavLayout ();
+            currentPercent = percent;
+            UpdateNavLayout ();
 		}
 
 		float navVisiblePercent;
@@ -237,12 +152,111 @@ namespace gMusic.Views {
 			AbsoluteLayout.SetLayoutBounds (BottomControls, new Rectangle (0, 1, 1, bottomViewHeight + navBottomPadding));
 
 		}
-		//protected override void LayoutChildren (double x, double y, double width, double height)
-		//{
-		//	base.LayoutChildren (x, y, width, height);
-		//	var h = BottomControls.Height;
-		//	PaddingRow.Height = h - 56;
-		//}
+        //protected override void LayoutChildren (double x, double y, double width, double height)
+        //{
+        //	base.LayoutChildren (x, y, width, height);
+        //	var h = BottomControls.Height;
+        //	PaddingRow.Height = h - 56;
+        //}
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BuildUI();
+        }
 
-	}
+        void BuildUI()
+        {
+            if (BottomBar.Children.Count > 0)
+                return;
+            ControlsStack.Children.Clear();
+
+            ControlsStack.Children.Add(thumbsDownButton = CreateButton(Images.NowPlayingScreen.ThumbsDown, async (b) => {
+                SetState();
+                await ViewModel.ThumbsDown();
+                SetState();
+            }));
+
+            ControlsStack.Children.Add(CreateButton(Images.NowPlayingScreen.Previous, async (b) => {
+                PlaybackManager.Shared.Previous();
+                await Task.Delay(toggleDelay);
+                b.Toggled = false;
+            }));
+            ControlsStack.Children.Add(playPauseButton = CreateButton(Images.NowPlayingScreen.Pause, Images.NowPlayingScreen.Play, (b) => {
+                if (b.Toggled)
+                    PlaybackManager.Shared.Play();
+                else
+                    PlaybackManager.Shared.Pause();
+            }));
+            ControlsStack.Children.Add(CreateButton(Images.NowPlayingScreen.Next, async (b) => {
+                await PlaybackManager.Shared.NextTrack();
+                await Task.Delay(toggleDelay);
+                b.Toggled = false;
+            }));
+            ControlsStack.Children.Add(thumbsUpButton = CreateButton(Images.NowPlayingScreen.ThumbsUp, async (b) => {
+                SetState();
+                await ViewModel.ThumbsUp();
+                SetState();
+            }));
+
+            MiniPlayer.Children.Add(miniPlayPauseButton = CreateButton(Images.NowPlayingScreen.PauseBordered, Images.NowPlayingScreen.PlayBordered, (b) => {
+                if (b.Toggled)
+                    PlaybackManager.Shared.Play();
+                else
+                    PlaybackManager.Shared.Pause();
+            }), 2, 0);
+
+            BottomBar.Children.Add(CreateButton(Images.NowPlayingScreen.BottomBar.ShareButton, async (b) => {
+                await Task.Delay(toggleDelay);
+                b.Toggled = false;
+            }));
+            BottomBar.Children.Add(CreateButton(Images.NowPlayingScreen.BottomBar.ShuffleButton, (b) => {
+                Settings.ShuffleSongs = b.Toggled;
+                if (Settings.ShuffleSongs)
+                {
+                    PlaybackManager.Shared.ShuffleCurrentPlaylist();
+                }
+            }, Settings.ShuffleSongs));
+
+            BottomBar.Children.Add(CreateButton(Images.NowPlayingScreen.BottomBar.RepeatButton, (b) => {
+
+            }));
+
+            BottomBar.Children.Add(CreateButton(Images.NowPlayingScreen.BottomBar.MoreButton, async (b) => {
+                //TODO: Show popup
+                await Task.Delay(toggleDelay);
+                b.Toggled = false;
+            }));
+
+
+            MiniPlayer.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command((obj) => {
+                    NotificationManager.Shared.ProcToggleNowPlaying();
+                })
+            });
+
+            navCloseButton.ImageSource = Images.NowPlayingScreen.NavBar.CloseButton;
+            navCloseButton.Clicked += (sender, e) => {
+                NotificationManager.Shared.ProcCloseNowPlaying();
+            };
+
+
+            navCurrentPlayist.ImageSource = Images.NowPlayingScreen.NavBar.CurrentPlayistButton;
+            navCurrentPlayist.Clicked += (sender, e) => {
+                this.Navigation.PushModalAsync(new NavigationPage(new CurrentPlaylistPage()));
+            };
+
+
+
+            SetState();
+            NotificationManager.Shared.PlaybackStateChanged += Shared_PlaybackStateChanged;
+            NotificationManager.Shared.SongDownloadPulsed += Shared_SongDownloadPulsed;
+            this.ViewModel.SubscribeToProperty(nameof(NowPlayingViewModel.TrackPosition),
+                () => {
+                    ProgressBar.PlaybackProgress = ViewModel.TrackPosition.Percent;
+                });
+
+            UpdateVisibile(currentPercent);
+        }
+    }
 }
