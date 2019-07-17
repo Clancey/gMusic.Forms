@@ -129,12 +129,13 @@ namespace gMusic.Views {
             UpdateNavLayout ();
 		}
 
-		float navVisiblePercent;
+        const float miniBarHeight = 56f;
+        public const float TotalMiniBarHeight = miniBarHeight;
+        float navVisiblePercent;
 		void UpdateNavLayout()
 		{
 			var topPadding = navTopPadding;
 			const float navBarHeight = 64f;
-			const float miniBarHeight = 56f;
 
 			var range = topPadding + navBarHeight;
 			var travelled = navVisiblePercent * range;

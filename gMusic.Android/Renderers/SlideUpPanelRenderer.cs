@@ -14,6 +14,7 @@ using Android.Runtime;
 using gMusic.Forms.Droid;
 using gMusic;
 using gMusic.Droid;
+using gMusic.Views;
 
 [assembly: ExportRenderer(typeof(SlideUpPanel), typeof(SlideUpPanelRenderer))]
 namespace gMusic.Forms.Droid
@@ -83,7 +84,7 @@ namespace gMusic.Forms.Droid
         {
             get { return _page; }
         }
-
+        
         public event EventHandler<VisualElementChangedEventArgs> ElementChanged;
         public event EventHandler<PropertyChangedEventArgs> ElementPropertyChanged;
 
@@ -113,7 +114,7 @@ namespace gMusic.Forms.Droid
 
             AddView(_masterLayout);
             behaviour = AnchorBottomSheetBehavior.From(_masterLayout);
-            behaviour.PeekHeight = 200;
+            behaviour.PeekHeight = (int)(NowPlayingPage.TotalMiniBarHeight * Android.NGraphicsExtensions.Scale);
             behaviour.DragChanged = (percent) =>
             {
                 var panel = _page as SlideUpPanel;
@@ -261,9 +262,9 @@ namespace gMusic.Forms.Droid
 
         void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Master")
+            if (e.PropertyName == nameof(MasterDetailPage.Master))
                 UpdateMaster();
-            else if (e.PropertyName == "Detail")
+            else if (e.PropertyName == nameof(MasterDetailPage.Detail))
             {
                 UpdateDetail();
                 //((Platform)_page.Platform).UpdateActionBar();
@@ -274,7 +275,7 @@ namespace gMusic.Forms.Droid
                 Presented = _page.IsPresented;
                 _isPresentingFromCore = false;
             }
-            else if (e.PropertyName == "IsGestureEnabled")
+            else if (e.PropertyName == nameof(MasterDetailPage.IsGestureEnabled))
                 SetGestureState();
             else if (e.PropertyName == Page.BackgroundImageProperty.PropertyName)
                 UpdateBackgroundImage(_page);
