@@ -33,8 +33,8 @@
                   BackgroundColor="#80FFFFFF"
                   AbsoluteLayout.LayoutBounds="0,1,1,300"
                   AbsoluteLayout.LayoutFlags="WidthProportional,YProportional">
-                <Grid>
-                    <gMusic:ProgressView  x:Name="ProgressBar"
+                <Grid Padding="6">
+                    <gMusic:ProgressView Margin="-6" x:Name="ProgressBar"
                             ValueChanged="Slider_ValueChanged"
                             Grid.ColumnSpan="3" />
                     <Label FontSize="Small" Text="{Binding TrackPosition.CurrentTimeString}"
@@ -46,18 +46,20 @@
                            Grid.Row="1"
                            Grid.Column="2" />
                 </Grid>
-                <StackLayout Grid.Row="1"
+                <StackLayout Padding="6" Grid.Row="1"
                              VerticalOptions="Center"
                              HorizontalOptions="FillAndExpand">
                     <Label Text="{Binding CurrentSong.Name}"
                            d:Text="All the Small Things"
                            HorizontalTextAlignment="Center"
                            HorizontalOptions="FillAndExpand"
+                           LineBreakMode="TailTruncation"
                            Style="{DynamicResource MainTextLableStyle}" />
                     <Label Text="{Binding CurrentSong.DetailText}"
                            d:Text="Blink-183 - Dude Ranch"
                            HorizontalTextAlignment="Center"
                            HorizontalOptions="FillAndExpand"
+                           LineBreakMode="TailTruncation"
                            Style="{DynamicResource SubTextLableStyle}" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal"
@@ -108,9 +110,11 @@
                              HorizontalOptions="CenterAndExpand">
                     <Label Text="{Binding CurrentSong.Name}"
                            d:Text="All the Small Things"
+                           LineBreakMode="TailTruncation"
                            HorizontalTextAlignment="Center" />
                     <Label Text="{Binding CurrentSong.DetailText}"
                            d:Text="Blink-182"
+                           LineBreakMode="TailTruncation"
                            HorizontalTextAlignment="Center" />
                 </StackLayout>
             </Grid>
