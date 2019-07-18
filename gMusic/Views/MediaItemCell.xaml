@@ -23,13 +23,15 @@
                    Text="{Binding Name}"
                    d:Text="All the Small Things"
                    Style="{DynamicResource MainTextLableStyle}"
-                   LineBreakMode="TailTruncation" />
+                   LineBreakMode="TailTruncation" 
+                   AutomationId="MediaItemText"/>
             <Label x:Name="Detail"
                    HorizontalOptions="FillAndExpand"
                    Text="{Binding DetailText}"
                    d:Text="Blink-182"
                    Style="{DynamicResource SubTextLableStyle}"
-                   LineBreakMode="TailTruncation" />
+                   LineBreakMode="TailTruncation"
+                   AutomationId="MediaItemTextDetail"/>
         </StackLayout>
     </StackLayout>
 

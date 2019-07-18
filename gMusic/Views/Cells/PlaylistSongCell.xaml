@@ -5,7 +5,8 @@
           xmlns:gMusic="clr-namespace:gMusic.Views;assembly=gMusic"
           xmlns="http://xamarin.com/schemas/2014/forms"
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          x:Class="gMusic.Views.PlaylistSongCell">
+          x:Class="gMusic.Views.PlaylistSongCell"
+          AutomationId="PlaylistSongCell">
     <StackLayout x:Name="RootStack" BackgroundColor="{DynamicResource BackgroundColor}"
                  Orientation="Horizontal">
         <ContentView Margin="6">
@@ -23,7 +24,8 @@
                    Text="{Binding Song.Name}"
                    d:Text="All the Small Things"
                    Style="{DynamicResource MainTextLableStyle}"
-                   LineBreakMode="TailTruncation" />
+                   LineBreakMode="TailTruncation" 
+                   AutomationId="SongNameText"/>
             <Label x:Name="Detail"
                    HorizontalOptions="FillAndExpand"
                    Text="{Binding Song.DetailText}"

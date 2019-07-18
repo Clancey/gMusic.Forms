@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gMusic.Android", "gMusic.An
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gMusic.iOS", "gMusic.iOS\gMusic.iOS.csproj", "{75F86240-E0FD-4EF5-97E2-2E694D71A1C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gMusic.UITests", "gMusic.UITests\gMusic.UITests.csproj", "{3648D068-1C43-4D3A-9649-106AE3728B58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,5 +69,17 @@ Global
 		{75F86240-E0FD-4EF5-97E2-2E694D71A1C6}.Debug|iPhone.Build.0 = Debug|iPhone
 		{75F86240-E0FD-4EF5-97E2-2E694D71A1C6}.Release|iPhone.ActiveCfg = Release|iPhone
 		{75F86240-E0FD-4EF5-97E2-2E694D71A1C6}.Release|iPhone.Build.0 = Release|iPhone
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{3648D068-1C43-4D3A-9649-106AE3728B58}.Release|iPhone.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

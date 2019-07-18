@@ -28,6 +28,7 @@ namespace gMusic.Views {
 			this.Children.Add (frame);
 			this.VerticalOptions = LayoutOptions.FillAndExpand;
 			this.HorizontalOptions = LayoutOptions.FillAndExpand;
+            this.AutomationId = "AlbumArtView";
 		}
 
 		public ImageSource LoadingPlaceholder {
