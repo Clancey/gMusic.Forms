@@ -115,7 +115,7 @@ namespace gMusic.Droid
 
 		private const float HIDE_FRICTION = 0.1f;
 
-		private const float ANCHOR_THRESHOLD = 0.25f;
+		private const float ANCHOR_THRESHOLD = 0f;
 
 		private float mAnchorThreshold = ANCHOR_THRESHOLD;
 

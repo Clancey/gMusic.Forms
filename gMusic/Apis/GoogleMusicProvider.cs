@@ -15,6 +15,7 @@ using SimpleAuth;
 using gMusic;
 using gMusic.Api;
 using Xamarin.Essentials;
+using Localizations;
 //using gMusic.ViewModels;
 
 namespace gMusic.Api.GoogleMusic {
@@ -877,98 +878,98 @@ namespace gMusic.Api.GoogleMusic {
 
 		public override async Task<SearchResults> GetArtistDetails (string id)
 		{
-			return await Task.Run (async () => {
-				try {
-					var request = new GoogleMusicApiRequest {
-						method = "sj.artist.get",
-						parameters = new GoogleMusicApiRequest.ArtistParams {
-							ArtistId = id,
-						}
-					};
-					var resp = await Api.Post<ArtistDetailsResponse> (request);
-					var result = new SearchResults {
-					};
+			//return await Task.Run (async () => {
+			//	try {
+			//		var request = new GoogleMusicApiRequest {
+			//			method = "sj.artist.get",
+			//			parameters = new GoogleMusicApiRequest.ArtistParams {
+			//				ArtistId = id,
+			//			}
+			//		};
+			//		var resp = await Api.Post<ArtistDetailsResponse> (request);
+			//		var result = new SearchResults {
+			//		};
 
-					foreach (var x in resp.Result.topTracks) {
-						try {
-							var t = new FullTrackData (x.Title, x.Artist, x.AlbumArtist, x.Album, x.Genre) {
-								Deleted = x.Deleted,
-								Duration = x.Duration,
-								ArtistServerId = x.ArtistMatchedId,
-								AlbumServerId = x.AlbumId,
-								AlbumArtwork = x.AlbumArtRef.Select (a => new AlbumArtwork { Url = a.Url }).ToList (),
-								ArtistArtwork = x.ArtistArtRef.Select (a => new ArtistArtwork { Url = a.Url }).ToList (),
-								MediaType = MediaType.Audio,
-								PlayCount = x.PlayCount,
-								ServiceId = Api.CurrentAccount.Identifier,
-								Id = x.Type == 0 ? x.Id : !string.IsNullOrWhiteSpace (x.StoreId) && x.StoreId.StartsWith ("T") ? x.StoreId : x.Id,
-								ServiceType = ServiceType.Google,
-								Rating = x.Rating,
-								FileExtension = "mp3",
-								Disc = x.Disc,
-								Track = x.Track,
-								Year = x.Year,
-							};
-							if (!x.IsAllAccess) {
-								result.Songs.Add (new Song (t.Title, t.NormalizedTitle));
-								continue;
-							}
+			//		foreach (var x in resp.Result.topTracks) {
+			//			try {
+			//				var t = new FullTrackData (x.Title, x.Artist, x.AlbumArtist, x.Album, x.Genre) {
+			//					Deleted = x.Deleted,
+			//					Duration = x.Duration,
+			//					ArtistServerId = x.ArtistMatchedId,
+			//					AlbumServerId = x.AlbumId,
+			//					AlbumArtwork = x.AlbumArtRef.Select (a => new AlbumArtwork { Url = a.Url }).ToList (),
+			//					ArtistArtwork = x.ArtistArtRef.Select (a => new ArtistArtwork { Url = a.Url }).ToList (),
+			//					MediaType = MediaType.Audio,
+			//					PlayCount = x.PlayCount,
+			//					ServiceId = Api.CurrentAccount.Identifier,
+			//					Id = x.Type == 0 ? x.Id : !string.IsNullOrWhiteSpace (x.StoreId) && x.StoreId.StartsWith ("T") ? x.StoreId : x.Id,
+			//					ServiceType = ServiceType.Google,
+			//					Rating = x.Rating,
+			//					FileExtension = "mp3",
+			//					Disc = x.Disc,
+			//					Track = x.Track,
+			//					Year = x.Year,
+			//				};
+			//				if (!x.IsAllAccess) {
+			//					Songs.Add (new Song (t.Title, t.NormalizedTitle));
+			//					continue;
+			//				}
 
-							result.Songs.Add (new OnlineSong (t.Title, t.NormalizedTitle) {
-								Id = t.SongId,
-								Artist = t.Artist,
-								Album = t.Album,
-								AlbumId = t.AlbumId,
-								ArtistId = t.Artist,
-								Disc = t.Disc,
-								Genre = t.Genre,
-								Rating = t.Rating,
-								TrackCount = t.Track,
-								Year = t.Year,
-								TrackData = t,
-							});
-							continue;
-						} catch (Exception ex) {
-							ex.Data ["Description"] = "Error processing Search Entries";
-							ex.Data ["Service Type"] = ServiceType;
-							ex.Data ["Entry"] = x.ToJson ();
-							LogManager.Shared.Report (ex);
-						}
-					}
+			//				Songs.Add (new OnlineSong (t.Title, t.NormalizedTitle) {
+			//					Id = t.SongId,
+			//					Artist = t.Artist,
+			//					Album = t.Album,
+			//					AlbumId = t.AlbumId,
+			//					ArtistId = t.Artist,
+			//					Disc = t.Disc,
+			//					Genre = t.Genre,
+			//					Rating = t.Rating,
+			//					TrackCount = t.Track,
+			//					Year = t.Year,
+			//					TrackData = t,
+			//				});
+			//				continue;
+			//			} catch (Exception ex) {
+			//				ex.Data ["Description"] = "Error processing Search Entries";
+			//				ex.Data ["Service Type"] = ServiceType;
+			//				ex.Data ["Entry"] = x.ToJson ();
+			//				LogManager.Shared.Report (ex);
+			//			}
+			//		}
 
-					foreach (var r in resp.Result.related_artists) {
+			//		foreach (var r in resp.Result.related_artists) {
 
-						var t = new FullTrackData ("", r.name, r.name, "", "");
-						var a = new OnlineArtist (t.Artist, t.NormalizedAlbumArtist) {
-							OnlineId = r.artistId,
-							AllArtwork =
-								new [] { new ArtistArtwork { ArtistId = t.ArtistId, ServiceType = ServiceType, Url = r.artistArtRef } },
-						};
-						result.Artist.Add (a);
-					}
+			//			var t = new FullTrackData ("", r.name, r.name, "", "");
+			//			var a = new OnlineArtist (t.Artist, t.NormalizedAlbumArtist) {
+			//				OnlineId = r.artistId,
+			//				AllArtwork =
+			//					new [] { new ArtistArtwork { ArtistId = t.ArtistId, ServiceType = ServiceType, Url = r.artistArtRef } },
+			//			};
+			//			Artist.Add (a);
+			//		}
 
-					foreach (var r in resp.Result.albums) {
-						var t = new FullTrackData ("", r.artist, r.albumArtist, r.name, "");
-						var a = new OnlineAlbum (t.Album, t.NormalizedAlbum) {
-							ServiceType = ServiceType,
-							Id = t.AlbumId,
-							Artist = t.Artist,
-							AlbumArtist = t.AlbumArtist,
-							ArtistId = t.ArtistId,
-							AlbumId = r.albumId,
-							Year = r.year,
-							AllArtwork =
-								new [] { new AlbumArtwork { AlbumId = t.AlbumId, Url = r.albumArtRef, ServiceType = ServiceType }, },
-						};
-						result.Albums.Add (a);
-					}
+			//		foreach (var r in resp.Result.albums) {
+			//			var t = new FullTrackData ("", r.artist, r.albumArtist, r.name, "");
+			//			var a = new OnlineAlbum (t.Album, t.NormalizedAlbum) {
+			//				ServiceType = ServiceType,
+			//				Id = t.AlbumId,
+			//				Artist = t.Artist,
+			//				AlbumArtist = t.AlbumArtist,
+			//				ArtistId = t.ArtistId,
+			//				AlbumId = r.albumId,
+			//				Year = r.year,
+			//				AllArtwork =
+			//					new [] { new AlbumArtwork { AlbumId = t.AlbumId, Url = r.albumArtRef, ServiceType = ServiceType }, },
+			//			};
+			//			result.Albums.Add (a);
+			//		}
 
-					return result;
-				} catch (Exception ex) {
-					LogManager.Shared.Report (ex);
-				}
+			//		return result;
+			//	} catch (Exception ex) {
+			//		LogManager.Shared.Report (ex);
+			//	}
 				return null;
-			});
+			//});
 		}
 
 		public override Task<List<OnlinePlaylistEntry>> GetPlaylistEntries (OnlinePlaylist playlist)
@@ -1136,18 +1137,35 @@ namespace gMusic.Api.GoogleMusic {
 							MaxResults = 25
 						}
 					};
+                    //cachedResult = null;
 					var resp = cachedResult ?? await Api.Post<SearchResultResponse>(request);
 					var result = new SearchResults
 					{
 						Query = query,
 					};
+
+
+                    var Songs = new List<MediaItemBase>();
+                    var Videos = new List<MediaItemBase>();
+                    var Artists = new List<MediaItemBase>();
+                    var Albums = new List<MediaItemBase>();
+                    var Genres = new List<MediaItemBase>();
+                    var Playlists  = new List<MediaItemBase>();
+                    var RadioStations = new List<MediaItemBase>();
+
+                    Dictionary<string, string> TypeMapping = new Dictionary<string, string>();
+
+                    
+
 					foreach (var r in resp.Result.entries)
 					{
 						try
 						{
 							if (r.track != null)
 							{
-								var x = r.track;
+                                var type =  r.type;
+                                TypeMapping[type] = nameof(Strings.Songs);
+                                var x = r.track;
 								var id = x.Type == 0 ? x.Id : !string.IsNullOrWhiteSpace(x.StoreId) && x.StoreId.StartsWith("T") ? x.StoreId : x.Id;
 								var t = new FullTrackData(x.Title, x.Artist, x.AlbumArtist, x.Album, x.Genre)
 								{
@@ -1172,11 +1190,11 @@ namespace gMusic.Api.GoogleMusic {
 								};
 								if (!r.track.IsAllAccess)
 								{
-									result.Songs.Add(new Song(t.Title, t.NormalizedTitle));
+									Songs.Add(new Song(t.Title, t.NormalizedTitle));
 									continue;
 								}
 
-								result.Songs.Add(new OnlineSong(t.Title, t.NormalizedTitle)
+								Songs.Add(new OnlineSong(t.Title, t.NormalizedTitle)
 								{
 									Id = t.SongId,
 									Artist = t.Artist,
@@ -1193,8 +1211,10 @@ namespace gMusic.Api.GoogleMusic {
 								continue;
 							}
 							if (r.youtube_video != null)
-							{
-								var x = r.youtube_video;
+                            {
+                                var type = r.type;
+                                TypeMapping[type] = nameof(Strings.Videos);
+                                var x = r.youtube_video;
 								var t = new FullTrackData(x.title, "", "", "", "")
 								{
 									AlbumArtwork =
@@ -1205,7 +1225,7 @@ namespace gMusic.Api.GoogleMusic {
 									ServiceType = ServiceType.Google,
 									FileExtension = "mp4",
 								};
-								result.Videos.Add(new OnlineSong(t.Title, t.NormalizedTitle)
+								Videos.Add(new OnlineSong(t.Title, t.NormalizedTitle)
 								{
 									Id = t.SongId,
 									Artist = t.Artist,
@@ -1223,8 +1243,10 @@ namespace gMusic.Api.GoogleMusic {
 							}
 
 							if (r.album != null)
-							{
-								var t = new FullTrackData("", r.album.artist, r.album.albumArtist, r.album.name, "");
+                            {
+                                var type = r.type;
+                                TypeMapping[type] = nameof(Strings.Albums);
+                                var t = new FullTrackData("", r.album.artist, r.album.albumArtist, r.album.name, "");
 								var a = new OnlineAlbum(t.Album, t.NormalizedAlbum)
 								{
 									ServiceType = ServiceType,
@@ -1237,27 +1259,30 @@ namespace gMusic.Api.GoogleMusic {
 									AllArtwork =
 										new[] { new AlbumArtwork { AlbumId = t.AlbumId, Url = r.album.albumArtRef, ServiceType = ServiceType }, },
 								};
-								result.Albums.Add(a);
+								Albums.Add(a);
 								continue;
 							}
 
 							if (r.artist != null)
 							{
-
-								var t = new FullTrackData("", r.artist.name, r.artist.name, "", "");
+                                var type = r.type;
+                                TypeMapping[type] = nameof(Strings.Artists);
+                                var t = new FullTrackData("", r.artist.name, r.artist.name, "", "");
 								var a = new OnlineArtist(t.Artist, t.NormalizedAlbumArtist)
 								{
 									OnlineId = r.artist.artistId,
 									AllArtwork =
 										new[] { new ArtistArtwork { ArtistId = t.ArtistId, ServiceType = ServiceType, Url = r.artist.artistArtRef } },
 								};
-								result.Artist.Add(a);
+								Artists.Add(a);
 								continue;
 							}
 
 							if (r.station != null)
 							{
-								var artwork = r.station.CompositeArtRefs?.Select(x => new RadioStationArtwork
+                                var type = r.type;
+                                TypeMapping[type] = nameof(Strings.RadioStations);
+                                var artwork = r.station.CompositeArtRefs?.Select(x => new RadioStationArtwork
 								{
 									ServiceType = ServiceType,
 									Url = x.Url,
@@ -1287,13 +1312,15 @@ namespace gMusic.Api.GoogleMusic {
 										};
 									}).ToArray(),
 								};
-								result.RadioStations.Add(s);
+								RadioStations.Add(s);
 								continue;
 							}
 
 							if (r.playlist != null)
 							{
-								var p = new OnlinePlaylist
+                                var type = r.type;
+                                TypeMapping[type] = nameof(Strings.Playlists);
+                                var p = new OnlinePlaylist
 								{
 									ServiceType = ServiceType,
 									Name = r.playlist.name,
@@ -1305,7 +1332,7 @@ namespace gMusic.Api.GoogleMusic {
 									Description = r.playlist.description,
 									AllArtwork = r.playlist.albumArtRef?.Select(x => new AlbumArtwork { Url = x.url }).ToArray() ?? new AlbumArtwork[0],
 								};
-								result.Playlists.Add(p);
+								Playlists.Add(p);
 								continue;
 							}
 						}
@@ -1318,6 +1345,40 @@ namespace gMusic.Api.GoogleMusic {
 						}
 					}
 
+
+                    //var unUsed = resp.Result.clusterOrder.Where(x => !TypeMapping.ContainsKey(x)).ToList();
+                    //var unUsedItems = resp.Result.entries.Where(x => unUsed.Contains(x.type)).ToList();
+
+                    Func<string,(string,List<MediaItemBase>)> getList = (id) => {
+                        switch (id)
+                        {
+                            case nameof(Strings.Songs):
+                                return (Strings.Songs, Songs);
+                            case nameof(Strings.Artists):
+                                return (Strings.Artist, Artists);
+                            case nameof(Strings.Albums):
+                                return (Strings.Albums, Albums);
+                            case nameof(Strings.Videos):
+                                return (Strings.Videos, Videos);
+                            case nameof(Strings.Genres):
+                               return (Strings.Genres, Genres);
+                            case nameof(Strings.Playlists):
+                                return (Strings.Playlists, Playlists);
+                            case nameof(Strings.RadioStations):
+                                return (Strings.RadioStations, RadioStations);
+                        }
+                        return (null,null);
+                    };
+
+                    foreach(var typeId in resp.Result.clusterOrder)
+                    {
+                        if(TypeMapping.TryGetValue(typeId, out var id))
+                        {
+                            var items = getList(id);
+                            if(items.Item2?.Count > 0)
+                                result.Add(items.Item1,items.Item2);
+                        }
+                    }
 					RequestCache<SearchResultResponse>.WebSearchResults.Add(query, resp);
 					return result;
 				}

@@ -113,6 +113,10 @@ namespace gMusic.Views {
 
 		void SetAsSingleImage(string url)
 		{
+            if(string.IsNullOrWhiteSpace(url))
+            {
+                Console.WriteLine(url);
+            }
 			image.Source = new UriImageSource { Uri = new Uri (url) };
 			images.ForEach (i => i.IsVisible = false);
 		}

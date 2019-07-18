@@ -142,8 +142,11 @@ namespace gMusic.Api.GoogleMusic
 				ClearCookiesBeforeLogin = CalledReset,
 			};
 		}
-
-		public async Task<T> Post<T>(GoogleMusicApiRequest request, bool includeDeviceHeaders = false) where T : RootApiObject
+        protected override T Deserialize<T>(string data)
+        {
+            return base.Deserialize<T>(data);
+        }
+        public async Task<T> Post<T>(GoogleMusicApiRequest request, bool includeDeviceHeaders = false) where T : RootApiObject
 		{
 			if (CurrentAccount == null)
 				await Authenticate ();

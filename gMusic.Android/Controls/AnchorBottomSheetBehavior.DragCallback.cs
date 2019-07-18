@@ -4,7 +4,7 @@ using Android.Support.V4.Widget;
 using Android.Views;
 
 using Debug = System.Diagnostics.Debug;
-
+using gMusic;
 namespace gMusic.Droid
 {
 	public enum AnchorBottomSheetState
@@ -70,7 +70,9 @@ namespace gMusic.Droid
 			mAnchorThreshold = value;
 		}
 
-		private class AnchorSheetDragCallback : ViewDragHelper.Callback
+        public Action<float> DragChanged { get; set; }
+
+        private class AnchorSheetDragCallback : ViewDragHelper.Callback
 		{
 			private readonly AnchorBottomSheetBehavior mBehavior;
 
@@ -105,10 +107,14 @@ namespace gMusic.Droid
 					&& mBehavior.mViewRef.TryGetTarget(out currentChild)
 					&& currentChild == child;
 			}
-
 			public override void OnViewPositionChanged(View changedView, int left, int top, int dx, int dy)
 			{
-				mBehavior.dispatchOnSlide(top);
+
+                var height = changedView.Height;
+                var percent = ((double)(height - top)).SafeDivideByZero(height);
+                mBehavior.DragChanged?.Invoke((float)percent);
+                Debug.WriteLine(percent);
+                mBehavior.dispatchOnSlide(top);
 			}
 
 			public override void OnViewDragStateChanged(int state)
