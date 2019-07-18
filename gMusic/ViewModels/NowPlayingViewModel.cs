@@ -31,6 +31,7 @@ namespace gMusic.ViewModels {
 				CurrentSong = Database.Main.GetObject<Song> (Settings.CurrentSong);
 
 			NotificationManager.Shared.CurrentTrackPositionChanged += Shared_CurrentTrackPositionChanged;
+            CurrentSong = PlaybackManager.Shared.Player.CurrentSong;
 		}
 
 		private void Shared_CurrentTrackPositionChanged (object sender, EventArgs<TrackPosition> e)
