@@ -56,7 +56,9 @@ namespace gMusic
                     Title = "gMusic",
                     Master = new SideNavigationPage { BindingContext = this },
                     Detail = GetInitialPage(),
+                    AutomationId = "MasterDetailPage"
                 }),
+                AutomationId="SlideUpPanel"
             };
         }
 
@@ -64,12 +66,14 @@ namespace gMusic
         {
             return MasterDetail = new MasterDetailPage
             {
-                Master = new SideNavigationPage { BindingContext = this },
+                Master = new SideNavigationPage { BindingContext = this, AutomationId="SideNavigationPage" },
                 Detail = (SlideUpPanel = new SlideUpPanel
                 {
                     Master = new NowPlayingPage { Title = "gMusic" },
                     Detail = GetInitialPage(),
+                    AutomationId = "SlideUpPanel"
                 }),
+                AutomationId="MainMasterDetailPage"
             };
         }
 

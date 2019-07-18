@@ -38,7 +38,8 @@ namespace gMusic.Views
 					}
 				},
 				VerticalOptions = LayoutOptions.Center,
-				HorizontalOptions = LayoutOptions.End
+				HorizontalOptions = LayoutOptions.End,
+                AutomationId = "ModeDetailsButton"
 			};
 
 

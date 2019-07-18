@@ -35,10 +35,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests.cs" />
-    <Compile Include="AppInitializer.cs" />
-    <Compile Include="Pages\HomePage.cs" />
-    <Compile Include="Tests\SettingsTest.cs" />
+    <Compile Include="PlatformQuery.cs" />
+    <Compile Include="BaseTestFixture.cs" />
+    <Compile Include="BasePage.cs" />
+    <Compile Include="AppManager.cs" />
+    <Compile Include="Pages\NowPlayingPage.cs" />
+    <Compile Include="Tests\Tests.cs" />
+    <Compile Include="Pages\RootPage.cs" />
+    <Compile Include="Pages\WelcomePage.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
