@@ -64,7 +64,6 @@ namespace gMusic.Views {
 			labels.Add (label);
 			content.Children.Add (label);
 
-            view.AutomationId = "SearchResultView";
 			views.Add (view);
 			content.Children.Add (view);
             content.ForceLayout();

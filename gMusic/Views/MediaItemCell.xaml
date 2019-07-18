@@ -5,8 +5,7 @@
           xmlns:gMusic="clr-namespace:gMusic.Views;assembly=gMusic"
           xmlns="http://xamarin.com/schemas/2014/forms"
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          x:Class="gMusic.Views.MediaItemCell"
-          AutomationId="MediaItemCell">
+          x:Class="gMusic.Views.MediaItemCell">
     <StackLayout x:Name="RootStack" BackgroundColor="{DynamicResource BackgroundColor}"
                  Orientation="Horizontal">
         <ContentView Margin="6">

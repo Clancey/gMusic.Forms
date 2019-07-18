@@ -3,9 +3,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cells="clr-namespace:gMusic.Views;assembly=gMusic"
-    x:Class="gMusic.Views.SearchResultsView">
+    x:Class="gMusic.Views.SearchResultsView"
+    AutomationId="SearchResultView">
     <ContentView.Content>
-         <ListView x:Name="ItemsListView" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding QuickJump}" ItemsSource="{Binding Sections, Mode=TwoWay}" VerticalOptions="FillAndExpand" HasUnevenRows="True"
+         <ListView x:Name="ItemsListView" AutomationId="SearchResultsItemsListView" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding QuickJump}" ItemsSource="{Binding Sections, Mode=TwoWay}" VerticalOptions="FillAndExpand" HasUnevenRows="True"
                 CachingStrategy="RecycleElement" BackgroundColor="{DynamicResource BackgroundColor}" ItemSelected="OnSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>

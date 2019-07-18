@@ -12,7 +12,8 @@
         </Grid.RowDefinitions>
         <SearchBar x:Name="SearchBar"
                    TextChanged="Handle_TextChanged" BackgroundColor="White"
-                   SearchButtonPressed="Handle_SearchButtonPressed" />
+                   SearchButtonPressed="Handle_SearchButtonPressed"
+                   AutomationId="SearchBarField"/>
         <BoxView BackgroundColor="LightGray" Grid.Row="1" />
         <gMusic:PanaramaView x:Name="Panarama" Grid.Row="2"/>
     </Grid>

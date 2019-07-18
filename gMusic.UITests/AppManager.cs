@@ -39,7 +39,7 @@ namespace gMusic.UITests
                 app = ConfigureApp
                     .Android
                      // Used to run a .apk file:
-                     .ApkFile("../../../Binaries/com.sweeky.gmusic-Signed.apk")
+                     .ApkFile("../../../Binaries/com.iis.gmusic-Signed.apk")
                     .StartApp(Xamarin.UITest.Configuration.AppDataMode.DoNotClear);
             }
 

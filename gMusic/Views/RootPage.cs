@@ -66,7 +66,7 @@ namespace gMusic
         {
             return MasterDetail = new MasterDetailPage
             {
-                Master = new SideNavigationPage { BindingContext = this, AutomationId="SideNavigationPage" },
+                Master = new SideNavigationPage { BindingContext = this },
                 Detail = (SlideUpPanel = new SlideUpPanel
                 {
                     Master = new NowPlayingPage { Title = "gMusic" },

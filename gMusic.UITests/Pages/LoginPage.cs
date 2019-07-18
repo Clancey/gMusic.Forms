@@ -19,16 +19,29 @@ namespace gMusic.UITests
 
         public LoginPage()
         {
-            emailField = x => x.Css("#Email");
-            nextButton = x => x.Css("#next");
-            passwordField = x => x.Css("#Passwd");
-            signInButton = x => x.Css("#signIn");
+            if(OnAndroid)
+            {
+                emailField = x => x.Css("#identifierId");
+                nextButton = x => x.Css("#identifierNext");
+                passwordField = x => x.Css("#password");
+                signInButton = x => x.Css("#passwordNext");
+            }
+
+            if (OniOS)
+            {
+                emailField = x => x.Css("#Email");
+                nextButton = x => x.Css("#next");
+                passwordField = x => x.Css("#Passwd");
+                signInButton = x => x.Css("#signIn");
+            }
         }
 
         public LoginPage EnterEmail(string email)
         {
             app.WaitForElement(emailField);
             app.Tap(emailField);
+            if (OnAndroid)
+                app.Tap(emailField);
             app.EnterText(email);
             app.DismissKeyboard();
             app.Screenshot("Email Entered");

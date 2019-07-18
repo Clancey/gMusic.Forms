@@ -44,6 +44,8 @@
     <Compile Include="Pages\RootPage.cs" />
     <Compile Include="Pages\WelcomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\SearchPage.cs" />
+    <Compile Include="TestConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -89,7 +89,7 @@ namespace gMusic.Views {
 			miniPlayPauseButton.Toggled = playPauseButton.Toggled = (e.Data == Models.PlaybackState.Buffering || e.Data ==  Models.PlaybackState.Playing);
 		}
 
-		static ImageColorToggleButton CreateButton (FontImageSource source, Action<ToggleButton> action, bool state = false)
+		static ImageColorToggleButton CreateButton (FontImageSource source, Action<ToggleButton> action, string automationId, bool state = false)
 		{
 			return new ImageColorToggleButton {
 				Source = source,
@@ -97,9 +97,10 @@ namespace gMusic.Views {
 				VerticalOptions = LayoutOptions.Center,
 				Toggled = state,
 				Tapped = action,
+                AutomationId = automationId
 			};
 		}
-		static ImageToggleButton CreateButton (FontImageSource onImage, FontImageSource offImage, Action<ToggleButton> action)
+		static ImageToggleButton CreateButton (FontImageSource onImage, FontImageSource offImage, Action<ToggleButton> action, string automationId)
 		{
 			return new ImageToggleButton {
 				OnImageSource = onImage,
@@ -107,6 +108,7 @@ namespace gMusic.Views {
 				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.Center,
 				Tapped = action,
+                AutomationId = automationId
 			};
 		}
 
@@ -175,58 +177,64 @@ namespace gMusic.Views {
                 SetState();
                 await ViewModel.ThumbsDown();
                 SetState();
-            }));
-
+            },
+            automationId:"thumbsDownButton"));
             ControlsStack.Children.Add(CreateButton(Images.NowPlayingScreen.Previous, async (b) => {
                 PlaybackManager.Shared.Previous();
                 await Task.Delay(toggleDelay);
                 b.Toggled = false;
-            }));
+            },
+            automationId:"previousButton"));
             ControlsStack.Children.Add(playPauseButton = CreateButton(Images.NowPlayingScreen.Pause, Images.NowPlayingScreen.Play, (b) => {
                 if (b.Toggled)
                     PlaybackManager.Shared.Play();
                 else
                     PlaybackManager.Shared.Pause();
-            }));
+                this.playPauseButton.AutomationId = "playPausButton";
+            },
+            automationId:"playPauseButton"));
             ControlsStack.Children.Add(CreateButton(Images.NowPlayingScreen.Next, async (b) => {
                 await PlaybackManager.Shared.NextTrack();
                 await Task.Delay(toggleDelay);
                 b.Toggled = false;
-            }));
+            },
+            automationId:"nextButton"));
             ControlsStack.Children.Add(thumbsUpButton = CreateButton(Images.NowPlayingScreen.ThumbsUp, async (b) => {
                 SetState();
                 await ViewModel.ThumbsUp();
                 SetState();
-            }));
+            },
+            automationId:"thumbsUpButton"));
 
             MiniPlayer.Children.Add(miniPlayPauseButton = CreateButton(Images.NowPlayingScreen.PauseBordered, Images.NowPlayingScreen.PlayBordered, (b) => {
                 if (b.Toggled)
                     PlaybackManager.Shared.Play();
                 else
                     PlaybackManager.Shared.Pause();
-            }), 2, 0);
+            }, automationId:"miniPlayPauseButton"), 2, 0);
 
             BottomBar.Children.Add(CreateButton(Images.NowPlayingScreen.BottomBar.ShareButton, async (b) => {
                 await Task.Delay(toggleDelay);
                 b.Toggled = false;
-            }));
+            },
+            automationId:"shareButton"));
             BottomBar.Children.Add(CreateButton(Images.NowPlayingScreen.BottomBar.ShuffleButton, (b) => {
                 Settings.ShuffleSongs = b.Toggled;
                 if (Settings.ShuffleSongs)
                 {
                     PlaybackManager.Shared.ShuffleCurrentPlaylist();
                 }
-            }, Settings.ShuffleSongs));
+            },automationId:"shuffleButton", Settings.ShuffleSongs));
 
             BottomBar.Children.Add(CreateButton(Images.NowPlayingScreen.BottomBar.RepeatButton, (b) => {
 
-            }));
+            }, automationId:"repeatButton"));
 
             BottomBar.Children.Add(CreateButton(Images.NowPlayingScreen.BottomBar.MoreButton, async (b) => {
                 //TODO: Show popup
                 await Task.Delay(toggleDelay);
                 b.Toggled = false;
-            }));
+            }, automationId:"moreButton"));
 
 
             MiniPlayer.GestureRecognizers.Add(new TapGestureRecognizer
@@ -237,12 +245,14 @@ namespace gMusic.Views {
             });
 
             navCloseButton.ImageSource = Images.NowPlayingScreen.NavBar.CloseButton;
+            navCloseButton.AutomationId = "NavCloseButton";
             navCloseButton.Clicked += (sender, e) => {
                 NotificationManager.Shared.ProcCloseNowPlaying();
             };
 
 
             navCurrentPlayist.ImageSource = Images.NowPlayingScreen.NavBar.CurrentPlayistButton;
+            navCurrentPlayist.AutomationId = "NavCurrentPlaylistButton";
             navCurrentPlayist.Clicked += (sender, e) => {
                 this.Navigation.PushModalAsync(new NavigationPage(new CurrentPlaylistPage()));
             };
