@@ -5,13 +5,13 @@ using gMusic.ViewModels;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
-	public partial class SimpleDatabaseListView : ContentPage {
+	public partial class SimpleDatabaseListViewPage : ContentPage {
 		public BaseViewModel ViewModel {
 			get => BindingContext as BaseViewModel;
 			set => BindingContext = value;
 		}
 
-		public SimpleDatabaseListView ()
+		public SimpleDatabaseListViewPage ()
 		{
 			InitializeComponent ();
 		}

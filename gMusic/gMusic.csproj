@@ -151,9 +151,6 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\MediaItemCell.xaml.cs">
       <DependentUpon>MediaItemCell.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\SimpleDatabaseListView.xaml.cs">
-      <DependentUpon>SimpleDatabaseListView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="..\ApiConstants.targets" />
 </Project>
