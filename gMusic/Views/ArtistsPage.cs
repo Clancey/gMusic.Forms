@@ -5,7 +5,7 @@ using Localizations;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
-	public class ArtistsPage : SimpleDatabaseListView {
+	public class ArtistsPage : SimpleDatabaseListViewPage {
 		public ArtistsPage ()
 		{
 			this.ViewModel = new SimpleDatabaseViewModel<Artist> {

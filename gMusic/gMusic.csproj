@@ -146,11 +146,8 @@
     <EmbeddedResource Include="Resources\Svg\youtubeLogo.svg" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\SongViewCell.xaml.cs">
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\MediaItemCell.xaml.cs">
       <DependentUpon>MediaItemCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\SimpleDatabaseListView.xaml.cs">
-      <DependentUpon>SimpleDatabaseListView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="..\ApiConstants.targets" />

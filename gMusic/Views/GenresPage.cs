@@ -4,7 +4,8 @@ using gMusic.ViewModels;
 using Localizations;
 
 namespace gMusic.Views {
-	public class GenresPage : SimpleDatabaseListView{
+	public class GenresPage : SimpleDatabaseListViewPage
+    {
 		public GenresPage ()
 		{
 			this.ViewModel = new SimpleDatabaseViewModel<Genre> {
