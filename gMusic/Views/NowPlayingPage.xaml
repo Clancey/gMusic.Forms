@@ -49,12 +49,15 @@
                 <StackLayout Padding="6" Grid.Row="1"
                              VerticalOptions="Center"
                              HorizontalOptions="FillAndExpand">
-                    <Label Text="{Binding CurrentSong.Name}"
+                    <gMusic:OverflowLabel x:Name="Overflow" >
+                        <gMusic:OverflowLabel.Label>
+                            <Label Text="{Binding CurrentSong.Name}"
                            d:Text="All the Small Things"
                            HorizontalTextAlignment="Center"
                            HorizontalOptions="FillAndExpand"
-                           LineBreakMode="TailTruncation"
                            Style="{DynamicResource MainTextLableStyle}" />
+                         </gMusic:OverflowLabel.Label>
+                    </gMusic:OverflowLabel> 
                     <Label Text="{Binding CurrentSong.DetailText}"
                            d:Text="Blink-183 - Dude Ranch"
                            HorizontalTextAlignment="Center"
