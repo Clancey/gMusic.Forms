@@ -115,6 +115,7 @@
     <Compile Include="Renderers\GradientListViewRenderer.cs" />
     <Compile Include="WebAuthenticator.cs" />
     <Compile Include="Renderers\BlurViewRender.cs" />
+    <Compile Include="Renderers\PagingScrollViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
