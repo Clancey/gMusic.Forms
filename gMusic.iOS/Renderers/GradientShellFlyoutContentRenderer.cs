@@ -9,9 +9,9 @@ namespace gMusic.iOS.Renderers {
 		{
 
 		}
-		protected override void UpdateBackgroundColor ()
-		{
 
+        protected override void UpdateBackground()
+        { 
 			var tv = View.Subviews.OfType<UITableView> ().FirstOrDefault();
 			tv.BackgroundColor = View.BackgroundColor = UIColor.FromPatternImage (UIImage.FromBundle ("launchBg"));
 			tv.BackgroundView = new BluredView (UIBlurEffectStyle.Light);
