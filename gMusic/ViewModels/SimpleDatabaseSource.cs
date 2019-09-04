@@ -86,7 +86,7 @@ namespace gMusic.ViewModels
 
 		public IEnumerator GetEnumerator () => throw new NotImplementedException ();
 
-		public int IndexOf (object value) => throw new NotImplementedException ();
+        public int IndexOf(object value) => -1;
 
 		public void Insert (int index, object value) => throw new NotImplementedException ();
 
