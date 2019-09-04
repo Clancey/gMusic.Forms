@@ -8,7 +8,7 @@ using Localizations;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
-	public class PlaylistsPage : SimpleDatabaseListView {
+	public class PlaylistsPage : SimpleDatabaseListViewPage {
 
 		public bool IsPicker { get; set; }
 		public object MusicManger { get; private set; }

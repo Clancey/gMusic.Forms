@@ -14,6 +14,7 @@ using Android.Runtime;
 using gMusic.Forms.Droid;
 using gMusic;
 using gMusic.Droid;
+using gMusic.Views;
 
 [assembly: ExportRenderer(typeof(SlideUpPanel), typeof(SlideUpPanelRenderer))]
 namespace gMusic.Forms.Droid
@@ -69,6 +70,7 @@ namespace gMusic.Forms.Droid
 
         public void OnDrawerSlide(AView drawerView, float slideOffset)
         {
+            Console.WriteLine(slideOffset);
         }
 
         public void OnDrawerStateChanged(int newState)
@@ -82,7 +84,7 @@ namespace gMusic.Forms.Droid
         {
             get { return _page; }
         }
-
+        
         public event EventHandler<VisualElementChangedEventArgs> ElementChanged;
         public event EventHandler<PropertyChangedEventArgs> ElementPropertyChanged;
 
@@ -97,6 +99,7 @@ namespace gMusic.Forms.Droid
             MasterDetailPage oldElement = _page;
             _page = element as MasterDetailPage;
 
+            
             _detailLayout = new MasterDetailContainer(_page, false, Context) { LayoutParameters = new LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent) };
 
             var parameters = new CoordinatorLayout.LayoutParams(new LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent) { Gravity = (int)GravityFlags.Start });
@@ -111,7 +114,13 @@ namespace gMusic.Forms.Droid
 
             AddView(_masterLayout);
             behaviour = AnchorBottomSheetBehavior.From(_masterLayout);
-            behaviour.PeekHeight = 200;
+            behaviour.PeekHeight = (int)(NowPlayingPage.TotalMiniBarHeight * Android.NGraphicsExtensions.Scale);
+            behaviour.DragChanged = (percent) =>
+            {
+                var panel = _page as SlideUpPanel;
+                if(panel != null)
+                    panel.PercentVisible = (float)percent;
+            };
 
 
             var activity = Context as Activity;
@@ -253,9 +262,9 @@ namespace gMusic.Forms.Droid
 
         void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Master")
+            if (e.PropertyName == nameof(MasterDetailPage.Master))
                 UpdateMaster();
-            else if (e.PropertyName == "Detail")
+            else if (e.PropertyName == nameof(MasterDetailPage.Detail))
             {
                 UpdateDetail();
                 //((Platform)_page.Platform).UpdateActionBar();
@@ -266,7 +275,7 @@ namespace gMusic.Forms.Droid
                 Presented = _page.IsPresented;
                 _isPresentingFromCore = false;
             }
-            else if (e.PropertyName == "IsGestureEnabled")
+            else if (e.PropertyName == nameof(MasterDetailPage.IsGestureEnabled))
                 SetGestureState();
             else if (e.PropertyName == Page.BackgroundImageProperty.PropertyName)
                 UpdateBackgroundImage(_page);
@@ -488,11 +497,11 @@ namespace gMusic.Forms.Droid
 
         protected void SetDefaultBackgroundColor(IVisualElementRenderer renderer)
         {
-            if (ChildView.BackgroundColor == Color.Default)
-            {
-                TypedArray colors = Context.Theme.ObtainStyledAttributes(new[] { global::Android.Resource.Attribute.ColorBackground });
-                renderer.View.SetBackgroundColor(new global::Android.Graphics.Color(colors.GetColor(0, 0)));
-            }
+            //if (ChildView.BackgroundColor == Color.Default)
+            //{
+            //    TypedArray colors = Context.Theme.ObtainStyledAttributes(new[] { global::Android.Resource.Attribute.ColorBackground });
+            //    renderer.View.SetBackgroundColor(new global::Android.Graphics.Color(colors.GetColor(0, 0)));
+            //}
         }
     }
 

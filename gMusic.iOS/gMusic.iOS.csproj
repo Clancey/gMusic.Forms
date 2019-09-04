@@ -172,8 +172,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Clancey.SimpleAuth">
+      <Version>1.0.51</Version>
       <Version>1.0.52</Version>
     </PackageReference>
     <PackageReference Include="Clancey.SimpleDatabase">

@@ -871,7 +871,8 @@ namespace gMusic.Managers {
 			var song = Database.Main.GetObject<Song, TempSong> (Settings.CurrentSong);
 			if (song == null)
 				return;
-			CurrentSongIndex = Database.Main.ExecuteScalar<int> ("select rowid -1 from SongsOrdered where Id = ?", song.Id);
+            NotificationManager.Shared.ProcCurrentSongChanged(song);
+            CurrentSongIndex = Database.Main.ExecuteScalar<int> ("select rowid -1 from SongsOrdered where Id = ?", song.Id);
 			CurrentSongIndex = Math.Max (0, CurrentOrder.IndexOf (CurrentSongIndex));
 
 			await Task.Run (() => Player.PrepareFirstTrack (song, Settings.CurrentPlaybackIsVideo));

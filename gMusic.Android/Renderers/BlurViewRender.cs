@@ -29,14 +29,16 @@ namespace gMusic.Droid.Renderers {
 
 				var blurView = new BlurView (context);
 
-				blurView.SetOverlayColor (Resource.Color.colorOverlay);
+                blurView.SetBackgroundColor (Color.White.MultiplyAlpha(.75).ToAndroid());
 
-				blurView.SetupWith (rootView)
-				   .WindowBackground (windowBackground)
-				   .BlurAlgorithm (new RenderScriptBlur (context))
-				   .BlurRadius (10f);
+                blurView.SetupWith(rootView)
+                   .WindowBackground(windowBackground)
+                   .BlurAlgorithm(new RenderScriptBlur(context))
+                   .BlurRadius(25f)
 
-				SetNativeControl (blurView);
+                   //.SetHasFixedTransformationMatrix(true)
+                   ;
+                SetNativeControl (blurView);
 			}
 		}
 		
