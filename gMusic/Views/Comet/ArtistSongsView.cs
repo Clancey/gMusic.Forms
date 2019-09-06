@@ -21,7 +21,7 @@ namespace gMusic.CometViews
             {
                 SectionFor = (s) => new Section<Song>
                 {
-                    Header = new Text("Hi!"),
+                    Header = new Text(Database.Main.SectionHeader<Song>(group, s)),
                     Count = () => {
                         var count = Database.Main.RowsInSection<Song>(group, s);
                         return count;
