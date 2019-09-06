@@ -31,7 +31,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchI18n>cjk,mideast,other,rare,west</MtouchI18n>
-    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lbass  -lbass_fx"</MtouchExtraArgs>
+    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lbass  -lbass_fx" --interpreter</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -93,6 +93,7 @@
     <Compile Include="Renderers\ProgressViewRenderer.cs" />
     <Compile Include="Renderers\TextInputAlert.cs" />
     <Compile Include="Renderers\PagingScrollViewRenderer.cs" />
+    <Compile Include="Renderers\CometViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -207,6 +208,9 @@
     <PackageReference Include="Microsoft.AppCenter.Crashes">
       <Version>2.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Clancey.Comet.Reload">
+      <Version>0.0.9-alpha</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -217,6 +221,14 @@
     <ProjectReference Include="..\Localizations\Localizations.csproj">
       <Project>{630262F0-FA3F-4DFB-BD64-EFDB89474F49}</Project>
       <Name>Localizations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Comet\src\Comet\Comet.csproj">
+      <Project>{F342B090-E6B6-4038-820F-9679C08B43BB}</Project>
+      <Name>Comet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Comet\src\Comet.iOS\Comet.iOS.csproj">
+      <Project>{9DF36DBF-AFE6-438D-B7A6-1B5FB3D1D6D1}</Project>
+      <Name>Comet.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

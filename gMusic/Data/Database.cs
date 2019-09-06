@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace gMusic.Data
 {
-    internal class Database : SimpleDatabaseConnection
+    public class Database : SimpleDatabaseConnection
     {
         public static Database Main { get; set; } = setupDb();
         static Database setupDb(bool shouldDeleteOnFail = true)

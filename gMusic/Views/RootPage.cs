@@ -8,11 +8,13 @@ using gMusic.ViewModels;
 using gMusic.Data;
 using System.Linq;
 using gMusic.Managers;
+using System.Threading.Tasks;
 
 namespace gMusic
 {
     public class RootPage
     {
+        public static RootPage Shared { get; set; }
         public List<NavigationItem> Items { get; set; } = new List<NavigationItem>
 		{
 			new NavigationItem{Title = Strings.Search, Image = Images.Menu.SearchIcon, Page = new NavigationPage(new SearchPage())},
@@ -37,6 +39,7 @@ namespace gMusic
 		};
         public RootPage()
         {
+            Shared = this;
             Root = Xamarin.Forms.Device.OS == TargetPlatform.Android ? CreateAndroidRoot() : CreateIosRoot();
 
 			if (ApiManager.Shared.Count > 0)
@@ -95,6 +98,11 @@ namespace gMusic
                 return;
             ContentMasterDetail.Detail = item.Page;
             MasterDetail.IsPresented = false;
+        }
+
+        public async Task NavigateToPage(Page page)
+        {
+            await ContentMasterDetail.Detail.Navigation.PushAsync(page);
         }
     }
 }

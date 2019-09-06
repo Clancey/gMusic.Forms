@@ -38,6 +38,7 @@
     <Folder Include="Views\Cells\" />
     <Folder Include="Playback\" />
     <Folder Include="Views\Controls\" />
+    <Folder Include="Views\Comet\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ApiConstants.cs" />
@@ -45,6 +46,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Localizations\Localizations.csproj" />
+    <ProjectReference Include="..\..\..\Comet\src\Comet\Comet.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\Svg\airplay.svg" />

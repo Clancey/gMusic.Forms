@@ -43,7 +43,11 @@ namespace gMusic.iOS
 
 		void NativeInit()
 		{
-			BassIos.Init ();
+#if DEBUG
+            Comet.Reload.Init();
+#endif
+
+            BassIos.Init ();
 			Utility.DeviceName = Helpers.Device.Name;
 			Utility.IsSimulator = Helpers.Device.IsSim;
 			FadePlayer.CreatePlayer = (pd) => pd.IsVideo ? (Player)new AVMediaPlayer  () : new BassPlayer();
