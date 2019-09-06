@@ -28,6 +28,11 @@ namespace gMusic.iOS.Renderers
             base.LayoutSubviews();
             cometView.Frame = Bounds;
         }
+        protected override void Dispose(bool disposing)
+        {
+            cometView?.Dispose();
+            base.Dispose(disposing);
+        }
 
     }
 }

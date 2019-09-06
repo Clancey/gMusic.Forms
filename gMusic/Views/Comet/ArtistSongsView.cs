@@ -35,16 +35,6 @@ namespace gMusic.CometViews
                  },
 
             };
-
-            return new ListView<Song>
-            {
-                Count = () => Database.Main.GetObjectCount<Song>(group),
-                ItemFor = (row) => Database.Main.GetObjectByIndex<Song>(row, group),
-                ViewFor = (album) => new MediaItemView().SetEnvironment("item", album).Frame(alignment: Alignment.Leading).Padding(5),
-            }.OnSelected((a) =>
-            {
-                gMusic.RootPage.Shared.NavigateToPage(new gMusic.Views.PlaylistSongPage());
-            });
         }
     }
 }
