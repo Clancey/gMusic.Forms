@@ -16,11 +16,7 @@ namespace gMusic.Views {
 		protected override void OnItemSelected (object sender, SelectedItemChangedEventArgs args)
 		{
 			var artist = args.SelectedItem as Artist;
-			this.Navigation.PushAsync (new SongsPage {
-				BindingContext = new ArtistSongsViewModel {
-					Artist = artist,
-				}
-			});
+			this.Navigation.PushAsync (new ArtistDetailsPage(artist));
 		}
 	}
 }

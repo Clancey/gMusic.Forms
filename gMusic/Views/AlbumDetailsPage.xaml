@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gMusic="clr-namespace:gMusic.Views;assembly=gMusic"
+             xmlns:cells="clr-namespace:gMusic.Views;assembly=gMusic"
+             x:Class="gMusic.Views.AlbumDetailsPage">
+    <ContentPage.Content>
+        <ListView x:Name="ListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <cells:MediaItemCell />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

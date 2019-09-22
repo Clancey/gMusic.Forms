@@ -80,8 +80,11 @@ namespace gMusic.Views {
 
 		public async void UpdateArtwork (MediaItemBase item)
 		{
-			if (item == null)
-				return;
+            if (item == null)
+            {
+                SetAsDefault();
+                return;
+            }
 			var urlTask = item.GetArtworkUrl ();
 			if (!urlTask.IsCompleted) {
 				image.Source = Images.DefaultAlbumArt;
@@ -120,6 +123,12 @@ namespace gMusic.Views {
 			image.Source = new UriImageSource { Uri = new Uri (url) };
 			images.ForEach (i => i.IsVisible = false);
 		}
+        void SetAsDefault()
+        {
+            image.IsVisible = true;
+            image.Source = Images.DefaultAlbumArt;
+            images.ForEach(i => i.IsVisible = false);
+        }
 
 		void SetMultiImages(string[] urls)
 		{

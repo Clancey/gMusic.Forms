@@ -13,7 +13,7 @@ namespace gMusic.Views {
 				Title = Strings.Songs
 			};
 		}
-
+        
 		protected override void OnItemSelected (object sender, SelectedItemChangedEventArgs args)
 		{
 			var song = args.SelectedItem as Song;

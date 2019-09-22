@@ -23,5 +23,17 @@ namespace Xamarin.Forms {
 				 Command = new Command (() => onTap (view))
 			 });
 
-	}
+        public static T SetRow<T>(this T view, int row) where T : View
+        {
+            Grid.SetRow(view, row);
+            return view;
+        }
+
+        public static T SetColumn<T>(this T view, int row) where T : View
+        {
+            Grid.SetColumn(view, row);
+            return view;
+        }
+
+    }
 }
