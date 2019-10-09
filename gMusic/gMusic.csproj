@@ -13,10 +13,10 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />  
     <PackageReference Include="Clancey.SimpleAuth" Version="1.0.52" />
     <PackageReference Include="Clancey.SimpleDatabase" Version="1.1.3" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Punchclock" Version="3.1.1" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />

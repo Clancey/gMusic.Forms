@@ -825,55 +825,55 @@ namespace gMusic.Api.GoogleMusic {
 
 		public override async Task<List<Song>> GetAlbumDetails (string id)
 		{
-			//TODO: redo this...
-			//try
-			//{
-			//	bool success = false;
-			//	var request = new GoogleMusicApiRequest
-			//	{
-			//		method = "sj.album.get",
-			//		parameters = new GoogleMusicApiRequest.ItemDetailsParams()
-			//		{
-			//			IncludeTracks = true,
-			//			nid = id,
-			//		}
+            //TODO: redo this...
+            try
+            {
+                bool success = false;
+                var request = new GoogleMusicApiRequest
+                {
+                    method = "sj.album.get",
+                    parameters = new GoogleMusicApiRequest.ItemDetailsParams()
+                    {
+                        IncludeTracks = true,
+                        nid = id,
+                    }
 
-			//	};
+                };
 
-			//	var songs = new List<Song>();
+                var songs = new List<Song>();
 
-			//	var cachedResult = RequestCache<AlbumDataResultObject>.AlbumResults?.Get(id);
-			//	if (cachedResult == null)
-			//	{
-			//		var resp = await Api.Post<AlbumDataResultObject>(request);
+                var cachedResult = RequestCache<AlbumDataResultObject>.AlbumResults?.Get(id);
+                if (cachedResult == null)
+                {
+                    var resp = await Api.Post<AlbumDataResultObject>(request);
 
-			//		if (!await ProcessAlbumTracks(id, resp?.result?.Tracks))
-			//			return songs;
-			//		RequestCache<AlbumDataResultObject>.AlbumResults.Add(id, resp);
-			//	}
-			//	var tempSongs = await Database.Main.TablesAsync<TempSong>().Where(x => x.ParentId == id).ToListAsync() ??
-			//					new List<TempSong>();
-			//	if (tempSongs.Count == 0)
-			//	{
-			//		if (!await ProcessAlbumTracks(id, cachedResult.result.Tracks))
-			//			return songs;
-			//		tempSongs = await Database.Main.TablesAsync<TempSong>().Where(x => x.ParentId == id).ToListAsync() ??
-			//			new List<TempSong>();
-			//	}
-			//	var theAlbum = (await Database.Main.TablesAsync<AlbumIds>().Where(x => x.Id == id).FirstOrDefaultAsync());
-			//	var albumId = theAlbum?.AlbumId;
-			//	var existingSongs = string.IsNullOrWhiteSpace(albumId) ? new List<string>()
-			//		: (await Database.Main.TablesAsync<Song>().Where(x => x.AlbumId == albumId).ToListAsync()).Select(x => x.Id).ToList();
+                    if (!await ProcessAlbumTracks(id, resp?.result?.Tracks))
+                        return songs;
+                    RequestCache<AlbumDataResultObject>.AlbumResults.Add(id, resp);
+                }
+                var tempSongs = await Database.Main.TablesAsync<TempSong>().Where(x => x.ParentId == id).ToListAsync() ??
+                                new List<TempSong>();
+                if (tempSongs.Count == 0)
+                {
+                    if (!await ProcessAlbumTracks(id, cachedResult.result.Tracks))
+                        return songs;
+                    tempSongs = await Database.Main.TablesAsync<TempSong>().Where(x => x.ParentId == id).ToListAsync() ??
+                        new List<TempSong>();
+                }
+                var theAlbum = (await Database.Main.TablesAsync<AlbumIds>().Where(x => x.Id == id).FirstOrDefaultAsync());
+                var albumId = theAlbum?.AlbumId;
+                var existingSongs = string.IsNullOrWhiteSpace(albumId) ? new List<string>()
+                    : (await Database.Main.TablesAsync<Song>().Where(x => x.AlbumId == albumId).ToListAsync()).Select(x => x.Id).ToList();
 
 
-			//	songs.AddRange(tempSongs.Where(x => !existingSongs.Contains(x.Id)));
-			//	return songs.OrderBy(x => x.Disc).ThenBy(x => x.Track).ToList();
-			//}
-			//catch (Exception ex)
-			//{
-			//	LogManager.Shared.Report(ex);
-			//}
-			return new List<Song> ();
+                songs.AddRange(tempSongs.Where(x => !existingSongs.Contains(x.Id)));
+                return songs.OrderBy(x => x.Disc).ThenBy(x => x.Track).ToList();
+            }
+            catch (Exception ex)
+            {
+                LogManager.Shared.Report(ex);
+            }
+            return new List<Song> ();
 		}
 
 		public override async Task<SearchResults> GetArtistDetails (string id)

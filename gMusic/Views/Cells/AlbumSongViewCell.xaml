@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.AlbumSongViewCell">
+    <ViewCell.View>
+        <Grid Margin="12,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding Track}" VerticalOptions="Center" Margin="12"/>
+            <StackLayout VerticalOptions="Center" Grid.Column="1"
+                     Spacing="0" HorizontalOptions="FillAndExpand">
+            <Label x:Name="Text"
+                   HorizontalOptions="FillAndExpand"
+                   Text="{Binding Name}"
+                   Style="{DynamicResource MainTextLableStyle}"
+                   LineBreakMode="TailTruncation" />
+            <Label x:Name="Detail"
+                   HorizontalOptions="FillAndExpand"
+                   Text="{Binding DetailText}"
+                   Style="{DynamicResource SubTextLableStyle}"
+                   LineBreakMode="TailTruncation" />
+        </StackLayout>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>
