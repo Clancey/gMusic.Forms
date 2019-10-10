@@ -85,6 +85,7 @@ namespace gMusic.Models
 		}
 		[Indexed]
 		public bool ExcludedOffline { get; set; }
+
 		public override bool ShouldBeLocal ()
 		{
 			return Database.Main.GetObject<SongOfflineClass> (Id)?.ShouldBeLocal == true;

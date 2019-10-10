@@ -52,8 +52,33 @@ namespace gMusic.Views
 			//}
             base.OnBindingContextChanged();
 			Image.UpdateArtwork (BindingContext as MediaItemBase);
+            UpdateLevel();
+
         }
 
-        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            NotificationManager.Shared.CurrentSongChanged += Shared_CurrentSongChanged;
+        }
+
+        private void Shared_CurrentSongChanged(object sender, EventArgs<Song> e)
+        {
+            UpdateLevel();
+        }
+
+        void UpdateLevel()
+        {
+            var song = BindingContext as Song;
+            var isVisible = song?.Equals(PlaybackManager.Shared.Player.CurrentSong) ?? false;
+            Image.UpdateLevelMeter(isVisible);
+                
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            NotificationManager.Shared.CurrentSongChanged -= Shared_CurrentSongChanged;
+        }
     }
 }

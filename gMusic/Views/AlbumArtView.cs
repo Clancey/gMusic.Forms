@@ -12,6 +12,7 @@ namespace gMusic.Views {
 		CachedImage image;
 		Frame frame;
 		List<CachedImage> images = new List<CachedImage> ();
+        LevelView levelView;
 		public AlbumArtView ()
 		{
 			frame = new Frame () {
@@ -58,6 +59,7 @@ namespace gMusic.Views {
 			var rect = new Rectangle (newX, newY, s, s);
 
 			frame.Layout (rect);
+            levelView?.Layout(rect);
 
 			var half = s / 2;
 			rect.Width = rect.Height = half;
@@ -77,6 +79,24 @@ namespace gMusic.Views {
 
 		}
 
+        public void UpdateLevelMeter(bool isVisible)
+        {
+            if(isVisible)
+            {
+                if (levelView != null)
+                    return;
+                levelView = new LevelView();
+                this.Children.Add(levelView);
+            }
+            else
+            {
+                if (levelView == null)
+                    return;
+                Children.Remove(levelView);
+                levelView.RemoveNotification();
+                levelView = null;
+            }
+        }
 
 		public async void UpdateArtwork (MediaItemBase item)
 		{

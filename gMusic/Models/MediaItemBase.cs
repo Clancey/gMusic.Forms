@@ -134,5 +134,14 @@ namespace gMusic.Models
             artworkUrl = await Managers.ArtworkManager.Shared.GetArtwork(this);
             return artworkUrl;
         }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as MediaItemBase;
+            if (item == null)
+                return false;
+            return item.Id == this.Id;
+        }
+        public override int GetHashCode() => Id?.GetHashCode() ?? base.GetHashCode();
     }
 }
