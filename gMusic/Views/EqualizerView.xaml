@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:strings="clr-namespace:Localizations;assembly=Localizations" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:gMusic="clr-namespace:gMusic.Views;assembly=gMusic"
+             x:Class="gMusic.Views.EqualizerView">
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="12">
+            <Label VerticalOptions="Center" Text="{x:Static strings:Strings.Active}" />
+            <Switch HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="12">
+            <Label Text="{x:Static strings:Strings.DefaultPreset}" VerticalOptions="Center" />
+            <Button x:Name="EqualizerPicker" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Text="Flat" />
+        </StackLayout>
+        <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <gMusic:VerticalSlider/>
+            <gMusic:VerticalSlider Grid.Column="1"/>
+            <gMusic:VerticalSlider Grid.Column="2"/>
+            <gMusic:VerticalSlider Grid.Column="3"/>
+            <gMusic:VerticalSlider Grid.Column="4"/>
+        </Grid>
+        
+        <Grid HeightRequest="30" VerticalOptions="End">
+            <Button x:Name="renameButton" Text="1" Grid.Column="0" />
+            <Button x:Name="duplicateButton" Text="2" Grid.Column="1" />
+            <Button x:Name="deleteButton" Text="3" Grid.Column="2" />
+            <Button x:Name="resetButton" Text="4" Grid.Column="3" />
+        </Grid>
+        <BoxView HeightRequest="74" />
+    </StackLayout>
+</ContentPage>

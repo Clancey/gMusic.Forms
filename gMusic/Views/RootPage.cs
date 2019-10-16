@@ -25,6 +25,7 @@ namespace gMusic
 			new NavigationItem{Title = Strings.Online},
 			new NavigationItem{Title = Strings.Radio, Page = new NavigationPage(new RadioStationsPage()), Image = Images.Menu.RadioIcon},
 			new NavigationItem{Title = Strings.Settings},
+            new NavigationItem{Title = Strings.Equalizer, Page = new NavigationPage(new EqualizerView()), Image = Images.Menu.EqualizerIcon},
 			new NavigationItem{Title = Strings.Settings, Page = new NavigationPage(new SettingsPage()),Image = Images.Menu.SettingsIcon },
 #if DEBUG
 			new NavigationItem {Title = "Console", Page = new NavigationPage(new ConsolePage()),Image = Images.Menu.SettingsIcon },

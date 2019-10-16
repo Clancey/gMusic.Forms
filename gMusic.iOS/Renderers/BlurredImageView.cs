@@ -4,6 +4,7 @@ using System.Text;
 using CoreGraphics;
 using UIKit;
 
+
 namespace gMusic.iOS
 {
 	internal class BluredView : UIView

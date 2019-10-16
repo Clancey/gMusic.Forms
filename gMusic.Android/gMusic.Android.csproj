@@ -116,6 +116,7 @@
     <Compile Include="WebAuthenticator.cs" />
     <Compile Include="Renderers\BlurViewRender.cs" />
     <Compile Include="Renderers\PagingScrollViewRenderer.cs" />
+    <Compile Include="Renderers\VerticalSliderRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

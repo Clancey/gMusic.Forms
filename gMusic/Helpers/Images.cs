@@ -27,7 +27,8 @@ namespace gMusic
 			public static ImageSource SongsIcon => IconFont.CreateFont (IconFont.IconSongs, Color.White);
 			public static ImageSource PlaylistIcon => IconFont.CreateFont (IconFont.IconPlaylists, Color.White);
 			public static ImageSource RadioIcon => IconFont.CreateFont (IconFont.IconRadio, Color.White);
-			public static ImageSource SettingsIcon => IconFont.CreateFont (IconFont.IconSettings, Color.White);
+            public static ImageSource EqualizerIcon => IconFont.CreateFont(IconFont.IconEqualizer, Color.White);
+            public static ImageSource SettingsIcon => IconFont.CreateFont (IconFont.IconSettings, Color.White);
 		}
 
 		public static class NowPlayingScreen {
