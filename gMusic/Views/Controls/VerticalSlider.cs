@@ -6,10 +6,7 @@ namespace gMusic.Views
 {
     public class VerticalSlider : Slider
     {
-        public VerticalSlider()
-        {
-
-        }
+        public int Tag { get; set; }
     }
 }
 

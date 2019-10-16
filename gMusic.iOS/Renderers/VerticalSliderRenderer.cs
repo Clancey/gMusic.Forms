@@ -26,6 +26,8 @@ namespace gMusic.iOS.Renderers
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
+            if (Control == null)
+                return;
             Control.Transform = CGAffineTransform.MakeRotation((float)Math.PI * -.5f);
         }
 

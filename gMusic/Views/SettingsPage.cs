@@ -40,6 +40,8 @@ namespace gMusic.Views {
 								var firstOption = Styles.Styles.AvailableStyles[0].Id;
 								var remaining = Styles.Styles.AvailableStyles.Skip(1).Select(x=> x.Id).ToArray();
 								var selection = await DisplayActionSheet(Strings.Theme,Strings.Cancel,firstOption,remaining);
+                                if(selection ==  Strings.Cancel)
+                                    return;
 								Console.WriteLine(selection);
 								var newStyle = Styles.Styles.AvailableStyles.First(x=> x.Id == selection);
 								if(Styles.Styles.CurrentStyle ==  newStyle)
