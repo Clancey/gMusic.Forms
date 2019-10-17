@@ -17,8 +17,19 @@ namespace gMusic.Forms.iOS
 {
 	public class SlideUpPanelRenderer : UIViewController, IVisualElementRenderer, IEffectControlProvider
 	{
-
-		public SlideUpPanel Model => (SlideUpPanel)Element;
+        public override void TraitCollectionDidChange(UITraitCollection previousTraitCollection)
+        {
+            base.TraitCollectionDidChange(previousTraitCollection);
+            if(previousTraitCollection.UserInterfaceStyle != this.TraitCollection.UserInterfaceStyle)
+                SetDefaultStyle();
+        }
+        void SetDefaultStyle()
+        {
+            var isDark = this.TraitCollection.UserInterfaceStyle == UIUserInterfaceStyle.Dark;
+            //TODO: Fix this make it better!
+            Styles.Styles.CurrentStyle = isDark ? Styles.Styles.AvailableStyles[1] : Styles.Styles.AvailableStyles[0];
+        }
+        public SlideUpPanel Model => (SlideUpPanel)Element;
 		UIViewController _detailController;
 
 		bool _disposed;
@@ -36,7 +47,9 @@ namespace gMusic.Forms.iOS
 
 		public SlideUpPanelRenderer()
 		{
-			NotificationManager.Shared.ToggleNowPlaying += (sender, e) => {
+            SetDefaultStyle();
+
+            NotificationManager.Shared.ToggleNowPlaying += (sender, e) => {
 				Presented = !Presented;
 			};
 			NotificationManager.Shared.CloseNowPlaying += (sender, e) => {
