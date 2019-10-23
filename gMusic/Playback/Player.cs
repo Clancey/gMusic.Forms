@@ -54,9 +54,7 @@ namespace gMusic.Playback {
 
 		public abstract void Dispose ();
 
-		//public abstract void ApplyEqualizer (Equalizer.Band [] bands);
-
-		public abstract void ApplyEqualizer ();
+		public abstract void ApplyEqualizer (Band [] bands);
 
 		public abstract void UpdateBand (int band, float gain);
 

@@ -20,7 +20,7 @@ namespace gMusic.Forms.iOS
         public override void TraitCollectionDidChange(UITraitCollection previousTraitCollection)
         {
             base.TraitCollectionDidChange(previousTraitCollection);
-            if(previousTraitCollection.UserInterfaceStyle != this.TraitCollection.UserInterfaceStyle)
+            if(previousTraitCollection?.UserInterfaceStyle != this.TraitCollection?.UserInterfaceStyle)
                 SetDefaultStyle();
         }
         void SetDefaultStyle()

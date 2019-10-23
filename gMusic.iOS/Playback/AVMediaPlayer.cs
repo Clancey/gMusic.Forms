@@ -174,13 +174,13 @@ namespace gMusic.iOS.Playback {
 
 		public IntPtr Handle => throw new NotImplementedException ();
 
-		//public override async void ApplyEqualizer (Equalizer.Band [] bands)
-		//{
-		//	if (IsPlayerItemValid)
-		//		await AVPlayerEqualizer.Shared.ApplyEqualizer (bands, player?.CurrentItem);
-		//}
+        public override async void ApplyEqualizer(Band[] bands)
+        {
+            if (IsPlayerItemValid)
+                await AVPlayerEqualizer.Shared.ApplyEqualizer(bands, player?.CurrentItem);
+        }
 
-		public override double CurrentTimeSeconds () => player?.CurrentTimeSeconds () ?? 0;
+        public override double CurrentTimeSeconds () => player?.CurrentTimeSeconds () ?? 0;
 
 		public override void Dispose ()
 		{
@@ -229,16 +229,10 @@ namespace gMusic.iOS.Playback {
 		{
 			player.Seek (time);
 		}
-		public override void ApplyEqualizer ()
-		{
-			if (player.CurrentItem == null)
-				return;
-			//AVPlayerEqualizer.Shared.ApplyEqualizer (player.CurrentItem);
-			equalizerApplied = true;
-		}
+		
 		public override void UpdateBand (int band, float gain)
 		{
-			//AVPlayerEqualizer.Shared.UpdateBand (band, gain);
+			AVPlayerEqualizer.Shared.UpdateBand (band, gain);
 		}
 
 //		public override void DisableVideo ()

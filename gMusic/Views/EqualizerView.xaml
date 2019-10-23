@@ -6,7 +6,7 @@
     <StackLayout>
         <StackLayout Orientation="Horizontal" Margin="12">
             <Label VerticalOptions="Center" Text="{x:Static strings:Strings.Active}" />
-            <Switch HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+            <Switch x:Name="ActiveSwitch" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="12">
             <Label Text="{x:Static strings:Strings.DefaultPreset}" VerticalOptions="Center" />

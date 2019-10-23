@@ -455,45 +455,45 @@ namespace gMusic {
 
 		int fxStream;
 		int fxEq;
-		//public override void ApplyEqualizer(Equalizer.Band[] bands)
-		//{
-		//	if (!IsPlayerItemValid || !Settings.EqualizerEnabled)
-		//		return;
-		//	if (fxStream == streamHandle)
-		//	{
-		//		for (int i = 0; i < bands.Length; i++)
-		//		{
-		//			UpdateBand(i, bands[i].Gain);
-		//		}
-		//		return;
-		//	}
+        public override void ApplyEqualizer(Band[] bands)
+        {
+            if (!IsPlayerItemValid || !Settings.EqualizerEnabled)
+                return;
+            if (fxStream == streamHandle)
+            {
+                for (int i = 0; i < bands.Length; i++)
+                {
+                    UpdateBand(i, bands[i].Gain);
+                }
+                return;
+            }
 
-		//	fxEq = Bass.ChannelSetFX(streamHandle, EffectType.PeakEQ, 1);
-		//	if (fxEq == 0)
-		//	{
-		//		fxStream = 0;
-		//		LogManager.Shared.Report(new Exception($"Equalizer not working {Bass.LastError}"));
-		//		return;
-		//	}
+            fxEq = Bass.ChannelSetFX(streamHandle, EffectType.PeakEQ, 1);
+            if (fxEq == 0)
+            {
+                fxStream = 0;
+                LogManager.Shared.Report(new Exception($"Equalizer not working {Bass.LastError}"));
+                return;
+            }
 
-		//	fxStream = streamHandle;
-		//	eq.fQ = 0f;
-		//	eq.fBandwidth = .6f;
-		//	eq.lChannel = FXChannelFlags.All;
+            fxStream = streamHandle;
+            eq.fQ = 0f;
+            eq.fBandwidth = .6f;
+            eq.lChannel = FXChannelFlags.All;
 
-		//	for (int i = 0; i < bands.Length; i++)
-		//	{
-		//		eq.lBand = i;
-		//		eq.fCenter = bands[i].Center;
-		//		eq.fGain = bands[i].Gain;
-		//		Console.WriteLine(eq.fCenter);
-		//		Bass.FXSetParameters(fxEq, eq);
-		//	}
-		//}
-		readonly PeakEQParameters eq = new PeakEQParameters ();
-		public override void ApplyEqualizer ()
+            for (int i = 0; i < bands.Length; i++)
+            {
+                eq.lBand = i;
+                eq.fCenter = bands[i].Center;
+                eq.fGain = bands[i].Gain;
+                Console.WriteLine(eq.fCenter);
+                Bass.FXSetParameters(fxEq, eq);
+            }
+        }
+        readonly PeakEQParameters eq = new PeakEQParameters ();
+		public void ApplyEqualizer ()
 		{
-			//ApplyEqualizer (Equalizer.Shared.Bands);
+			ApplyEqualizer (EqualizerData.Bands);
 		}
 
 		public override void UpdateBand (int band, float gain)

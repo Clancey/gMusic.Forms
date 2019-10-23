@@ -41,7 +41,7 @@ namespace gMusic.Playback {
 				CurrentPlayer.Volume = Settings.CurrentVolume;
 			};
 			NotificationManager.Shared.EqualizerChanged += (s, e) => {
-				CurrentPlayer.ApplyEqualizer ();
+				ApplyEqualizer ();
 			};
 		}
 
@@ -126,7 +126,7 @@ namespace gMusic.Playback {
 				if (!data.Item1)
 					return false;
 				var s = await player.PrepareData (data.Item2, false);
-				player.ApplyEqualizer ();
+				player.ApplyEqualizer (EqualizerData.Bands);
 				return s;
 
 			} catch (Exception ex) {
@@ -208,7 +208,7 @@ namespace gMusic.Playback {
 					var s = await player.PrepareData (data.Item2, true);
 					if (!s)
 						return false;
-					player.ApplyEqualizer ();
+					player.ApplyEqualizer (EqualizerData.Bands);
 					player.Play ();
 					SetVideo (player);
 					return true;
@@ -223,7 +223,7 @@ namespace gMusic.Playback {
 			} else if (isSongPrepared (song)) {
 				fadingToSong = null;
 				var player = await GetPlayer (song, true);
-				player.ApplyEqualizer ();
+				player.ApplyEqualizer (EqualizerData.Bands);
 				player.Play ();
 				State = player.State;
 				player.Volume = Settings.CurrentVolume;
@@ -243,7 +243,7 @@ namespace gMusic.Playback {
 					if (!s)
 						return false;
 				}
-				player.ApplyEqualizer ();
+				player.ApplyEqualizer (EqualizerData.Bands);
 				player.Play ();
 				SetVideo (player);
 				return true;
@@ -259,11 +259,6 @@ namespace gMusic.Playback {
 			//if (videoPlayer != null) {
 			//	Parent.VideoLayer.VideoLayer = videoPlayer.PlayerLayer;
 			//}
-		}
-
-		public override void UpdateBand (int band, float gain)
-		{
-			CurrentPlayer?.UpdateBand (band, gain);
 		}
 
 		public override Task<bool> PrepareData (PlaybackData playbackData, bool isPlaying)
@@ -312,7 +307,7 @@ namespace gMusic.Playback {
 				if (player != CurrentPlayer || State != PlaybackState.Playing)
 					return;
 				if (!eqApplied) {
-					player.ApplyEqualizer ();
+					player.ApplyEqualizer (EqualizerData.Bands);
 					eqApplied = true;
 				}
 				if (!Settings.EnableGaplessPlayback || Settings.RepeatMode == RepeatMode.RepeatOne || nextSong == null)
@@ -517,17 +512,22 @@ namespace gMusic.Playback {
 			playerQueue.Clear ();
 		}
 
-		//public override void ApplyEqualizer (Equalizer.Band [] bands)
-		//{
-		//	CurrentPlayer?.ApplyEqualizer (bands);
-		//}
+        public override void ApplyEqualizer(Band[] bands)
+        {
+            CurrentPlayer?.ApplyEqualizer(bands);
+        }
 
-		public override void ApplyEqualizer ()
+        public void ApplyEqualizer ()
 		{
-			CurrentPlayer?.ApplyEqualizer ();
+			CurrentPlayer?.ApplyEqualizer (EqualizerData.Bands);
 		}
 
-		public override float Volume { get => CurrentPlayer.Volume; set => CurrentPlayer.Volume = value; }
+        public override void UpdateBand(int band, float gain)
+        {
+            CurrentPlayer?.UpdateBand(band, gain);
+        }
+
+        public override float Volume { get => CurrentPlayer.Volume; set => CurrentPlayer.Volume = value; }
 		public override bool IsPlayerItemValid => CurrentPlayer?.IsPlayerItemValid ?? false;
 
 		public int AutoSkipCount { get; private set; }
