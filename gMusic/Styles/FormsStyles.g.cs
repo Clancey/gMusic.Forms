@@ -535,10 +535,10 @@ namespace Xamarin.Forms {
 			get => GetValue<System.Collections.IEnumerable> (ItemsView.ItemsSourceProperty);
 			set => SetValue (ItemsView.ItemsSourceProperty, value);
 		}
-		public Xamarin.Forms.IItemsLayout ItemsLayout {
-			get => GetValue<Xamarin.Forms.IItemsLayout> (ItemsView.ItemsLayoutProperty);
-			set => SetValue (ItemsView.ItemsLayoutProperty, value);
-		}
+		//public Xamarin.Forms.IItemsLayout ItemsLayout {
+		//	get => GetValue<Xamarin.Forms.IItemsLayout> (ItemsView.ItemsLayoutProperty);
+		//	set => SetValue (ItemsView.ItemsLayoutProperty, value);
+		//}
 		public Xamarin.Forms.DataTemplate ItemTemplate {
 			get => GetValue<Xamarin.Forms.DataTemplate> (ItemsView.ItemTemplateProperty);
 			set => SetValue (ItemsView.ItemTemplateProperty, value);
