@@ -13,9 +13,9 @@ namespace gMusic.Views {
 			};
 			//this.ViewModel = new SimpleDatabaseViewModel
 		}
-		protected override void OnItemSelected (object sender, SelectedItemChangedEventArgs args)
-		{
-			var artist = args.SelectedItem as Artist;
+        protected override void ItemSelected(object item)
+        {
+			var artist = item as Artist;
 			this.Navigation.PushAsync (new ArtistDetailsPage(artist));
 		}
 	}

@@ -53,10 +53,9 @@ namespace gMusic.Views {
 		TaskCompletionSource<Playlist> tcs = new TaskCompletionSource<Playlist> ();
 		public Task<Playlist> WaitForSelection () => tcs.Task;
 
-		protected override void OnItemSelected (object sender, SelectedItemChangedEventArgs args)
-		{
-			base.OnItemSelected (sender, args);
-			var playlist = args.SelectedItem as Playlist;
+        protected override void ItemSelected(object item)
+        {
+            var playlist = item as Playlist;
 			if(playlist == null) {
 				return;
 			}

@@ -13,16 +13,16 @@ namespace gMusic.Views {
 				Title = Strings.Songs
 			};
 		}
-        
-		protected override void OnItemSelected (object sender, SelectedItemChangedEventArgs args)
-		{
-			var song = args.SelectedItem as Song;
+
+        protected override void ItemSelected(object item)
+        {
+            var song = item as Song;
 			var songViewModel = BindingContext as SongsViewModel;
 
 			if (songViewModel != null)
 				songViewModel.OnTap (song);
 			else if(BindingContext is PlaylistSongsViewModel plsvm) {
-				plsvm.OnTap (args.SelectedItem as PlaylistSong);
+				plsvm.OnTap (item as PlaylistSong);
 			}
 			else 
 				PlaybackManager.Shared.Play (song);

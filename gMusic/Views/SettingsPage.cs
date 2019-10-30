@@ -5,6 +5,7 @@ using System.Linq;
 using gMusic.Managers;
 using FFImageLoading.Svg.Forms;
 using gMusic.Views.Cells;
+using gMusic.Data;
 
 namespace gMusic.Views {
 	public class SettingsPage : ContentPage {
@@ -50,7 +51,21 @@ namespace gMusic.Views {
 								themeCell.Detail = selection;
 							}),
 						}),
-					}
+					}, new TableSection()
+                    {
+                        new TextCell
+                        {
+                            Text = Strings.ResyncDatabase,
+                            Detail = Strings.ResyncDatabaseHint,
+                            Command = new Command(async () =>
+                            {
+                                Database.Main.ResetDatabase();
+                                Settings.ResetApiModes();
+                                await ApiManager.Shared.ReSync();
+
+                            }),
+                        }
+                    }
 				}
 			};
 		}
