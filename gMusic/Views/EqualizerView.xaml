@@ -10,7 +10,7 @@
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="12">
             <Label Text="{x:Static strings:Strings.DefaultPreset}" VerticalOptions="Center" />
-            <Button x:Name="EqualizerPicker" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Text="Flat" />
+            <Button x:Name="EqualizerPicker" Clicked="EqualizerPicker_Clicked" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
         </StackLayout>
         <Grid x:Name="EqualizerGrid" Margin="12" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"/>
         <Grid HeightRequest="30" VerticalOptions="End">

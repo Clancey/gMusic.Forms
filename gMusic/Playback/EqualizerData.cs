@@ -47,15 +47,12 @@ namespace gMusic.Playback
             get { return currentPreset; }
             set
             {
-                var oldPreset = currentPreset;
                 if (currentPreset == value)
                     return;
                 currentPreset = value;
-                if (oldPreset != null || oldPreset == value)
-                {
-                    Settings.EqualizerPreset = currentPreset.Id;
-                    NotificationManager.Shared.ProcEqualizerChanged();
-                }
+                ApplyPreset(value);
+                Settings.EqualizerPreset = currentPreset.Id;
+                NotificationManager.Shared.ProcEqualizerChanged();
             }
         }
 
@@ -81,7 +78,7 @@ namespace gMusic.Playback
                 {
                     EqualizerPreset preset = Presets.FirstOrDefault(x => x.Id == Settings.EqualizerPreset);
                     if (preset != null)
-                        ApplyPreset(preset);
+                        CurrentPreset = preset;
                 }
             }
         }
@@ -96,9 +93,8 @@ namespace gMusic.Playback
             PlaybackManager.Shared.Player.ApplyEqualizer(Bands);
         }
 
-        public static void ApplyPreset(EqualizerPreset preset)
+        static void ApplyPreset(EqualizerPreset preset)
         {
-            CurrentPreset = preset;
             for (int i = 0; i < preset.Values.Count(); i++)
             {
                 var gain = (float)preset.Values[i].Value;
