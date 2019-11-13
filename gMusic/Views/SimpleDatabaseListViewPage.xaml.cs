@@ -12,12 +12,24 @@ namespace gMusic.Views {
 			get => BindingContext as BaseViewModel;
             set => BindingContext = value;
 		}
-
+        bool isGrid = false;
 		public SimpleDatabaseListViewPage ()
 		{
 			InitializeComponent ();
             var layout = CollectionView.ItemsLayout as LinearItemsLayout;
             layout.ItemSpacing = 6;
+            this.ToolbarItems.Add(new ToolbarItem("Toggle", null, () =>
+            {
+                Console.WriteLine(CollectionView.ItemSizingStrategy);
+                if(isGrid)
+                {
+                    CollectionView.ItemsLayout = new LinearItemsLayout(ItemsLayoutOrientation.Vertical) { ItemSpacing = 6 };
+                    
+                }
+                else
+                    CollectionView.ItemsLayout = new GridItemsLayout(ItemsLayoutOrientation.Vertical) { Span = 2};
+                isGrid = !isGrid;
+            }));
 		}
 
 

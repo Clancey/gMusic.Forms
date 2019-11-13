@@ -120,12 +120,13 @@ namespace gMusic.ViewModels
 		public object SyncRoot => throw new NotImplementedException ();
 
 		public bool IsSynchronized => throw new NotImplementedException ();
-
+        static int count =1;
 		public object this[int index] {
 			get {
 				try {
 					//Debug.WriteLine ($"Loading {Section}:{index}");
 					var item = Database.ObjectForRow<T> (GroupInfo, Section, index);
+                    Debug.WriteLine($"ITem loaded!!!!!! {count++}");
 					return item;
 				} catch (Exception ex) {
 					Debug.WriteLine (ex);

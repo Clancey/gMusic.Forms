@@ -6,6 +6,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+                        <!--<BoxView WidthRequest="100" BackgroundColor="Fuschia" HeightRequest="100"/>-->
                         <cells:MediaCollectionView />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
