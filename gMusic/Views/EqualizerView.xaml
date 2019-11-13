@@ -14,10 +14,10 @@
         </StackLayout>
         <Grid x:Name="EqualizerGrid" Margin="12" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"/>
         <Grid HeightRequest="30" VerticalOptions="End">
-            <Button x:Name="renameButton" Text="1" Grid.Column="0" />
-            <Button x:Name="duplicateButton" Text="2" Grid.Column="1" />
-            <Button x:Name="deleteButton" Text="3" Grid.Column="2" />
-            <Button x:Name="resetButton" Text="4" Grid.Column="3" />
+            <ImageButton x:Name="renameButton"  Grid.Column="0" />
+            <ImageButton x:Name="duplicateButton"  Grid.Column="1" />
+            <ImageButton x:Name="deleteButton" Grid.Column="2" />
+            <ImageButton x:Name="resetButton" Grid.Column="3" />
         </Grid>
         <BoxView HeightRequest="74" />
     </StackLayout>

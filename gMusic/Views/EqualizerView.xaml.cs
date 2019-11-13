@@ -23,6 +23,11 @@ namespace gMusic.Views
                 .ForEach(CreateSlider);
             ActiveSwitch.Toggled += ActiveSwitch_Toggled;
             ActiveSwitch.IsToggled = EqualizerData.Active;
+            
+            renameButton.Source = Images.EqualizerView.RenameButton;
+            resetButton.Source = Images.EqualizerView.ResetButton;
+            deleteButton.Source = Images.EqualizerView.DeleteButton;
+            duplicateButton.Source = Images.EqualizerView.DuplicateButton;
 
         }
 
