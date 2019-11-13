@@ -56,8 +56,24 @@ namespace gMusic.iOS
 				var alert = new TextInputAlert (x.title);
 				return alert.GetText (GetTopMostViewController ());
 			};
-		}
-		void ApplyStyles()
+            NotificationManager.Shared.StyleChanged += Shared_StyleChanged;
+            ApplyNativeStyle();
+        }
+
+        void ApplyNativeStyle()
+        {
+
+            var view = UIView.AppearanceWhenContainedIn(typeof(UIAlertController));
+            view.TintColor = Styles.Styles.CurrentStyle.AccentColor.ToUIColor();
+            UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes { ForegroundColor = view.TintColor };
+        }
+
+        private void Shared_StyleChanged(object sender, EventArgs e)
+        {
+            ApplyNativeStyle();
+        }
+
+        void ApplyStyles()
 		{
 			Styles.Styles.HeaderFontSize = (int)UIFont.PreferredTitle1.PointSize;
 			Styles.Styles.MainTextFontSize = (int)UIFont.PreferredSubheadline.PointSize;
@@ -65,10 +81,10 @@ namespace gMusic.iOS
 			Styles.Styles.DetailFontSize = (int)UIFont.PreferredCaption1.PointSize;
 			Styles.Fonts.NormalFontName = "Heebo-Regular";
 			Styles.Fonts.ThinFontName = "Heebo-Thin";
-
-			
 			Styles.Styles.ResetAllFonts ();
-		}
+           
+
+        }
 		public override void OnActivated (UIApplication uiApplication)
 		{
 			base.OnActivated (uiApplication);
