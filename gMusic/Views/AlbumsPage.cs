@@ -12,12 +12,13 @@ namespace gMusic.Views {
 				Title = Strings.Albums
 			};
 		}
-        //protected override void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
-        //{
-        //    var album = args.SelectedItem as Album;
-        //    if (album == null)
-        //        return;
-        //    this.Navigation.PushAsync(new AlbumDetailsPage(album));
-        //}
+
+        protected override void ItemSelected(object item)
+        { 
+            var album = item as Album;
+            if (album == null)
+                return;
+            this.Navigation.PushAsync(new AlbumDetailsPage(album));
+        }
     }
 }
