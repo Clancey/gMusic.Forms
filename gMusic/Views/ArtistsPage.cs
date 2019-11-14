@@ -2,6 +2,7 @@
 using gMusic.Models;
 using gMusic.ViewModels;
 using Localizations;
+using SimpleDatabase;
 using Xamarin.Forms;
 
 namespace gMusic.Views {
@@ -18,5 +19,11 @@ namespace gMusic.Views {
 			var artist = item as Artist;
 			this.Navigation.PushAsync (new ArtistDetailsPage(artist));
 		}
+
+        public GroupInfo GroupInfo
+        {
+            get => (ViewModel as SimpleDatabaseViewModel<Artist>).Source.GroupInfo;
+            set => (ViewModel as SimpleDatabaseViewModel<Artist>).Source.GroupInfo = value;
+        }
 	}
 }
