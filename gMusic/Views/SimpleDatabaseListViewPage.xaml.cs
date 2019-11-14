@@ -16,8 +16,8 @@ namespace gMusic.Views {
 		public SimpleDatabaseListViewPage ()
 		{
 			InitializeComponent ();
-            var layout = CollectionView.ItemsLayout as LinearItemsLayout;
-            layout.ItemSpacing = 6;
+            //var layout = CollectionView.ItemsLayout as LinearItemsLayout;
+            //layout.ItemSpacing = 6;
 		}
 
 
@@ -48,6 +48,14 @@ namespace gMusic.Views {
             var item = e.CurrentSelection.First();
             ItemSelected(item);
 
+        }
+
+        void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            if (args.SelectedItem == null)
+                return;
+            ItemSelected(args.SelectedItem);
+            ItemsListView.SelectedItem = null;
         }
 
         protected virtual void ItemSelected(object item)

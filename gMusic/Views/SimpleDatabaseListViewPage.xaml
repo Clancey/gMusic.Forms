@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gMusic.Views.SimpleDatabaseListViewPage" xmlns:cells="clr-namespace:gMusic.Views;assembly=gMusic" Title="{Binding Title}" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView x:Name="CollectionView" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged" IsGrouped="true" ItemsSource="{Binding Source, Mode=TwoWay}" VerticalOptions="FillAndExpand" xmlns:cells="clr-namespace:gMusic.Views;assembly=gMusic" BackgroundColor="{DynamicResource BackgroundColor}">
+            <!--<CollectionView x:Name="CollectionView" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged" IsGrouped="true" ItemsSource="{Binding Source, Mode=TwoWay}" VerticalOptions="FillAndExpand" xmlns:cells="clr-namespace:gMusic.Views;assembly=gMusic" BackgroundColor="{DynamicResource BackgroundColor}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -19,15 +19,15 @@
                         <ContentView/>
                     </DataTemplate>
                 </CollectionView.GroupFooterTemplate>
-            </CollectionView>
-            <!--<ListView x:Name="ItemsListView"
+            </CollectionView>-->
+            <ListView x:Name="ItemsListView"
                       IsGroupingEnabled="true"
                       GroupDisplayBinding="{Binding Display}"
                       GroupShortNameBinding="{Binding Display}"
                       ItemsSource="{Binding Source, Mode=TwoWay}"
                       VerticalOptions="FillAndExpand"
                       HasUnevenRows="True"
-                      RefreshCommand="{Binding LoadItemsCommand}"
+                      RefreshCommand="{Binding RefreshCommand}"
                       IsPullToRefreshEnabled="true"
                       IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                       CachingStrategy="RecycleElement"
@@ -38,7 +38,7 @@
                         <cells:MediaItemCell />
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>-->
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
